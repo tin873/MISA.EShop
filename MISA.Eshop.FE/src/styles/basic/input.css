@@ -1,0 +1,64 @@
+.input-filter{
+    border: 1px solid #e1e1e1;
+    padding: 0px;
+    padding-left: 8px;
+}
+.input-filter:focus{
+    outline: none;
+    border: 1px solid #3366ff;
+}
+
+.input-code{
+    width: 110px;
+}
+
+.input-name{
+    width: 200px;
+}
+
+.input-address{
+    width: 930px;
+}
+
+.input-phone{
+    width: 80px;
+}
+/*toolbar*/
+.input-toolbar{
+    padding: 0px 6px;
+    text-align: center;
+    background-color: #fff;
+    height: 20px;
+    width: 48px;
+    border: 1px solid #bbbbbb;
+}
+
+.validate-input{
+    width: 100% !important;
+    padding: 5px 10px;
+    border: 1px solid #bbbbbb;
+    height: 23px;
+}
+.validate-textarea{
+    width: 100% !important;
+    padding: 5px 10px;
+    border: 1px solid #bbbbbb;
+    height: 70px;
+}
+.validate-input:focus{
+    outline: none;
+    border: 1px solid #3366ff;
+}
+.validate-textarea:focus{
+    outline: none;
+    border: 1px solid #3366ff;
+}
+.validate-input-sort{
+    width: 150px;
+    border: 1px solid #bbbbbb;
+    padding-left: 8px;
+}
+.validate-input-sort:focus{
+    outline: none;
+    border: 1px solid #3366ff;
+}

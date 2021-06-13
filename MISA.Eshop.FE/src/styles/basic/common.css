@@ -1,0 +1,15 @@
+.hover-pointer{
+    cursor: pointer;
+}
+.none-decoation{
+    text-decoration: none;
+}
+.mgr-5{
+    margin-right: 5px;
+}
+.isActive{
+    display: none;
+}
+.mgr-8{
+    margin-right: 8px;
+}

@@ -1,0 +1,69 @@
+.header {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+.header-left {
+    height: 60px;
+    line-height: 60px;
+    padding-left: 16px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.title-header{
+    font-weight: 700;
+    color: #212121;
+    font-size: 18px !important;
+}
+
+/*right*/
+
+.header-right {
+    display: flex;
+    height: 60px;
+    align-items: center;
+    position: absolute;
+    right: 0;
+}
+
+.header-right-item {
+    display: flex;
+    line-height: 60px;
+    margin: 0 10px;
+    font-weight: bolder;
+}
+/*user*/
+.header-right-user {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+}
+.avatar {
+    width: 32px;
+    height: 32px;
+    margin: 0 10px 0 6px;
+}
+
+.avartar-persion {
+    background-image: url('../../assets/icon/avatar-default.png');
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    position: relative;
+}
+
+/*btn support*/
+.misa-support{
+    height: 60px;
+    width: 54px;
+}
+
+.misa-support button{
+    border: none;
+}

@@ -1,0 +1,25 @@
+.toolbar{
+    width: 98%;
+    height: 24px;
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.feature-page{
+    display: flex;
+}
+
+
+.page-name{
+    padding: 0px 4px;
+    line-height: 24px;
+    color: #4b4c4c;
+}
+
+.toolbar-text{
+    color: #4b4c4c;
+    padding: 0px 4px;
+    line-height: 24px;
+}

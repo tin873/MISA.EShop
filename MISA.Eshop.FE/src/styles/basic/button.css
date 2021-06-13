@@ -1,0 +1,85 @@
+.btn{
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    vertical-align: top;
+    overflow: hidden;
+    display: flex;
+    padding: 0px 8px;
+}
+
+.btn:hover{
+    background-color: #6d6f9b;
+}
+/*btn table*/
+.btn-gird{
+    border: 1px solid #e1e1e1;
+    padding: 7px;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+}
+
+/*Model*/
+.btn-footer-help{
+    display: flex;
+    padding: 7px;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+.btn-footer-help:hover{
+    background-color: #e5e6eb;
+}
+
+.btn-footer-help:focus{
+    outline: none;
+    border: 1px solid #6b6f9d !important;
+}
+
+.btn-footer-save{
+    display: flex;
+    padding: 7px;
+    align-items: center;
+    background-color: #2b3173;
+    border: 1px solid #2b3173;
+    border-radius: 3px;
+
+}
+
+.btn-footer-save:hover{
+    background-color: #6b6f9d;
+}
+
+.btn-footer-save:focus{
+    background-color: #6b6f9d;
+}
+
+.btn-footer-add-save{
+    display: flex;
+    padding: 7px;
+    align-items: center;
+    border: 1px solid #2b3173;
+    border-radius: 3px;
+    color: #2b3173;
+}
+
+.btn-footer-add-save:hover{
+    color: #6b6f9d !important;
+}
+
+.btn-footer-cancel{
+    display: flex;
+    padding: 7px;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 3px;
+    color: #2b3173;
+}
+
+.btn-footer-cancel:hover{
+    border: 1px solid #2b3173;
+}
