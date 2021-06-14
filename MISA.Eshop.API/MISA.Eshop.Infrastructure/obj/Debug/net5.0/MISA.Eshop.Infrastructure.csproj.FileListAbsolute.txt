@@ -1,0 +1,5 @@
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\bin\Debug\net5.0\MISA.Eshop.Core.dll
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.AssemblyInfo.cs
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.csprojAssemblyReference.cache
