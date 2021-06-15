@@ -19,3 +19,9 @@ table tbody tr td {
     text-overflow: ellipsis;
     padding: 7px 10px 6px;
 }
+
+
+table tr:nth-child(even)
+{
+    background-color: #f6f6f6;
+}

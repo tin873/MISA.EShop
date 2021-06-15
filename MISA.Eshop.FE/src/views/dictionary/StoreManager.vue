@@ -25,11 +25,11 @@
         <div class="content-grid">
             <table class="table-asset" id="idtableAsset">
                 <colgroup>
-                    <col width = "159" />
-                    <col width = "249"/>
-                    <col width = "983"/>
-                    <col width = "129"/>
-                    <col width = "149"/>
+                    <col width = "174" />
+                    <col width = "264"/>
+                    <col width = "990"/>
+                    <col width = "141"/>
+                    <col width = "155"/>
                 </colgroup>
                 <thead>
                     <tr>
@@ -91,11 +91,15 @@
 <script>
 import Toolbar from "../../components/common/Toolbar.vue";
 import Detail from "./StoreDetail.vue";
+import axios from "axios";
 export default ({
     name: 'StoreManager',
     components:{
         Toolbar,
         Detail,
+    },
+    created(){
+        this.getStore();
     },
     methods: {
         addStore(){
@@ -103,10 +107,15 @@ export default ({
             me.$store.commit("showDetailStore");
         },
         closeTab(){
-            console.log("2");
             var me = this;
             me.$store.commit("showDetailStore");
         },
+        async getStore(){
+            console.log("lấy dữ liệu");
+            await axios.get("https://localhost:44327/api/v1/Stores").then((respon) => {
+                this.listStore = respon.data.data;
+            })
+        }
     },
     computed: {
         isShowDetail(){
@@ -116,38 +125,6 @@ export default ({
     data() {
         return{
             listStore: [
-                {
-                    StoreId: '23423kdfkd3',
-                    StoreCode: 'mskc3s',
-                    StoreName: 'ákdei32',
-                    Address: 'Tan lap dan phuong ha noi',
-                    PhoneNumber: '035656797',
-                    Status: 'hoat dong',
-                },
-                {
-                    StoreId: '23423kdfkd3',
-                    StoreCode: 'mskc3s',
-                    StoreName: 'ákdei32',
-                    Address: 'Tan lap dan phuong ha noi',
-                    PhoneNumber: '035656797',
-                    Status: 'hoat dong',
-                },
-                {
-                    StoreId: '23423kdfkd3',
-                    StoreCode: 'mskc3s',
-                    StoreName: 'ákdei32',
-                    Address: 'Tan lap dan phuong ha noi',
-                    PhoneNumber: '035656797',
-                    Status: 'hoat dong',
-                },
-                {
-                    StoreId: '23423kdfkd3',
-                    StoreCode: 'mskc3s',
-                    StoreName: 'ákdei32',
-                    Address: 'Tan lap dan phuong ha noi',
-                    PhoneNumber: '035656797',
-                    Status: 'hoat dong',
-                }
             ],
         }
     }
