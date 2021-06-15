@@ -29,15 +29,22 @@ namespace MISA.Eshop.Infrastructure.Repository
             }    
         }
 
-        public IEnumerable<Store> GetPaging(int pageIndex, int pageSize)
+        public IEnumerable<Store> GetPaging(int pageSize, int pageIndex, out int totalPage, out int totalRecord)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("@PageIndex", pageIndex);
             dynamicParameters.Add("@PageSize", pageSize);
-            //
-            var stores = _dbConnection.Query<Store>("Proc_GetStorePaging", 
+
+            //mapping 2 biến out trong procedure
+            dynamicParameters.Add("@TotalPage", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            dynamicParameters.Add("@TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            //thực thi lấy dữ liệu phân trang
+            var stores = _dbConnection.Query<Store>($"Proc_GetStorePaging", 
                 param: dynamicParameters, 
                 commandType: CommandType.StoredProcedure);
+            //lấy giá trị của biến out trong storeprocedure
+            totalPage = dynamicParameters.Get<int>("@TotalPage");
+            totalRecord = dynamicParameters.Get<int>("@TotalRecord");
 
             return stores;
         }
@@ -51,7 +58,7 @@ namespace MISA.Eshop.Infrastructure.Repository
             dynamicParameters.Add("@PhoneNumber", phoneNumber);
             dynamicParameters.Add("@Status", status);
 
-            var stores = _dbConnection.Query<Store>("Proc_GetStorePaging",
+            var stores = _dbConnection.Query<Store>("Proc_GetStoreFilter",
                 param: dynamicParameters,
                 commandType: CommandType.StoredProcedure);
 

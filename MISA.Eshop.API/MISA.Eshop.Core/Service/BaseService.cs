@@ -22,75 +22,145 @@ namespace MISA.Eshop.Core.Service
         #region Methods
         public virtual ServiceResult Delete(Guid entityId)
         {
-            var result = _baseRepository.Delete(entityId);
-            if(result > 0)
+            try
             {
-                _serviceResult.IsSuccess = true;
-                _serviceResult.Data = result;
-                _serviceResult.UserMsg.Add("Xóa thành công!");
-                return _serviceResult;
-            }    
-            else
+                var result = _baseRepository.Delete(entityId);
+                if (result > 0)
+                {
+                    _serviceResult.IsSuccess = true;
+                    _serviceResult.Data = result;
+                    _serviceResult.UserMsg.Add("Xóa thành công!");
+                    _serviceResult.MISACode = Enums.MISACode.Success;
+                    return _serviceResult;
+                }
+                else
+                {
+                    _serviceResult.IsSuccess = false;
+                    _serviceResult.Data = result;
+                    _serviceResult.UserMsg.Add("Id không tồn tại.");
+                    _serviceResult.MISACode = Enums.MISACode.NoContent;
+                    return _serviceResult;
+                }
+            }
+            catch (Exception)
             {
                 _serviceResult.IsSuccess = false;
-                _serviceResult.Data = result;
-                _serviceResult.UserMsg.Add("Id không tồn tại.");
+                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.MISACode = Enums.MISACode.Exeption;
                 return _serviceResult;
-            }    
+            }  
         }
 
         public virtual ServiceResult GetById(Guid entityId)
         {
-            var entity = _baseRepository.GetById(entityId);
-            _serviceResult.IsSuccess = true;
-            _serviceResult.Data = entity;
-            _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
-            return _serviceResult;
+            try
+            {
+                var entity = _baseRepository.GetById(entityId);
+                if (entity == null)
+                {
+                    _serviceResult.IsSuccess = false;
+                    _serviceResult.Data = entity;
+                    _serviceResult.UserMsg.Add("Id không tồn tại.");
+                    _serviceResult.MISACode = Enums.MISACode.NoContent;
+                    return _serviceResult;
+                }
+                else
+                {
+                    _serviceResult.IsSuccess = true;
+                    _serviceResult.Data = entity;
+                    _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+                    _serviceResult.MISACode = Enums.MISACode.Success;
+                    return _serviceResult;
+                }
+            }
+            catch (Exception)
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.MISACode = Enums.MISACode.Exeption;
+                return _serviceResult;
+            }   
         }
 
         public virtual ServiceResult GetEntities()
         {
             var entities = _baseRepository.GetEntities();
-            _serviceResult.IsSuccess = true;
-            _serviceResult.Data = entities;
-            _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
-            return _serviceResult;
-        }
-
-        public virtual ServiceResult Insert(T entity)
-        {
-            var validateResult = ValidateObject(entity);
-            if(validateResult == true)
+            if(entities != null)
             {
-                var result = _baseRepository.Insert(entity);
                 _serviceResult.IsSuccess = true;
-                _serviceResult.UserMsg.Add("Thêm mới thành công.");
-                _serviceResult.Data = result;
-                return _serviceResult;
-            } 
-            else
-            {
-                _serviceResult.IsSuccess = false;
-                _serviceResult.Data = null;
-                return _serviceResult;
-            }    
-        }
-
-        public virtual ServiceResult Update(T entity, Guid entityId)
-        {
-            var validateResult = ValidateObject(entity);
-            if (validateResult == true)
-            {
-                var result = _baseRepository.Update(entity, entityId);
-                _serviceResult.IsSuccess = true;
-                _serviceResult.UserMsg.Add("Sửa thông tin thành công.");
-                _serviceResult.Data = result;
+                _serviceResult.Data = entities;
+                _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+                _serviceResult.MISACode = Enums.MISACode.Success;
                 return _serviceResult;
             }
             else
             {
                 _serviceResult.IsSuccess = false;
-                _serviceResult.Data = null;
+                _serviceResult.Data = entities;
+                _serviceResult.UserMsg.Add("Không có dữ liệu");
+                _serviceResult.MISACode = Enums.MISACode.NoContent;
+                return _serviceResult;
+            }
+        }
+
+        public virtual ServiceResult Insert(T entity)
+        {
+            try
+            {
+                var validateResult = ValidateObject(entity);
+                if (validateResult == true)
+                {
+                    var result = _baseRepository.Insert(entity);
+                    _serviceResult.IsSuccess = true;
+                    _serviceResult.UserMsg.Add("Thêm mới thành công.");
+                    _serviceResult.MISACode = Enums.MISACode.Success;
+                    _serviceResult.Data = result;
+                    return _serviceResult;
+                }
+                else
+                {
+                    _serviceResult.IsSuccess = false;
+                    _serviceResult.Data = null;
+                    _serviceResult.MISACode = Enums.MISACode.NotValid;
+                    return _serviceResult;
+                }
+            }
+            catch (Exception)
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.MISACode = Enums.MISACode.Exeption;
+                return _serviceResult;
+            }   
+        }
+
+        public virtual ServiceResult Update(T entity, Guid entityId)
+        {
+            try
+            {
+                var validateResult = ValidateObject(entity);
+                if (validateResult == true)
+                {
+                    var result = _baseRepository.Update(entity, entityId);
+                    _serviceResult.IsSuccess = true;
+                    _serviceResult.UserMsg.Add("Sửa thông tin thành công.");
+                    _serviceResult.Data = result;
+                    _serviceResult.MISACode = Enums.MISACode.Success;
+                    return _serviceResult;
+                }
+                else
+                {
+                    _serviceResult.IsSuccess = false;
+                    _serviceResult.Data = null;
+                    _serviceResult.MISACode = Enums.MISACode.NotValid;
+                    return _serviceResult;
+                }
+            }
+            catch (Exception)
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.MISACode = Enums.MISACode.Exeption;
                 return _serviceResult;
             }
         }

@@ -25,5 +25,18 @@ namespace MISA.Eshop.Core.Result
         /// mã code lỗi
         /// </summary>
         public MISACode MISACode { get; set; }
+        /// <summary>
+        /// tổng số trang
+        /// </summary>
+        public  int TotalPage { get; set; }
+        /// <summary>
+        /// tổng số bản ghi
+        /// </summary>
+        public int TotalRecord { get; set; }
+
+        public ServiceResult()
+        {
+            this.UserMsg = new List<string>();
+        }
     }
 }

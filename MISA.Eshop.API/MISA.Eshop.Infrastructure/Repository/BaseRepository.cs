@@ -16,7 +16,7 @@ namespace MISA.Eshop.Infrastructure.Repository
             "Port=3306;" +
             "User=nvmanh;" +
             "Password=12345678;" +
-            "Database=MF835_TEST_MISA.eShop.Copy;";
+            "Database=MF835_TEST.MISA.eShop.copy";
         protected IDbConnection _dbConnection;
         #endregion
 
@@ -77,6 +77,7 @@ namespace MISA.Eshop.Infrastructure.Repository
         public virtual int? Update(T entity, Guid entityId)
         {
             var storeParameters = ParamDbType(entity);
+            storeParameters.Add($"@{_tableName}Id", entityId.ToString());
             //thực hiện Update 1 bản ghi
             var result = _dbConnection.Execute($"Proc_Update{_tableName}", param:
                 storeParameters, commandType:

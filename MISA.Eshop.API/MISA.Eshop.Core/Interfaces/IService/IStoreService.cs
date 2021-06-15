@@ -11,7 +11,7 @@ namespace MISA.Eshop.Core.Interfaces.IService
         /// <param name="pageSize">số bản ghi/1 trang</param>
         /// <returns>ServiceResult</returns>
         /// createdBy: ndtin(14/06/2021)
-        ServiceResult GetPaging(int pageIndex, int pageSize);
+        ServiceResult GetPaging(int pageSize, int pageIndex);
         /// <summary>
         /// lọc danh sách cửa hàng theo mã, tên, địa chỉ, số điện thoại, trạng thái
         /// </summary>

@@ -3,7 +3,7 @@ using System;
 
 namespace MISA.Eshop.Core.Interfaces.IService
 {
-    public interface IProviceService
+    public interface IProvinceService
     {
         /// <summary>
         /// lấy danh sách thành phố theo quốc gia

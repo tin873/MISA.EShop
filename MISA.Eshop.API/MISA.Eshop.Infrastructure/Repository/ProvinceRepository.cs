@@ -12,7 +12,7 @@ namespace MISA.Eshop.Infrastructure.Repository
         public IEnumerable<Province> GetProvincetWithCountry(Guid CountryId)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("@CountryId", CountryId.ToString());
+            dynamicParameters.Add("@Id", CountryId.ToString());
 
             //thực hiện lấy dữ liệu
             var provices = _dbConnection.Query<Province>("Proc_GetProvinceWithCountry",

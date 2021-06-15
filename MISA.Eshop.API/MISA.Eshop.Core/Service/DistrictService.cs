@@ -23,10 +23,22 @@ namespace MISA.Eshop.Core.Service
         public ServiceResult GetDistrictWithProvince(Guid ProvinceId)
         {
             var result = _districtRepository.GetDistrictWithProvince(ProvinceId);
-            _serviceResult.IsSuccess = true;
-            _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
-            _serviceResult.Data = result;
-            return _serviceResult;
+            if(result != null)
+            {
+                _serviceResult.IsSuccess = true;
+                _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+                _serviceResult.MISACode = Enums.MISACode.Success;
+                _serviceResult.Data = result;
+                return _serviceResult;
+            }    
+            else
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add("Không có dữ liệu");
+                _serviceResult.MISACode = Enums.MISACode.NoContent;
+                _serviceResult.Data = result;
+                return _serviceResult;
+            }    
         }
         #endregion
     }

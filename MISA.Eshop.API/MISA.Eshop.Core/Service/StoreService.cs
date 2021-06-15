@@ -19,12 +19,16 @@ namespace MISA.Eshop.Core.Service
         }
         #endregion
         #region Methods
-        public ServiceResult GetPaging(int pageIndex, int pageSize)
+        public ServiceResult GetPaging(int pageSize, int pageIndex)
         {
-            var stores = _storeRepository.GetPaging(pageIndex, pageSize);
+            int totalPage = 0, totalRecord = 0;
+            var stores = _storeRepository.GetPaging( pageSize,  pageIndex, out totalPage, out totalRecord);
             _serviceResult.IsSuccess = true;
             _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+            _serviceResult.MISACode = Enums.MISACode.Success;
             _serviceResult.Data = stores;
+            _serviceResult.TotalPage = totalPage;
+            _serviceResult.TotalRecord = totalRecord;
             return _serviceResult;
         }
 
@@ -33,6 +37,7 @@ namespace MISA.Eshop.Core.Service
             var stores = _storeRepository.GetStoreFilter(storeCode, storeName, address, phoneNumber, status);
             _serviceResult.IsSuccess = true;
             _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+            _serviceResult.MISACode = Enums.MISACode.Success;
             _serviceResult.Data = stores;
             return _serviceResult;
         }

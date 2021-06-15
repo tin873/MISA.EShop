@@ -6,14 +6,14 @@ using System;
 
 namespace MISA.Eshop.Core.Service
 {
-    public class ProviceService: BaseService<Province>, IProviceService
+    public class ProvinceService: BaseService<Province>, IProvinceService
     {
         #region Declare
         IProvinceRepository _provinceRepository;
         ServiceResult _serviceResult;
         #endregion
         #region Contructor
-        public ProviceService(IBaseRepository<Province> baseRepository, IProvinceRepository provinceRepository) : base(baseRepository)
+        public ProvinceService(IBaseRepository<Province> baseRepository, IProvinceRepository provinceRepository) : base(baseRepository)
         {
             _provinceRepository = provinceRepository;
             _serviceResult = new ServiceResult();
@@ -23,10 +23,22 @@ namespace MISA.Eshop.Core.Service
         public ServiceResult GetProvincetWithCountry(Guid CountryId)
         {
             var result = _provinceRepository.GetProvincetWithCountry(CountryId);
-            _serviceResult.IsSuccess = true;
-            _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
-            _serviceResult.Data = result;
-            return _serviceResult;
+            if(result != null)
+            {
+                _serviceResult.IsSuccess = true;
+                _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+                _serviceResult.MISACode = Enums.MISACode.Success;
+                _serviceResult.Data = result;
+                return _serviceResult;
+            }    
+            else
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add("Không có dữ liệu");
+                _serviceResult.MISACode = Enums.MISACode.NoContent;
+                _serviceResult.Data = result;
+                return _serviceResult;
+            }
         }
         #endregion
     }

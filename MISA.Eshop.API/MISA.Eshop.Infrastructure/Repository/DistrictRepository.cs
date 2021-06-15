@@ -12,7 +12,7 @@ namespace MISA.Eshop.Infrastructure.Repository
         public IEnumerable<District> GetDistrictWithProvince(Guid ProvinceId)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("@ProvinceId", ProvinceId.ToString());
+            dynamicParameters.Add("@Id", ProvinceId.ToString());
 
             //thực hiện lấy dữ liệu
             var districts = _dbConnection.Query<District>("Proc_GetDistrictWithProvince",

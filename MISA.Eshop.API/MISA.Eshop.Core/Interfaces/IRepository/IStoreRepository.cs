@@ -12,7 +12,7 @@ namespace MISA.Eshop.Core.Interfaces.IRepository
         /// <param name="pageSize">số bản ghi/1 trang</param>
         /// <returns>entities theo trang</returns>
         /// createdBy: ndtin(14/06/2021)
-        IEnumerable<Store> GetPaging(int pageIndex, int pageSize);
+        IEnumerable<Store> GetPaging(int pageSize, int pageIndex, out int totalPage, out int totalRecord);
         /// <summary>
         /// kiểm tra mã code đã tồn tại chưa
         /// </summary>

@@ -1,16 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MISA.Eshop.Core.Interfaces.IRepository;
+using MISA.Eshop.Core.Interfaces.IService;
+using MISA.Eshop.Core.Service;
+using MISA.Eshop.Infrastructure.Repository;
 
 namespace MISA.Eshop.API
 {
@@ -32,6 +29,19 @@ namespace MISA.Eshop.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISA.Eshop.API", Version = "v1" });
             });
+
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped<IStoreService, StoreService>();
+            services.AddScoped<IStoreRepository, StoreRepository>();
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IProvinceService, ProvinceService>();
+            services.AddScoped<IProvinceRepository, ProvinceRepository>();
+            services.AddScoped<IDistrictService, DistrictService>();
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
+            services.AddScoped<IWardService, WardService>();
+            services.AddScoped<IWardRepository, WardRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

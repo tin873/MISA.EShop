@@ -12,10 +12,10 @@ namespace MISA.Eshop.Infrastructure.Repository
         public IEnumerable<Ward> GetWardWithDistrict(Guid DistrictId)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("@DistrictId", DistrictId.ToString());
+            dynamicParameters.Add("@Id", DistrictId.ToString());
 
             //thực hiện lấy dữ liệu
-            var wards = _dbConnection.Query<Ward>("Proc_GetProvinceWithCountry",
+            var wards = _dbConnection.Query<Ward>("Proc_GetWardWithDistrict",
                 param: dynamicParameters,
                 commandType: CommandType.StoredProcedure);
             return wards;
