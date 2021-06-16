@@ -9,4 +9,49 @@
     align-items: center;
     height: 32px;
 }
+/*Detail Store*/
+.combobox-model{
+    display: flex;
+}
+
+.input-custom-cbb{
+    height: 33px;
+    width: 152px;
+    padding: 0px 0px 0px 8px;
+    border: 1px solid #bbbbbb;
+}
+
+.input-custom-cbb:focus{
+    outline: none;
+    border: 1px solid #3366ff;
+}
+
+.btn-cbb{
+    position: absolute;
+    height: 33px;
+    width: 30px;
+    margin-top: 1px;
+    margin-left: 131px;
+    border: none;
+    cursor: pointer;
+}
+
+.flex-item .item{
+    padding: 5px 5px 5px 8px;
+    width: 147px;
+}
+
+.flex-item .item:hover{
+    background-color: #663399;
+    cursor: pointer;
+    color: white;
+}
+
+.flex-item{
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #bbbbbb;
+    display: none;
+}
 

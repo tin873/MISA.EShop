@@ -13,3 +13,10 @@
 .mgr-8{
     margin-right: 8px;
 }
+.isActiveCbb{
+    display: block;
+}
+
+.isSelectrow{
+    background-color: #e5e6eb;
+}

@@ -21,11 +21,11 @@ namespace MISA.Eshop.Infrastructure.Repository
             //kiểm tra xem có bản ghi nào không
             if(store.Count() >= 1)
             {
-                return true;
+                return false;
             }    
             else
             {
-                return false;
+                return true;
             }    
         }
 

@@ -59,7 +59,7 @@
 .modal-item-name{
     color: #212121;
     font-weight: 300;
-    padding: 8px 5px 0px 0px;
+    padding: 8px 5px 0px 5px;
     width: 100px;
 }
 
@@ -112,4 +112,9 @@
     font: 600 13px Roboto!important;
     height: 19px;
     padding-top: 5px;
+}
+
+.activeItem{
+    background-color: #663399;
+    color: white;
 }

@@ -30,6 +30,11 @@ namespace MISA.Eshop.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MISA.Eshop.API", Version = "v1" });
             });
 
+            services.AddCors(options => 
+            options.AddDefaultPolicy(
+                builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod())
+            );
+
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IStoreService, StoreService>();
@@ -57,6 +62,8 @@ namespace MISA.Eshop.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 

@@ -23,5 +23,12 @@ namespace MISA.Eshop.Core.Interfaces.IService
         /// <returns>ServiceResult</returns>
         /// createdBy: ndtin(14/06/2021)
         ServiceResult GetStoreFilter(string storeCode, string storeName, string address, string phoneNumber, int status);
+        /// <summary>
+        /// kiểm tra mã code đã tồn tại chưa
+        /// </summary>
+        /// <param name="storeCode">mã code</param>
+        /// <returns>serviceResult</returns>
+        /// createdBy: ndtin(14/06/2021)
+        ServiceResult CheckStoreCodeExits(string storeCode);
     }
 }

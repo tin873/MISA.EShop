@@ -39,35 +39,19 @@ namespace MISA.Eshop.Core.Entities
         /// </summary>
         public Guid? CountryId { get; set; }
         /// <summary>
-        /// tên quốc gia
-        /// </summary>
-        public string CountryName { get; set; }
-        /// <summary>
         /// khóa ngoại thành phố
         /// </summary>
         public Guid? ProvinceId { get; set; }
         /// <summary>
-        /// tên thành phố
-        /// </summary>
-        public string ProvinceName { get; set; }
-        /// <summary>
         /// khóa ngoại quận/huyện
         /// </summary>
-        public Guid DistrictId { get; set; }
+        public Guid? DistrictId { get; set; }
         /// <summary>
         /// tên quận huyện
-        /// </summary>
-        public string DistrictName { get; set; }
-        /// <summary>
-        /// khóa ngoại xã/phường
         /// </summary>
         public Guid? WardId { get; set; }
         /// <summary>
         /// tên xã phường
-        /// </summary>
-        public string WardName { get; set; }
-        /// <summary>
-        /// tên đường phố
         /// </summary>
         public string Street { get; set; }
         /// <summary>

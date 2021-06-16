@@ -28,7 +28,7 @@ namespace MISA.Eshop.API.Controllers
         [HttpGet("Paging")]
         public IActionResult GetPaging(int pageSize, int pageIndex)
         {
-            var result = _storeService.GetPaging( pageSize,  pageIndex);
+            var result = _storeService.GetPaging(pageSize, pageIndex);
             return Ok(result);
         }
         /// <summary>
@@ -46,6 +46,18 @@ namespace MISA.Eshop.API.Controllers
         {
             var result = _storeService.GetStoreFilter(storeCode, storeName, address, phoneNumber, status);
             return Ok(result);
+        }
+        /// <summary>
+        /// kiểm tra mã cửa hàng tồn tại chưa
+        /// </summary>
+        /// <param name="storeCode"> mã cửa hàng</param>
+        /// <returns>serviceRessult</returns>
+        /// createdBy: ndtin(15/6/2021)
+        [HttpGet("check/{storeCode}")]
+        public IActionResult CheckStoreCodeExits(string storeCode)
+        {
+            var resutl = _storeService.CheckStoreCodeExits(storeCode);
+            return Ok(resutl);
         }
         #endregion
     }

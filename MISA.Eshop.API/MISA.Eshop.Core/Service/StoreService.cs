@@ -41,6 +41,27 @@ namespace MISA.Eshop.Core.Service
             _serviceResult.Data = stores;
             return _serviceResult;
         }
+
+        public ServiceResult CheckStoreCodeExits(string storeCode)
+        {
+            var result = _storeRepository.CheckStoreCodeExits(storeCode);
+            if(result)
+            {
+                _serviceResult.IsSuccess = true;
+                _serviceResult.UserMsg.Add("Mã người dùng chưa tồn tại.");
+                _serviceResult.MISACode = Enums.MISACode.Success;
+                _serviceResult.Data = result;
+                return _serviceResult;
+            } 
+            else
+            {
+                _serviceResult.IsSuccess = true;
+                _serviceResult.UserMsg.Add("Mã người dùng đã tồn tại.");
+                _serviceResult.MISACode = Enums.MISACode.Success;
+                _serviceResult.Data = result;
+                return _serviceResult;
+            }    
+        }
         #endregion
     }
 }

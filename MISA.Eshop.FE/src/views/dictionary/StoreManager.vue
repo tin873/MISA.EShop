@@ -1,7 +1,7 @@
 <template>
     <div class="view-store">
         <div class="header-features">
-            <div class="btn add-btn hover-pointer" @click="addStore()">
+            <div class="btn add-btn hover-pointer" @click="addStore">
                 <div class="icon-header icon-add"></div>
                 <div class="item-name-content">Thêm mới</div>
             </div>
@@ -9,7 +9,7 @@
                 <div class="icon-header icon-replic"></div>
                 <div class="item-name-content">Nhân bản</div>
             </div>
-            <div class="btn btn-borderleft hover-pointer">
+            <div class="btn btn-borderleft hover-pointer" @click="editStore">
                 <div class="icon-header icon-edit"></div>
                 <div class="item-name-content">Sửa</div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="icon-header icon-delete"></div>
                 <div class="item-name-content">Xóa</div>
             </div>
-            <div class="btn btn-borderleft hover-pointer">
+            <div class="btn btn-borderleft hover-pointer" @click="refresh">
                 <div class="icon-header icon-load"></div>
                 <div class="item-name-content">Nạp</div>
             </div>
@@ -66,7 +66,9 @@
                         <div class="filter">
                             <button class="btn-gird"><span class="text-button">*</span></button>
                             <select class="select-head-gird" name="" id="">
-                                <option value="1">oke</option>
+                                <option selected value="2">Tất cả</option>
+                                <option value="0">Đang hoạt động</option>
+                                <option value="1">Dừng hoạt động</option>
                             </select>
                         </div>
                     </th>
@@ -74,18 +76,23 @@
                 </thead>
                 <tbody>
                     <tr v-for="store in listStore"
-                    :key="store.StoreId">
-                        <td>{{store.StoreCode}}</td>
-                        <td>{{store.StoreName}}</td>
-                        <td>{{store.Address}}</td>
-                        <td>{{store.PhoneNumber}}</td>
-                        <td>{{store.Status}}</td>
+                    :key="store.storeId"
+                    :class="{isSelectrow: rowDataActive.storeId == store.storeId}"
+                    @click="rowClick(store)">
+                        <td>{{store.storeCode}}</td>
+                        <td>{{store.storeName}}</td>
+                        <td>{{store.address}}</td>
+                        <td>{{store.phoneNumber}}</td>
+                        <td>{{store.status}}</td>
                     </tr>
                 </tbody>
             </table>
-            <Toolbar/>
+            <Toolbar :totalPage="totalPage"
+                    :totalRecord="totalRecord"
+                    :curentPage="curentPage"
+                    @pageChanged="onPageChange"/>
         </div>
-        <Detail @closeTab="closeTab" v-if="isShowDetail"/>
+        <Detail @closeTab="closeTab" v-if="isShowDetail" :titleModel="titleModel" />
     </div>
 </template>
 <script>
@@ -99,33 +106,90 @@ export default ({
         Detail,
     },
     created(){
-        this.getStore();
+        this.onLoadStore();
     },
     methods: {
-        addStore(){
-            var me = this;
-            me.$store.commit("showDetailStore");
+        refresh(){
+            this.onPageChange(1);
         },
+        rowClick(value){
+            this.rowDataActive = value;
+        },
+        addStore(){
+            this.setRowData(this.rowData);
+            this.titleModel = "Thêm mới cửa hàng";
+            this.$store.commit("showDetailStore");
+        },
+        //sửa cưa hàng
+        editStore(){
+            this.titleModel = "Sửa cửa hàng";
+            this.setRowData(this.rowDataActive);
+            this.$store.commit("showDetailStore");
+        },
+        //lưu rowdata vào store
+        setRowData(data){
+            this.$store.commit("setDataRow", data);
+        },
+        /*
+        * đóng model
+        */
         closeTab(){
             var me = this;
             me.$store.commit("showDetailStore");
         },
-        async getStore(){
-            console.log("lấy dữ liệu");
-            await axios.get("https://localhost:44327/api/v1/Stores").then((respon) => {
-                this.listStore = respon.data.data;
-            })
-        }
+        /*
+        * call api lấy thông tin cửa hàng
+        */
+        async onPageChange(page){
+            var pageIndex = page;
+            this.curentPage = page;
+            var url = `${this.$Const.API_HOST}/api/v1/Stores/Paging?pageSize=${this.pageSize}&pageIndex=${pageIndex}`;
+            console.log(url);
+            await axios.get(url)
+                       .then(response =>{
+                           this.listStore = response.data.data;
+                           this.totalPage = response.data.totalPage;
+                           this.totalRecord = response.data.totalRecord;
+                       }).catch(err => {
+                           console.log(err);
+                       });
+            this.rowDataActive = this.listStore[0];
+        },
+        /*
+        * load thông tin cửa hàng khi vào trang
+        */
+        onLoadStore(){
+            this.onPageChange(1);
+        },
+        //lấy giá trị dòng đầu
+
     },
     computed: {
+        /*
+        *lấy giá trị hiển thị model
+        */
         isShowDetail(){
             return this.$store.getters.getIsShow;
-        }
+        },
+        /*
+        *lấy kích thước trang
+        */
+        pageSize(){
+            return this.$store.getters.getPageSize;
+        },
+
     },
     data() {
         return{
             listStore: [
             ],
+            rowDataActive:{},
+            rowData:{},
+            totalPage:0,
+            totalRecord:0,
+            curentPage: 1,
+            titleModel: "",
+
         }
     }
 })

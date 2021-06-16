@@ -18,3 +18,13 @@ C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\D
 C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.dll
 C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\ref\MISA.Eshop.Infrastructure.dll
 C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.pdb
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\bin\Debug\net5.0\MISA.Eshop.Infrastructure.deps.json
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\bin\Debug\net5.0\MISA.Eshop.Infrastructure.dll
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\bin\Debug\net5.0\ref\MISA.Eshop.Infrastructure.dll
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\bin\Debug\net5.0\MISA.Eshop.Infrastructure.pdb
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\bin\Debug\net5.0\MISA.Eshop.Core.pdb
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.csproj.CopyComplete
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.dll
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\ref\MISA.Eshop.Infrastructure.dll
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Infrastructure\obj\Debug\net5.0\MISA.Eshop.Infrastructure.pdb

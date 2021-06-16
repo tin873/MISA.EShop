@@ -20,8 +20,8 @@ table tbody tr td {
     padding: 7px 10px 6px;
 }
 
-
-table tr:nth-child(even)
-{
-    background-color: #f6f6f6;
+table tr:hover{
+    background-color: #dde2fa;
 }
+
+
