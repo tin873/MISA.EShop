@@ -188,8 +188,12 @@ export default ({
             this.store.provinceId = this.provinceId;
             this.store.districtId = this.districtId;
             this.store.wardId = this.wardId;
-            console.log(this.store);
-            this.fsave();
+            this.store.status = true;
+            this.fsave().then(this.load());
+        },
+        //load laij trang
+        load(){
+            this.$emit("pageChanged", 1);
         },
         //thực hiện thêm hoặc sửa
         async fsave(){
@@ -197,7 +201,7 @@ export default ({
             if(this.store.storeId != null)
             {
                 //sửa thông tin
-                console.log(this.store);
+                console.log("Sửa");
                 try{
                     url = `${this.$Const.API_HOST}/api/v1/Stores/${this.store.storeId}`;
                     let response = await axios.put(url, this.store);
@@ -214,6 +218,8 @@ export default ({
             {
                 //thêm mới
                 try{
+                    console.log(this.store);
+                    console.log("Thêm mới");
                     url = `${this.$Const.API_HOST}/api/v1/Stores`;
                     let response = await axios.post(url, this.store);
                     console.log(response);
@@ -303,19 +309,18 @@ export default ({
         close(){
             this.$emit('closeTab');
         },
-
         //country///////////
         //hiện danh sách các quốc gia
         showDropCountry(){
             this.isActive = !this.isActive;
             this.listItemCountry = this.listCountry;   
             document.getElementById("inputCountry").focus();
-            console.log(this.$store.getters.getDataRow);
         },
         //tìm kiếm quốc gia
         onSearchCountry(value){
             //nếu không có giá trị thì không hiện
-            if(value == null)
+            this.countryId = null;
+            if(value == "")
             {
                 this.isActive = false;
             }
@@ -355,7 +360,8 @@ export default ({
         //province
         onSearchProvince(value){
             //nếu không có giá trị thì không hiện
-            if(value == null)
+            this.provinceId = null;
+            if(value == "")
             {
                 this.isActiveProvince = false;
             }
@@ -397,8 +403,9 @@ export default ({
         //District////
         //district
         onSearchDistrict(value){
+            this.districtId = null;
             //nếu không có giá trị thì không hiện
-            if(value == null)
+            if(value == "")
             {
                 this.isActiveDistrict = false;
             }
@@ -439,8 +446,9 @@ export default ({
         //Ward////
         //ward
         onSearchWard(value){
+            this.wardId = null;
             //nếu không có giá trị thì không hiện
-            if(value == null)
+            if(value == "")
             {
                 this.isActiveWard = false;
             }

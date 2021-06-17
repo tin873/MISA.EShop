@@ -9,7 +9,7 @@
 @import './basic/common.css';
 @import './basic/select.css';
 body {
-    font-family: MISA-Regular, MISA-Bold, MISA-Italic;
+    font-family: roboto,Tahoma,sans-serif!important;
     font-size: 13px;
     margin: 0px;
     padding: 0px;

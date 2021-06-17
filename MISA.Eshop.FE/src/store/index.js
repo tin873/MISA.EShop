@@ -8,10 +8,20 @@ const store = new Vuex.Store({
         isShowDetail: false,
         dataRow:{},
         pageSize: 10,
+        isShowDialog: false,
+        isLoading: false,
     },
     mutations: {
         showDetailStore(state){
             state.isShowDetail = !state.isShowDetail;
+        },
+
+        showDialog(state){
+            state.isShowDialog = !state.isShowDialog;
+        },
+
+        showLoading(state){
+            state.isLoading = !state.isLoading;
         },
 
         setDataRow(state, payload){
@@ -35,7 +45,15 @@ const store = new Vuex.Store({
 
         getPageSize(state){
             return state.pageSize;
-        }
+        },
+
+        getIsShowDialog(state){
+            return state.isShowDialog;
+        },
+
+        getIsLoading(state){
+            return state.isLoading;
+        },
     },
 });
 

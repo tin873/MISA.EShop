@@ -57,6 +57,10 @@ export default ({
         isInLastPage(){
             return this.curentPage === this.totalPage;
         },
+
+        pagesize(){
+            return this.$store.getters.getPageSize;
+        }
     },
     methods: {
         /*
