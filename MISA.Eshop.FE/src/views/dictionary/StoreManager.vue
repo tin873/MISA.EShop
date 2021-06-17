@@ -106,8 +106,12 @@
                     :curentPage="curentPage"
                     @pageChanged="onPageChange"/>
         </div>
-        <Detail @closeTab="closeTab" v-if="isShowDetail" :titleModel="titleModel" @pageChanged="onPageChange" />
         <ComfirmDelete @closeDialog="closeDialog" v-if="isShowDialog" @pageChanged="onPageChange"/>
+        <Detail 
+                @closeTab="closeTab" 
+                v-if="isShowDetail" 
+                :titleModel="titleModel" 
+                @pageChanged="onPageChange"/>
     </div>
 </template>
 <script>
@@ -234,6 +238,7 @@ export default ({
         * call api lấy thông tin cửa hàng
         */
         async onPageChange(page){
+            console.log("load Detail");
             var pageIndex = page;
             this.curentPage = page;
             //hieenr thi loading
