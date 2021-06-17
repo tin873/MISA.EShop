@@ -92,7 +92,11 @@
                     :curentPage="curentPage"
                     @pageChanged="onPageChange"/>
         </div>
-        <Detail @closeTab="closeTab" v-if="isShowDetail" :titleModel="titleModel" />
+        <Detail 
+                @closeTab="closeTab" 
+                v-if="isShowDetail" 
+                :titleModel="titleModel" 
+                @pageChanged="onPageChange"/>
     </div>
 </template>
 <script>
@@ -141,6 +145,7 @@ export default ({
         * call api lấy thông tin cửa hàng
         */
         async onPageChange(page){
+            console.log("load Detail");
             var pageIndex = page;
             this.curentPage = page;
             var url = `${this.$Const.API_HOST}/api/v1/Stores/Paging?pageSize=${this.pageSize}&pageIndex=${pageIndex}`;

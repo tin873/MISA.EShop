@@ -147,7 +147,7 @@
                     </button>
                 </div>
                 <div class="footer-right">
-                    <button class="btn-footer-save mgr-8 hover-pointer">
+                    <button class="btn-footer-save mgr-8 hover-pointer" @click="addNewStore">
                         <div class="icon-footer-save"></div>
                         <div class="item-footer-save">Lưu</div>
                     </button>
@@ -188,8 +188,12 @@ export default ({
             this.store.provinceId = this.provinceId;
             this.store.districtId = this.districtId;
             this.store.wardId = this.wardId;
-            console.log(this.store);
-            this.fsave();
+            this.store.status = false;
+            this.fsave().then(this.reload());
+        },
+        //load lại trang
+        reload(){
+            this.$emit("pageChanged", 1);
         },
         //thực hiện thêm hoặc sửa
         async fsave(){
@@ -261,6 +265,7 @@ export default ({
                 this.getProvince(id);
             }
         },
+        //lấy tên thành phố
         async getProvinceName(id){
             var url = `${this.$Const.API_HOST}/api/v1/Provinces/${id}`;
             await axios.get(url)
@@ -275,6 +280,7 @@ export default ({
                 this.getDistrict(id);
             }
         },
+        //lấy tên quận huyện
         async getDistrictName(id){
             var url = `${this.$Const.API_HOST}/api/v1/Districts/${id}`;
             await axios.get(url)
@@ -289,6 +295,7 @@ export default ({
                 this.getWard(id);
             }
         },
+        // lấy tên xã phường
         async getWardName(id){
             var url = `${this.$Const.API_HOST}/api/v1/Wards/${id}`;
             await axios.get(url)

@@ -124,7 +124,8 @@ namespace MISA.Eshop.Infrastructure.Repository
                 else if (propertyType == typeof(bool) || propertyType == typeof(bool?))
                 {
                     var dbValue = ((bool)propertyValue == true ? 0 : 1);
-                    parameters.Add($"@{propertyName}", dbValue, DbType.Int32);
+                         
+                        parameters.Add($"@{propertyName}", dbValue, DbType.Int32);
                 }
                 else
                 {

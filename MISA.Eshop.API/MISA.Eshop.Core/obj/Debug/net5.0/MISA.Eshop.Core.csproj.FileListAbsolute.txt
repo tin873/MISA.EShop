@@ -22,3 +22,15 @@ C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5
 C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.dll
 C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\ref\MISA.Eshop.Core.dll
 C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.pdb
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\bin\Debug\net5.0\MISA.Eshop.Core.deps.json
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\bin\Debug\net5.0\MISA.Eshop.Core.dll
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\bin\Debug\net5.0\ref\MISA.Eshop.Core.dll
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\bin\Debug\net5.0\MISA.Eshop.Core.pdb
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.dll
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\ref\MISA.Eshop.Core.dll
+C:\Users\ADMIN\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.pdb
