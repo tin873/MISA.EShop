@@ -170,7 +170,7 @@ import axios from "axios";
 
 export default ({
     name: 'StoreDetail',
-    props: ['titleModel', 'rowData'],
+    props: ['titleModel', 'rowData', 'replicationId'],
     computed:{
         store(){
             return this.$store.getters.getDataRow;
@@ -189,6 +189,9 @@ export default ({
             this.store.districtId = this.districtId;
             this.store.wardId = this.wardId;
             this.store.status = true;
+            if(this.replicationId != null){
+                this.$delete(this.store, 'storeId');
+            }
             this.fsave().then(this.reload());
         },
         //load lại trang

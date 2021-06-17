@@ -46,21 +46,24 @@
                         <div class="name-col">Tên cửa hàng</div>
                         <div class="filter">
                             <button class="btn-gird"><span class="text-button">*</span></button>
-                            <input class="input-filter input-name" type="text" v-model="dataFilter.storeName"/>
+                            <input class="input-filter input-name" type="text" v-model="dataFilter.storeName"
+                            @input="filterStore"/>
                         </div>
                     </th>
                     <th>
                         <div class="name-col">Địa chỉ</div>
                         <div class="filter">
                             <button class="btn-gird"><span class="text-button">*</span></button>
-                            <input class="input-filter input-address" type="text" v-model="dataFilter.address" />
+                            <input class="input-filter input-address" type="text" v-model="dataFilter.address" 
+                            @input="filterStore"/>
                         </div>
                     </th>
                     <th>
                         <div class="name-col">Số điện thoại</div>
                         <div class="filter">
                             <button class="btn-gird"><span class="text-button">*</span></button>
-                            <input class="input-filter input-phone" type="text" v-model="dataFilter.phoneNumber" />
+                            <input class="input-filter input-phone" type="text" v-model="dataFilter.phoneNumber" 
+                            @input="filterStore"/>
                         </div>
                     </th>
                     <th>
@@ -111,7 +114,8 @@
                 @closeTab="closeTab" 
                 v-if="isShowDetail" 
                 :titleModel="titleModel" 
-                @pageChanged="onPageChange"/>
+                @pageChanged="onPageChange"
+                :replicationId="replicationId"/>
     </div>
 </template>
 <script>
@@ -144,6 +148,7 @@ export default ({
             this.statusId = value;
             this.statusName = name;
             this.isActive = !this.isActive;
+            this.filterStore();
             document.getElementById("status").focus();
         },
         //search 
@@ -164,7 +169,8 @@ export default ({
         },
         //lọc cửa hàng
         filterStore(){
-
+            console.log(this.dataFilter);
+            this.filterMyStore(this.dataFilter);
         },
         
         //lấy thông tin hoạt động
@@ -208,8 +214,9 @@ export default ({
             this.setRowData(this.rowDataActive);
             this.$store.commit("showDetailStore");
         },
+        //nhân bản
         replicationStore(){
-            this.$delete(this.rowDataActive, 'storeId');
+            this.replicationId = this.rowDataActive.storeId;
             this.setRowData(this.rowDataActive);
             this.titleModel = "Thêm mới cửa hàng";
             this.$store.commit("showDetailStore");
@@ -231,8 +238,48 @@ export default ({
         /*
         * call api lọc thông tin cửa hàng
         */
-       async filterMyStore(){
-        //    var url = `${this.$Const.API_HOST}/api/v1/Stores/filter?storeCode=${value.storeCode}&storeName=${value.storeName}&address=${value.address}&phoneNumber=${value.phoneNumber}&status=1`;
+       async filterMyStore(value){
+           let stringStoreCode = (value.storeCode != "")?`storeCode=${value.storeCode}`:"";
+           let stringStoreName="";
+           let stringAddress="";
+           let stringPhoneNumber="";
+           var stringStatus="";
+           if(value.storeCode != ""){
+               stringStoreName = (value.storeName != "")?`$storeName=${value.storeName}`:"";
+           }
+           else{
+               stringStoreName = (value.storeName != "")?`storeName=${value.storeName}`:"";
+           }
+           if(value.storeCode != "" || value.storeName != ""){
+               stringAddress = ( value.address != "")?`&address=${value.address}`:"";
+           }
+           else{
+               stringAddress = (value.address != "")?`address=${value.address}`:"";
+           }
+           if(value.storeCode != "" || value.storeName != "" || value.address != ""){
+               stringPhoneNumber = ( value.phoneNumber != "")?`&phoneNumber=${value.phoneNumber}`:"";
+           }
+           else{
+               stringPhoneNumber = ( value.phoneNumber != "")?`phoneNumber=${value.phoneNumber}`:"";
+           }
+           if(value.storeCode != "" || value.storeName != "" || value.address != "" || value.phoneNumber != ""){
+               stringStatus = (this.statusId >= 0)?`&status=${this.statusId}`:"";
+           }
+           else{
+               stringStatus = (this.statusId >= 0)?`status=${this.statusId}`:"";
+           }
+           console.log(this.statusId);
+            var url = `${this.$Const.API_HOST}/api/v1/Stores/filter?${stringStoreCode}${stringStoreName}${stringAddress}${stringPhoneNumber}${stringStatus}`;
+            console.log(url);
+            this.$store.commit("showLoading");
+            axios.get(url)
+                       .then(response =>{
+                           this.listStore = response.data.data;
+                           this.$store.commit("showLoading");
+                       }).catch(err => {
+                           console.log(err);
+                       });
+            this.rowDataActive = this.listStore[0];
        },
         /*
         * call api lấy thông tin cửa hàng
@@ -297,14 +344,20 @@ export default ({
             ],
             rowDataActive:{},
             rowData:{},
-            dataFilter:{},
+            dataFilter:{
+                storeCode: "",
+                storeName: "",
+                address: "",
+                phoneNumber: "",
+            },
             totalPage:0,
             totalRecord:0,
             curentPage: 1,
             titleModel: "",
+            replicationId:"",
             listStatus:[
                 {
-                    value: 2,
+                    value: -1,
                     status: "Tất cả",
                 },
                 {
@@ -317,7 +370,7 @@ export default ({
                 },
             ],
             statusName: "Tất cả",
-            statusId: 2,
+            statusId: -1,
             isActive: false,
             listStatusSearch:[],
         }

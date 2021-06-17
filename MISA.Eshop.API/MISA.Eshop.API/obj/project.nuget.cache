@@ -1,24 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "atiQJK0HsskKXRfNp+BkDRj0XbOCaQwq9lCvRn7yu6eMDAquTaX5Fm3yAyuT6H5qvNggJY++EFBBw/znVO9uzQ==",
+  "dgSpecHash": "vLkd+hC7HiuVr9mVASukHbfoigGm9tuaKkLgrwboLYa7zwHYxBmMwZMDVwFeZJ1fjRgHiJhZIHXN9/mj2Icbpw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ndtin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.API\\MISA.Eshop.API.csproj",
+  "projectFilePath": "C:\\Users\\duytin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.API\\MISA.Eshop.API.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ndtin\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
-    "C:\\Users\\ndtin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "C:\\Users\\ndtin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\ndtin\\.nuget\\packages\\mysqlconnector\\1.3.9\\mysqlconnector.1.3.9.nupkg.sha512",
-    "C:\\Users\\ndtin\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
-    "C:\\Users\\ndtin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
-    "C:\\Users\\ndtin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
-    "C:\\Users\\ndtin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+    "C:\\Users\\duytin\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\duytin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\duytin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\duytin\\.nuget\\packages\\mysqlconnector\\1.3.9\\mysqlconnector.1.3.9.nupkg.sha512",
+    "C:\\Users\\duytin\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\duytin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\duytin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\duytin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\ndtin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.API\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }
