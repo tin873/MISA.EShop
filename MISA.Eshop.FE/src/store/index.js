@@ -10,6 +10,7 @@ const store = new Vuex.Store({
         pageSize: 10,
         isShowDialog: false,
         isLoading: false,
+        isShowDialogWaning: false,
     },
     mutations: {
         showDetailStore(state){
@@ -18,6 +19,10 @@ const store = new Vuex.Store({
 
         showDialog(state){
             state.isShowDialog = !state.isShowDialog;
+        },
+
+        showDialogWaning(state){
+            state.isShowDialogWaning = !state.isShowDialogWaning;
         },
 
         showLoading(state){
@@ -49,6 +54,10 @@ const store = new Vuex.Store({
 
         getIsShowDialog(state){
             return state.isShowDialog;
+        },
+
+        getIsShowDialogWaning(state){
+            return state.isShowDialogWaning;
         },
 
         getIsLoading(state){

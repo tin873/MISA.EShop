@@ -9,7 +9,7 @@
                 <div class="icon-header icon-replic"></div>
                 <div class="item-name-content">Nhân bản</div>
             </div>
-            <div class="btn btn-borderleft hover-pointer" @click="editStore">
+            <div class="btn btn-borderleft hover-pointer" @click="editStoreBtn">
                 <div class="icon-header icon-edit"></div>
                 <div class="item-name-content">Sửa</div>
             </div>
@@ -94,7 +94,8 @@
                     <tr v-for="stores in listStore"
                     :key="stores.storeId"
                     :class="{isSelectrow: rowDataActive.storeId == stores.storeId}"
-                    @click="rowClick(stores)">
+                    @click="rowClick(stores)"
+                    @dblclick="editStore(stores)">
                         <td style="width: 155px;">{{stores.storeCode}}</td>
                         <td style="width: 243px;">{{stores.storeName}}</td>
                         <td style="width: 970px;">{{stores.address}}</td>
@@ -109,13 +110,15 @@
                     :curentPage="curentPage"
                     @pageChanged="onPageChange"/>
         </div>
-        <ComfirmDelete @closeDialog="closeDialog" v-if="isShowDialog" @pageChanged="onPageChange"/>
+        <ComfirmDelete @closeDialog="closeDialog" v-if="isShowDialog" @pageChanged="onPageChange" @DeleteStore="DeleteStore"/>
         <Detail 
                 @closeTab="closeTab" 
                 v-if="isShowDetail" 
                 :titleModel="titleModel" 
                 @pageChanged="onPageChange"
-                :replicationId="replicationId"/>
+                :replicationId="replicationId"
+                :editId="editId"
+                @AddStoreNew="AddStoreNew"/>
     </div>
 </template>
 <script>
@@ -136,22 +139,73 @@ export default ({
         this.setPage();
         this.onLoadStore();
     },
+    computed: {
+        /*
+        *lấy giá trị hiển thị model
+        */
+        isShowDetail(){
+            return this.$store.getters.getIsShow;
+        },
+        /*
+        *lấy kích thước trang
+        */
+        pageSize(){
+            return this.$store.getters.getPageSize;
+        },
+
+        //laays gias trij hien thi dialog delete
+        isShowDialog(){
+            return this.$store.getters.getIsShowDialog;
+        },
+
+        //laays gia tri hien thi loading du lieu
+        isShowLoading(){
+            return this.$store.getters.getIsLoading;
+        },
+    },
     methods: {
-        //hiển thị cbb status
+        DeleteStore(valueId){
+            console.log("xóa");
+            this.listStore = this.listStore.filter(item => item.storeId !== valueId);
+        },
+        /*
+        *them du lieu khi them moi
+        *CreatedBy: ndtin(18/06/2021)
+        */
+        AddStoreNew(valueStore){
+            if(valueStore.storeCode != null && valueStore.storeCode != "" && valueStore.storeName != null && valueStore.storeName != "" && valueStore.address != null && valueStore.address != "")
+            {
+                this.listStore.unshift(valueStore);
+                this.listStore.pop();
+            }
+        },
+        //=================Thao tác xử lý cobobbox chọn status
+        /*
+        *Hiển thị các trạng thái
+        *CreatedBy: ndtin(18/06/2021)
+        */
         showDropStatus(){
             this.listStatusSearch = this.listStatus;
             this.isActive = !this.isActive;
             document.getElementById("status").focus();
         },
-        //seletc item status
+        /*
+        *Lưu dữ liệu mã, tên khi chọn trạng thái
+        *CreatedBy: ndtin(18/06/2021)
+        */
         selectItemStatus(value, name){
             this.statusId = value;
             this.statusName = name;
+            //đóng combobox
             this.isActive = !this.isActive;
-            this.filterStore();
+            //thực hiện lọc khi chọn
+            this.filterStore(this.dataFilter);
             document.getElementById("status").focus();
         },
-        //search 
+        /*
+        *Tìm kiếm trạng thái bằng từ khóa
+        *CreatedBy: ndtin(18/06/2021)
+        */
         searchStatus(value){
             //nếu không có giá trị thì không hiện
             if(value == "")
@@ -167,13 +221,19 @@ export default ({
                 }
             }
         },
-        //lọc cửa hàng
+        /*
+        *lọc thông tin cửa hàng theo mã, tên, số điện thoại, địa chỉ, trạng thái
+        *CreatedBy: ndtin(18/06/2021)
+        */
         filterStore(){
             console.log(this.dataFilter);
             this.filterMyStore(this.dataFilter);
         },
         
-        //lấy thông tin hoạt động
+        /*
+        *Hiển thị trạng thái hoạt động theo tiếng việt 
+        *CreatedBy: ndtin(18/06/2021)
+        */
         getTextValue(value){
             if(value == null)
             {
@@ -186,64 +246,90 @@ export default ({
                 return "Đang hoạt động";
             }
         },
-        //set page = 10
+        //khi load trang set giá trị pageSize = 10
         setPage(){
             this.$store.commit("setPageSize", 10);
         },
-
+        //load lại trang
         refresh(){
             this.onPageChange(1);
         },
+        //chọn dòng
         rowClick(value){
             this.rowDataActive = value;
         },
+        /*
+        *Mở cửa xổ thêm mới cửa hàng
+        *CreatedBy: ndtin(18/06/2021)
+        */
         addStore(){
+            this.replicationId = "";
+            this.editId = "";
+            this.rowData = {};
             this.setRowData(this.rowData)
             this.titleModel = "Thêm mới cửa hàng";
             this.$store.commit("showDetailStore");
             
         },
-        //xoas
+        /*
+        *mở aler thông báo xóa
+        *CreatedBy: ndtin(18/06/2021)
+        */
         deleteStore(){
             this.setRowData(this.rowDataActive);
             this.$store.commit("showDialog");
         },
-        //sửa cưa hàng
-        editStore(){
+        /*
+        *lưu dữ liệu đã chọn vào store và mở cửa xổ sửa thông tin cửa hàng
+        *CreatedBy: ndtin(18/06/2021)
+        */
+        editStore(value){
+            this.replicationId = "";
+            this.editId = this.value.storeId;
+            this.titleModel = "Sửa cửa hàng";
+            this.setRowData(value);
+            this.$store.commit("showDetailStore");
+        },
+        editStoreBtn(){
+            this.replicationId = "";
+            this.editId = this.rowDataActive.storeId;
             this.titleModel = "Sửa cửa hàng";
             this.setRowData(this.rowDataActive);
             this.$store.commit("showDetailStore");
         },
-        //nhân bản
+        /*
+        *lưu dữ liệu đã chọn vào store và mở cửa xổ thêm mới cửa hàng
+        *CreatedBy: ndtin(18/06/2021)
+        */
         replicationStore(){
+            this.editId = "";
             this.replicationId = this.rowDataActive.storeId;
             this.setRowData(this.rowDataActive);
             this.titleModel = "Thêm mới cửa hàng";
             this.$store.commit("showDetailStore");
         },
-        //lưu rowdata vào store
+        //lưu dữ liệu dòng đã chọn trên store
         setRowData(data){
             this.$store.commit("setDataRow", data);
         },
-        /*
-        * đóng model
-        */
+        //đóng cửa xổ thêm, sửa, nhân bản
         closeTab(){
             this.$store.commit("showDetailStore");
         },
-        //ddongs dialog
+        //đóng dialog thông báo xóa
         closeDialog(){
             this.$store.commit("showDialog");
         },
         /*
-        * call api lọc thông tin cửa hàng
+        *call api lọc thông tin cửa hàng
+        *CreatedBy: ndtin(18/06/2021)
         */
        async filterMyStore(value){
-           let stringStoreCode = (value.storeCode != "")?`storeCode=${value.storeCode}`:"";
            let stringStoreName="";
            let stringAddress="";
            let stringPhoneNumber="";
-           var stringStatus="";
+           let stringStatus="";
+           let stringStoreCode = (value.storeCode != "")?`storeCode=${value.storeCode}`:"";
            if(value.storeCode != ""){
                stringStoreName = (value.storeName != "")?`$storeName=${value.storeName}`:"";
            }
@@ -312,32 +398,6 @@ export default ({
         //lấy giá trị dòng đầu
 
     },
-    computed: {
-        /*
-        *lấy giá trị hiển thị model
-        */
-        isShowDetail(){
-            return this.$store.getters.getIsShow;
-        },
-        /*
-        *lấy kích thước trang
-        */
-        pageSize(){
-            return this.$store.getters.getPageSize;
-        },
-
-        //laays gias trij hien thi dialog delete
-        isShowDialog(){
-            return this.$store.getters.getIsShowDialog;
-        },
-
-        //laays gia tri hien thi loading du lieu
-        isShowLoading(){
-            return this.$store.getters.getIsLoading;
-        },
-
-        
-    },
     data() {
         return{
             listStore: [
@@ -355,6 +415,7 @@ export default ({
             curentPage: 1,
             titleModel: "",
             replicationId:"",
+            editId: "",
             listStatus:[
                 {
                     value: -1,

@@ -8,7 +8,7 @@
     margin-right: 5px;
 }
 .isActive{
-    display: none;
+    display: block;
 }
 .mgr-8{
     margin-right: 8px;

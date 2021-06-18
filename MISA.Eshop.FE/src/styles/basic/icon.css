@@ -154,8 +154,9 @@
 .icon-error{
     background-image: url('../../assets/icon/exclamation.png');
     background-repeat: no-repeat;
-    width: 16px;
+    width: 20px;
     height: 16px;
+    display: none;
 }
 
 .icon-footer-help{

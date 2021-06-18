@@ -64,31 +64,36 @@ export default ({
     },
     methods: {
         /*
-        *chuyển về trang đầu tiên
+        *chuyển về trang đầu
+        *CreatedBy: ndtin(18/06/2021)
         */
         onClickFirstPage(){
             this.$emit("pageChanged", 1);
         },
         /*
         *lùi về 1 trang
+        *CreatedBy: ndtin(18/06/2021)
         */
         onClickPreviewPage(){
             this.$emit("pageChanged", this.curentPage-1);
         },
         /*
-        *tiến lên 1 trang
+        *next 1 trang
+        *CreatedBy: ndtin(18/06/2021)
         */
         onClickNextPage(){
             this.$emit("pageChanged", this.curentPage+1);
         },
         /*
         *chuyển về trang cuối
+        *CreatedBy: ndtin(18/06/2021)
         */
         onClickLastPage(){
             this.$emit("pageChanged", this.totalPage);
         },
         /*
         *thay đổi số lượng bản ghi 1 trang
+        *CreatedBy: ndtin(18/06/2021)
         */
         onClickPageSize(page, size){
             if(size){
@@ -96,7 +101,10 @@ export default ({
             }
             this.$emit("pageChanged", page);
         },
-        //loadlij
+        /*
+        *load lại trang
+        *CreatedBy: ndtin(18/06/2021)
+        */
         refresh(){
             this.$emit("pageChanged", 1);
         },

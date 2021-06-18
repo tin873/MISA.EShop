@@ -9,24 +9,30 @@
     align-items: center;
     height: 32px;
 }
+
+
 /*Detail Store*/
-.combobox-model{
+
+.combobox-model {
     display: flex;
+    width: 162px;
+    height: 33px;
+    align-items: center;
 }
 
-.input-custom-cbb{
-    height: 33px;
-    width: 152px;
+.input-custom-cbb {
+    height: 100%;
+    width: 100%;
     padding: 0px 0px 0px 8px;
     border: 1px solid #bbbbbb;
 }
 
-.input-custom-cbb:focus{
+.input-custom-cbb:focus {
     outline: none;
     border: 1px solid #3366ff;
 }
 
-.btn-cbb{
+.btn-cbb {
     position: absolute;
     height: 33px;
     width: 30px;
@@ -37,22 +43,21 @@
     background-color: white;
 }
 
-.flex-item .item{
+.flex-item .item {
     padding: 5px 5px 5px 8px;
-    width: 147px;
 }
 
-.flex-item .item:hover{
+.flex-item .item:hover {
     background-color: #663399;
     cursor: pointer;
     color: white;
 }
 
-.flex-item{
+.flex-item {
     position: absolute;
     z-index: 1000;
     background-color: white;
     border: 1px solid #bbbbbb;
     display: none;
+    width: 27.9%;
 }
-

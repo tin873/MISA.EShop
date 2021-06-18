@@ -38,14 +38,26 @@ export default ({
         close(){
             this.$emit('closeDialog');
         },
+        /*
+        *Thực hiện xóa bản ghi
+        *CreatedBy: ndtin(18/06/2021)
+        */
         deleteStore(){
-            this.delete(this.store.storeId).then(this.load());
+            this.delete(this.store.storeId);
+            this.$emit("DeleteStore", this.store.storeId);
+            console.log("xóa first");
         },
-        //load laij
+        /*
+        *load lại
+        *CreatedBy: ndtin(18/06/2021)
+        */
         load(){
             this.$emit("pageChanged", 1);
         },
-        //call api xoas 
+        /*
+        *call api xóa 
+        *CreatedBy: ndtin(18/06/2021)
+        */
         async delete(id){
             try{
                 var url = `${this.$Const.API_HOST}/api/v1/Stores/${id}`;

@@ -4,7 +4,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 2;
 }
 
 .modal .modal-background {
@@ -23,7 +23,8 @@
     height: 479px;
     background-color: white;
 }
-.modal-header{
+
+.modal-header {
     display: flex;
     font-size: 16px !important;
     font-weight: bold;
@@ -33,47 +34,50 @@
     align-items: center;
 }
 
-.modal-body{
+.modal-body {
     padding: 16px 16px 0px;
     width: 543px;
     height: 364px;
     border-bottom: 1px solid #dfdfdf;
+    font: 400 13px Roboto!important;
 }
 
-.modal-item{
+.modal-item {
     height: 35px;
     width: 569px;
     display: flex;
     padding-bottom: 10px;
 }
-.modal-item-special{
+
+.modal-item-special {
     height: 82px;
     width: 569px;
     display: flex;
     padding-bottom: 10px;
 }
 
-.modal-item-name span{
+.modal-item-name span {
     color: red !important;
 }
-.modal-item-name{
+
+.modal-item-name {
     color: #212121;
     font-weight: 300;
     padding: 8px 5px 0px 5px;
     width: 100px;
 }
 
-.model-item-input{
+.model-item-input {
     width: 439px !important;
     display: flex;
     align-items: center;
 }
 
-.double-item{
+.double-item {
     display: flex;
 }
 
-.modal-footer{
+.modal-footer {
     height: 35px;
     width: 544px;
     padding: 10px 21px 10px 10px;
@@ -81,15 +85,14 @@
     justify-content: space-between;
 }
 
-
-.item-footer-name{
+.item-footer-name {
     padding: 0px 5px;
     color: #2b3173;
     font: 600 13px Roboto!important;
     height: 19px;
 }
 
-.item-footer-save{
+.item-footer-save {
     padding: 0px 5px;
     color: white;
     font: 600 13px Roboto!important;
@@ -97,16 +100,16 @@
     padding-top: 5px;
 }
 
-.item-footer-name-add{
+.item-footer-name-add {
     font-family: Roboto!important;
     font-weight: 600;
 }
 
-.footer-right{
+.footer-right {
     display: flex;
 }
 
-.item-footer-name-cancel{
+.item-footer-name-cancel {
     padding: 0px 5px;
     color: #2b3173;
     font: 600 13px Roboto!important;
@@ -114,7 +117,26 @@
     padding-top: 5px;
 }
 
-.activeItem{
+.activeItem {
     background-color: #663399;
     color: white;
+}
+
+.error {
+    border: 1px solid red;
+}
+
+.input-error {
+    display: flex;
+    width: 162px;
+    height: 31px;
+    align-items: center;
+}
+
+.setMargin {
+    margin-left: 114px;
+}
+
+.isActiveCbbWidth {
+    width: 25%;
 }
