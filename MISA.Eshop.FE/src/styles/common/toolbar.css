@@ -1,4 +1,4 @@
-.toolbar{
+.toolbar {
     width: 98%;
     height: 24px;
     background-color: white;
@@ -7,18 +7,17 @@
     justify-content: space-between;
 }
 
-.feature-page{
+.feature-page {
     display: flex;
 }
 
-
-.page-name{
+.page-name {
     padding: 0px 4px;
     line-height: 24px;
     color: #4b4c4c;
 }
 
-.toolbar-text{
+.toolbar-text {
     color: #4b4c4c;
     padding: 0px 4px;
     line-height: 24px;

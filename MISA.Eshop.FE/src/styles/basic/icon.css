@@ -1,49 +1,54 @@
-.logo-icon{
+.logo-icon {
     background-image: url('../../assets/icon/Logo_Full_White.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height: 52px;
 }
+
 /*menu*/
-.icon{
+
+.icon {
     background-image: url('../../assets/icon/slibarmenu.png');
     background-repeat: no-repeat;
     height: 36px;
     width: 40px;
     align-self: center;
 }
+
 /*position menu icon*/
-.icon-speed{
+
+.icon-speed {
     background-position: 0 6px;
 }
 
-.icon-report{
+.icon-report {
     background-position: 0 -273px;
 }
 
-.icon-deliveryledger{
+.icon-deliveryledger {
     background: url('../../assets/icon/ic_sogiaohang.png') no-repeat 4px 9px !important;
 }
 
-.icon-purchares{
+.icon-purchares {
     background-position: 0 -33px;
 }
 
-.icon-promotion{
+.icon-promotion {
     background-position: 0 -193px;
 }
 
-.icon-managerment{
+.icon-managerment {
     background-position: 0 -233px;
 }
 
-.icon-product{
+.icon-product {
     background-position: 0 -350px;
 }
 
 /*header*/
-.icon-down{
+
+.icon-down {
     background-image: url('../../assets/icon/arrow-down-line.png');
     background-repeat: no-repeat;
     background-size: 9px 5px;
@@ -52,16 +57,16 @@
     background-position: center;
 }
 
-.icon-misa-support{
+.icon-misa-support {
     background: #2b3173 url('../../assets/icon/misasupport_1.png');
     height: 55px;
     width: 54px;
     background-repeat: no-repeat;
-    background-position: 4px -2px ;
+    background-position: 4px -2px;
     background-size: 50px 54px;
 }
 
-.icon-notify{
+.icon-notify {
     background-image: url('../../assets/icon/notify-18.png');
     width: 30px;
     height: 30px;
@@ -69,7 +74,8 @@
     background-repeat: no-repeat;
     background-size: 20px 20px;
 }
-.icon-help{
+
+.icon-help {
     background-image: url('../../assets/icon/icon_help_18.png');
     width: 30px;
     height: 30px;
@@ -77,8 +83,10 @@
     background-repeat: no-repeat;
     background-size: 20px 20px;
 }
+
 /*view store*/
-.icon-header{
+
+.icon-header {
     background-image: url('../../assets/icon/common-icon.png');
     background-repeat: no-repeat;
     width: 16px;
@@ -86,28 +94,29 @@
     padding: 10px 0px;
 }
 
-.icon-add{
-    background-position:  -1px -117px;
+.icon-add {
+    background-position: -1px -117px;
 }
 
-.icon-replic{
+.icon-replic {
     background-position: -976px -116px;
 }
 
-.icon-edit{
+.icon-edit {
     background-position: -1452px -117px;
 }
 
-.icon-delete{
+.icon-delete {
     background-position: -1077px -117px;
 }
 
-.icon-load{
+.icon-load {
     background-position: -876px -117px;
 }
 
 /*toolbar*/
-.icon-toolbar{
+
+.icon-toolbar {
     width: 24px;
     height: 24px;
     background-color: #fff;
@@ -118,28 +127,29 @@
     background-image: url('../../assets/icon/common-icon.png');
 }
 
-.icon-page-first{
+.icon-page-first {
     background-position: -649px -124px;
 }
 
-.icon-preview{
+.icon-preview {
     background-position: -700px -124px;
 }
 
-.icon-next{
+.icon-next {
     background-position: -749px -124px;
 }
 
-.icon-last{
+.icon-last {
     background-position: -798px -124px;
 }
-.icon-refresh{
+
+.icon-refresh {
     background-position: -849px -124px;
 }
 
 /*modal*/
 
-.icon-modal{
+.icon-modal {
     background-image: url('../../assets/icon/common-icon.png');
     background-repeat: no-repeat;
     width: 16px;
@@ -147,11 +157,11 @@
     cursor: pointer;
 }
 
-.icon-close{
+.icon-close {
     background-position: -1127px -127px;
 }
 
-.icon-error{
+.icon-error {
     background-image: url('../../assets/icon/exclamation.png');
     background-repeat: no-repeat;
     width: 20px;
@@ -159,37 +169,39 @@
     display: none;
 }
 
-.icon-footer-help{
+.icon-footer-help {
     background: url('../../assets/icon/help.png') no-repeat;
     width: 16px;
     height: 16px;
 }
 
-.icon-footer-save{
+.icon-footer-save {
     background: url('../../assets/icon/common-icon.png') no-repeat -327px -127px;
     width: 16px;
     height: 16px;
 }
 
-.icon-footer-add{
+.icon-footer-add {
     background: url('../../assets/icon/common-icon.png') no-repeat -26px -127px;
     width: 16px;
     height: 16px;
 }
 
-.item-footer-noSave{
+.item-footer-noSave {
     background: url('../../assets/icon/not-save.png') no-repeat;
     width: 16px;
     height: 16px;
 }
 
-.icon-footer-cancel{
+.icon-footer-cancel {
     background: url('../../assets/icon/common-icon.png') no-repeat -252px -127px;
     width: 16px;
     height: 16px;
 }
+
 /*loading*/
-.icon-loading{
+
+.icon-loading {
     padding: 25px 0px 0px;
     background-image: url('../../assets/icon/loading.gif');
     background-repeat: no-repeat;

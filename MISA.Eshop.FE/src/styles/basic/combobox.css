@@ -10,12 +10,11 @@
     height: 32px;
 }
 
-
 /*Detail Store*/
 
 .combobox-model {
     display: flex;
-    width: 94%;
+    width: 100%;
     height: 33px;
     align-items: center;
 }

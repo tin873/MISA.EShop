@@ -344,16 +344,18 @@
           </button>
         </div>
       </div>
+      <LoadingForm v-if="isLoadingForm" />
     </div>
     <DialogStoreCodeExits
       v-if="isShowDialogWaning"
       @closeTabWaning="closeTabWaning"
     />
-    <DialogSaveData 
-    v-if="isShowDialogSavedata"
-    @closeTabSaveData="closeTabSaveData"
-    @closeTabNoSave="closeTabNoSave"
-    @closeTabSave="closeTabSave"/>
+    <DialogSaveData
+      v-if="isShowDialogSavedata"
+      @closeTabSaveData="closeTabSaveData"
+      @closeTabNoSave="closeTabNoSave"
+      @closeTabSave="closeTabSave"
+    />
   </div>
 </template>
 
@@ -361,12 +363,14 @@
 import axios from "axios";
 import DialogStoreCodeExits from "../../components/dialog/DialogStoreCodeExits.vue";
 import DialogSaveData from "../../components/dialog/DialogSaveData.vue";
+import LoadingForm from "../../components/common/loadingForm.vue";
 export default {
   name: "StoreDetail",
   props: ["titleModel", "rowData", "replicationId", "editId", "isEdit"],
   components: {
     DialogStoreCodeExits,
-    DialogSaveData
+    DialogSaveData,
+    LoadingForm,
   },
   computed: {
     store() {
@@ -379,9 +383,9 @@ export default {
       return this.$store.getters.getIsShowDialogWaning;
     },
     //lấy giá trị hiển thị dialog save data
-    isShowDialogSavedata(){
+    isShowDialogSavedata() {
       return this.$store.getters.getIsShowDialogSaveData;
-    }
+    },
   },
   created() {
     //lấy thông tin quốc gia
@@ -391,8 +395,13 @@ export default {
   },
   mounted() {
     this.$refs.forcusFirst.focus();
+    this.cencelLoading();
   },
   methods: {
+    //tắt loading form
+    cencelLoading() {
+      this.isLoadingForm = false;
+    },
     /*
      *button lưu và thêm mới
      *CreatedBy: ndtin(18/06/2021)
@@ -422,32 +431,40 @@ export default {
         this.store.address != null &&
         this.store.address != ""
       ) {
-        //truyền id quốc gia khi chọn
-        this.store.countryId = this.countryId;
-        //truyền id thành phố khi chọn
-        this.store.provinceId = this.provinceId;
-        //truyền id quận huyện khi chọn
-        this.store.districtId = this.districtId;
-        //truyền id xã phường khi chọn
-        this.store.wardId = this.wardId;
-        //nếu thêm mới thì set hoạt động cho cửa hàng
-        console.log(this.store.status);
-        if (this.store.status == null) {
-          this.store.status = false;
-        }
-        if (this.store.status) {
-          this.store.status == true;
-        } else {
-          this.store.status == false;
-        }
-        //nếu nhân bản bỏ StoreId
-        if (this.replicationId != "") {
-          this.$delete(this.store, "storeId");
-        }
-        //lưu lại
-        this.fsave();
-        if (this.editId == "") {
-          this.reload();
+        if (
+          !this.isActiveErrorPhone &&
+          !this.isActiveErrorCountry &&
+          !this.isActiveErrorProvince &&
+          !this.isActiveErrorDistrict &&
+          !this.isActiveErrorWard
+        ) {
+          //truyền id quốc gia khi chọn
+          this.store.countryId = this.countryId;
+          //truyền id thành phố khi chọn
+          this.store.provinceId = this.provinceId;
+          //truyền id quận huyện khi chọn
+          this.store.districtId = this.districtId;
+          //truyền id xã phường khi chọn
+          this.store.wardId = this.wardId;
+          //nếu thêm mới thì set hoạt động cho cửa hàng
+          console.log(this.store.status);
+          if (this.store.status == null) {
+            this.store.status = false;
+          }
+          if (this.store.status) {
+            this.store.status == true;
+          } else {
+            this.store.status == false;
+          }
+          //nếu nhân bản bỏ StoreId
+          if (this.replicationId != "") {
+            this.$delete(this.store, "storeId");
+          }
+          //lưu lại
+          this.fsave();
+          if (this.editId == "") {
+            this.reload();
+          }
         }
       } else {
         if (this.store.storeCode == null || this.store.storeCode == "") {
@@ -479,6 +496,7 @@ export default {
     async fsave() {
       var url = "";
       await this.checkStoreCodeExist(this.store.storeCode);
+      this.isLoadingForm = true;
       if (this.store.storeId != null && this.store.storeId != "") {
         //sửa thông tin
         try {
@@ -489,8 +507,10 @@ export default {
             let response = await axios.put(url, this.store);
             //Sửa thành công đóng cửa xổ model
             if (response.data.data == 1 && this.isSaveAndAdd) {
+              this.isLoadingForm = false;
               this.close();
             }
+            this.isLoadingForm = false;
           } else {
             console.log(this.isCodeExits);
             if (this.isCodeExits) {
@@ -498,14 +518,18 @@ export default {
               let response = await axios.put(url, this.store);
               //Sửa thành công đóng cửa xổ model
               if (response.data.data == 1 && this.isSaveAndAdd) {
+                this.isLoadingForm = false;
                 this.close();
               }
+              this.isLoadingForm = false;
             } else {
+              this.isLoadingForm = false;
               this.openWaning();
             }
           }
         } catch (error) {
           console.log(error);
+          setTimeout((this.isLoadingForm = false), 4000);
         }
       } else {
         //thêm mới
@@ -513,15 +537,18 @@ export default {
           if (this.isCodeExits) {
             url = `${this.$Const.API_HOST}/api/v1/Stores`;
             let response = await axios.post(url, this.store);
-            console.log(response);
             if (response.data.data == 1 && this.isSaveAndAdd) {
               this.close();
+              this.isLoadingForm = false;
             }
+            this.isLoadingForm = false;
           } else {
+            this.isLoadingForm = false;
             this.openWaning();
           }
         } catch (error) {
           console.log(error);
+          setTimeout((this.isLoadingForm = false), 4000);
         }
       }
     },
@@ -584,7 +611,7 @@ export default {
      */
     getAddress() {
       var store = this.store;
-      if (store.storeCode != null&& store.storeCode != "") {
+      if (store.storeCode != null && store.storeCode != "") {
         this.storeCodeFirst = store.storeCode;
         this.getCountryName(store.countryId);
         this.getProvinceName(store.provinceId);
@@ -670,20 +697,24 @@ export default {
       this.$emit("closeTab");
     },
     //đóng cửa sổ và hiển thị save nếu có dữ liệu
-    closeTapAndSave(){
-      if(this.store.storeName != "" && this.store.storeName != null
-      || this.store.storeCode != "" && this.store.storeCode != null
-      || this.store.address != ""  && this.store.address != null
-      || this.countryId != "" && this.countryId != null
-      || this.store.street != ""  && this.store.street != null
-      || this.store.storeTaxCode != "" && this.store.storeTaxCode != null){
-        if(this.editId != null && this.editId != "" 
-        || this.replicationId != null && this.replicationId != ""){
+    closeTapAndSave() {
+      if (
+        (this.store.storeName != "" && this.store.storeName != null) ||
+        (this.store.storeCode != "" && this.store.storeCode != null) ||
+        (this.store.address != "" && this.store.address != null) ||
+        (this.countryId != "" && this.countryId != null) ||
+        (this.store.street != "" && this.store.street != null) ||
+        (this.store.storeTaxCode != "" && this.store.storeTaxCode != null)
+      ) {
+        if (
+          (this.editId != null && this.editId != "") ||
+          (this.replicationId != null && this.replicationId != "")
+        ) {
           this.$emit("closeTab");
-        }else{
+        } else {
           this.openTapSaveData();
         }
-      }else{
+      } else {
         this.$emit("closeTab");
       }
     },
@@ -966,7 +997,7 @@ export default {
      *đóng tap save và lưu dữ liệu
      *CreatedBy: ndtin(18/06/2021)
      */
-    closeTabSave(){
+    closeTabSave() {
       this.saveStore();
     },
     /*
@@ -980,14 +1011,14 @@ export default {
      *đóng tap save data
      *CreatedBy: ndtin(18/06/2021)
      */
-    closeTabSaveData(){
+    closeTabSaveData() {
       this.$store.commit("showDialogSaveData");
     },
     /*
      *đóng 2 tap (tap saveData và Model StoreDetail)
      *CreatedBy: ndtin(18/06/2021)
      */
-    closeTabNoSave(){
+    closeTabNoSave() {
       this.closeTabSaveData();
       this.close();
     },
@@ -995,7 +1026,7 @@ export default {
      *mở tap save data
      *CreatedBy: ndtin(18/06/2021)
      */
-    openTapSaveData(){
+    openTapSaveData() {
       this.$store.commit("showDialogSaveData");
     },
     /*
@@ -1156,11 +1187,11 @@ export default {
       isSaveAndAdd: false,
       //lấy code cửa hàng lúc đầu
       storeCodeFirst: "",
+      isLoadingForm: true,
     };
   },
 };
 </script>
-
 <style scoped>
 @import "../../styles/dictionary/storeDetail.css";
 </style>
