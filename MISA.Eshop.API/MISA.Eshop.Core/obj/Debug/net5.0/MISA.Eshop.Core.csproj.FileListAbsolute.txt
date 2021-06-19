@@ -33,3 +33,4 @@ C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5
 C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.dll
 C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\ref\MISA.Eshop.Core.dll
 C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.pdb
+C:\Users\duytin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.csprojAssemblyReference.cache

@@ -8,19 +8,24 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\ndtin\\.nuget\\packages\\": {}
+    "C:\\Users\\duytin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ndtin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.Core\\MISA.Eshop.Core.csproj",
+      "projectUniqueName": "C:\\Users\\duytin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.Core\\MISA.Eshop.Core.csproj",
       "projectName": "MISA.Eshop.Core",
-      "projectPath": "C:\\Users\\ndtin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.Core\\MISA.Eshop.Core.csproj",
-      "packagesPath": "C:\\Users\\ndtin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ndtin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.Core\\obj\\",
+      "projectPath": "C:\\Users\\duytin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.Core\\MISA.Eshop.Core.csproj",
+      "packagesPath": "C:\\Users\\duytin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\duytin\\Desktop\\MISA.EShop\\MISA.Eshop.API\\MISA.Eshop.Core\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ndtin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\duytin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

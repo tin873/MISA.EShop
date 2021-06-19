@@ -66,7 +66,7 @@ namespace MISA.Eshop.API.Controllers
         /// <returns>ServiceResult</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpPut("{id}")]
-        public virtual IActionResult Put(Guid id, [FromBody] T entity)
+        public virtual IActionResult Put([FromBody] T entity ,Guid id)
         {
             var result = _baseService.Update(entity, id);
             if (result != null)

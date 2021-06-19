@@ -167,6 +167,7 @@ namespace MISA.Eshop.Core.Service
 
         private bool ValidateObject(T entity)
         {
+            int a = _serviceResult.UserMsg.Count;
             //lấy ra danh sách properties của thực thể
             var properties = typeof(T).GetProperties();
             //duyệt từng property
