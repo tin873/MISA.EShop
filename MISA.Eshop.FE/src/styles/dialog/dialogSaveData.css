@@ -81,11 +81,15 @@
     display: flex;
     justify-content: flex-end;
     padding: 8px 0px 8px 6px;
-}
-
-.confirm-dialog-buttons .btn-dialogs{
     height: 32px !important;
 }
 
+.hover-none:hover{
+    border: none;
+}
+
+.hover-none{
+    border: none;
+}
 
 

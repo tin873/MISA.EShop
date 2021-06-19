@@ -9,19 +9,19 @@
 }
 
 .input-code{
-    width: 125px;
+    width: 70%;
 }
 
 .input-name{
-    width: 214px;
+    width: 80% ;
 }
 
 .input-address{
-    width: 939px;
+    width: 94% ;
 }
 
 .input-phone{
-    width: 91px;
+    width: 68% ;
 }
 /*toolbar*/
 .input-toolbar{

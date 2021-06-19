@@ -677,7 +677,12 @@ export default {
       || this.countryId != "" && this.countryId != null
       || this.store.street != ""  && this.store.street != null
       || this.store.storeTaxCode != "" && this.store.storeTaxCode != null){
-        this.openTapSaveData();
+        if(this.editId != null && this.editId != "" 
+        || this.replicationId != null && this.replicationId != ""){
+          this.$emit("closeTab");
+        }else{
+          this.openTapSaveData();
+        }
       }else{
         this.$emit("closeTab");
       }

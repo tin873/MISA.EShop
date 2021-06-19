@@ -27,14 +27,15 @@
                 <div class="item-name-content">Nạp</div>
             </div>
         </div>
+        <div v-if="isEmtyLoad">Không tải đươc dữ liệu vui lòng liên hệ MISA để được trợ giúp...</div>
         <div class="content-grid">
             <table class="table-asset" id="idtableAsset">
                 <colgroup>
                     <col width = "175" />
-                    <col width = "264"/>
-                    <col width = "990"/>
-                    <col width = "141"/>
-                    <col width = "155"/>
+                    <col width = "254"/>
+                    <col width = "931"/>
+                    <col width = "154"/>
+                    <col width = "154"/>
                 </colgroup>
                 <thead>
                     <tr>
@@ -106,11 +107,11 @@
                     :class="{isSelectrow: rowDataActive.storeId == stores.storeId}"
                     @click="rowClick(stores)"
                     @dblclick="editStoreDb(stores)">
-                        <td style="width: 155px;">{{stores.storeCode}}</td>
-                        <td style="width: 243px;">{{stores.storeName}}</td>
-                        <td style="width: 970px;">{{stores.address}}</td>
-                        <td style="width: 119px;">{{stores.phoneNumber}}</td>
-                        <td style="width: 135px;">{{getTextValue(stores.status)}}</td>
+                        <td style="width: 10.5%;">{{stores.storeCode}}</td>
+                        <td style="width: 15.28%;">{{stores.storeName}}</td>
+                        <td style="width: 55.85%;">{{stores.address}}</td>
+                        <td style="width: 9.33%;">{{stores.phoneNumber}}</td>
+                        <td style="width: 155px;">{{getTextValue(stores.status)}}</td>
                     </tr>
                     <Loading v-if="isShowLoading"/>
                 </tbody>
