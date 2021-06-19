@@ -11,6 +11,7 @@ const store = new Vuex.Store({
         isShowDialog: false,
         isLoading: false,
         isShowDialogWaning: false,
+        isShowDialogSaveData: false,
     },
     mutations: {
         showDetailStore(state){
@@ -19,6 +20,10 @@ const store = new Vuex.Store({
 
         showDialog(state){
             state.isShowDialog = !state.isShowDialog;
+        },
+
+        showDialogSaveData(state){
+            state.isShowDialogSaveData = !state.isShowDialogSaveData;
         },
 
         showDialogWaning(state){
@@ -54,6 +59,10 @@ const store = new Vuex.Store({
 
         getIsShowDialog(state){
             return state.isShowDialog;
+        },
+
+        getIsShowDialogSaveData(state){
+            return state.isShowDialogSaveData;
         },
 
         getIsShowDialogWaning(state){

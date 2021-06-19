@@ -1,23 +1,28 @@
 <template>
     <div class="view-store">
         <div class="header-features">
-            <div class="btn add-btn hover-pointer" @click="addStore">
+            <div class="btn add-btn hover-pointer" 
+            @click="addStore">
                 <div class="icon-header icon-add"></div>
                 <div class="item-name-content">Thêm mới</div>
             </div>
-            <div class="btn btn-borderleft hover-pointer" @click="replicationStore">
+            <div class="btn btn-borderleft hover-pointer" 
+            @click="replicationStore">
                 <div class="icon-header icon-replic"></div>
                 <div class="item-name-content">Nhân bản</div>
             </div>
-            <div class="btn btn-borderleft hover-pointer" @click="editStoreBtn">
+            <div class="btn btn-borderleft hover-pointer" 
+            @click="editStoreBtn">
                 <div class="icon-header icon-edit"></div>
                 <div class="item-name-content">Sửa</div>
             </div>
-            <div class="btn btn-borderleft hover-pointer" @click="deleteStore">
+            <div class="btn btn-borderleft hover-pointer" 
+            @click="deleteStore">
                 <div class="icon-header icon-delete"></div>
                 <div class="item-name-content">Xóa</div>
             </div>
-            <div class="btn btn-borderleft hover-pointer" @click="refresh">
+            <div class="btn btn-borderleft hover-pointer" 
+            @click="refresh">
                 <div class="icon-header icon-load"></div>
                 <div class="item-name-content">Nạp</div>
             </div>
@@ -46,7 +51,8 @@
                         <div class="name-col">Tên cửa hàng</div>
                         <div class="filter">
                             <button class="btn-gird"><span class="text-button">*</span></button>
-                            <input class="input-filter input-name" type="text" v-model="dataFilter.storeName"
+                            <input class="input-filter input-name" type="text" 
+                            v-model="dataFilter.storeName"
                             @input="filterStore"/>
                         </div>
                     </th>
@@ -54,7 +60,8 @@
                         <div class="name-col">Địa chỉ</div>
                         <div class="filter">
                             <button class="btn-gird"><span class="text-button">*</span></button>
-                            <input class="input-filter input-address" type="text" v-model="dataFilter.address" 
+                            <input class="input-filter input-address" type="text" 
+                            v-model="dataFilter.address" 
                             @input="filterStore"/>
                         </div>
                     </th>
@@ -62,7 +69,8 @@
                         <div class="name-col">Số điện thoại</div>
                         <div class="filter">
                             <button class="btn-gird"><span class="text-button">*</span></button>
-                            <input class="input-filter input-phone" type="text" v-model="dataFilter.phoneNumber" 
+                            <input class="input-filter input-phone" type="text" 
+                            v-model="dataFilter.phoneNumber" 
                             @input="filterStore"/>
                         </div>
                     </th>
@@ -74,10 +82,12 @@
                                         v-model="statusName" 
                                         class="input-custom-cbb width-custom"
                                         @input="searchStatus($event.target.value)"/>
-                                    <button class="btn-cbb icon-down mgl-custom" @click="showDropStatus" />
+                                    <button class="btn-cbb icon-down mgl-custom"
+                                     @click="showDropStatus" />
                                 </div>
                         <!-- buid item-->
-                            <div class="flex-item custom-item" :class="{isActiveCbb: isActive}">
+                            <div class="flex-item custom-item" 
+                            :class="{isActiveCbb: isActive}">
                                 <div :class="{activeItem: item.value == statusId}" 
                                     v-for="item in listStatusSearch" 
                                     :key="item.value" 
@@ -95,7 +105,7 @@
                     :key="stores.storeId"
                     :class="{isSelectrow: rowDataActive.storeId == stores.storeId}"
                     @click="rowClick(stores)"
-                    @dblclick="editStore(stores)">
+                    @dblclick="editStoreDb(stores)">
                         <td style="width: 155px;">{{stores.storeCode}}</td>
                         <td style="width: 243px;">{{stores.storeName}}</td>
                         <td style="width: 970px;">{{stores.address}}</td>
@@ -110,7 +120,11 @@
                     :curentPage="curentPage"
                     @pageChanged="onPageChange"/>
         </div>
-        <ComfirmDelete @closeDialog="closeDialog" v-if="isShowDialog" @pageChanged="onPageChange" @DeleteStore="DeleteStore"/>
+        <ComfirmDelete 
+        @closeDialog="closeDialog" 
+        v-if="isShowDialog" 
+        @pageChanged="onPageChange" 
+        @DeleteStore="DeleteStore"/>
         <Detail 
                 @closeTab="closeTab" 
                 v-if="isShowDetail" 
@@ -118,7 +132,9 @@
                 @pageChanged="onPageChange"
                 :replicationId="replicationId"
                 :editId="editId"
-                @AddStoreNew="AddStoreNew"/>
+                @AddStoreNew="AddStoreNew"
+                :isEdit="isEdit"
+                />
     </div>
 </template>
 <script>
@@ -136,7 +152,9 @@ export default ({
         Loading,
     },
     created(){
+        //tạo 10 bản ghi khi load trang
         this.setPage();
+        //thực hiện lấy dữ liệu
         this.onLoadStore();
     },
     computed: {
@@ -164,6 +182,10 @@ export default ({
         },
     },
     methods: {
+        /***
+         * xóa 1 bản ghi trong danh sách
+         * createdBy: ndtin(19/6/2021)
+         */
         DeleteStore(valueId){
             console.log("xóa");
             this.listStore = this.listStore.filter(item => item.storeId !== valueId);
@@ -173,7 +195,9 @@ export default ({
         *CreatedBy: ndtin(18/06/2021)
         */
         AddStoreNew(valueStore){
-            if(valueStore.storeCode != null && valueStore.storeCode != "" && valueStore.storeName != null && valueStore.storeName != "" && valueStore.address != null && valueStore.address != "")
+            if(valueStore.storeCode != null && valueStore.storeCode != "" 
+            && valueStore.storeName != null && valueStore.storeName != "" 
+            && valueStore.address != null && valueStore.address != "")
             {
                 this.listStore.unshift(valueStore);
                 this.listStore.pop();
@@ -214,7 +238,9 @@ export default ({
             }
             else
             {
-                this.listStatusSearch = this.listStatus.filter(lists => lists.status.toLowerCase().includes(value.toLowerCase()));
+                this.listStatusSearch = this.listStatus
+                .filter(lists => lists.status.toLowerCase()
+                .includes(value.toLowerCase()));
                 if(this.listStatusSearch != null)
                 {
                     this.isActive = true;
@@ -226,7 +252,6 @@ export default ({
         *CreatedBy: ndtin(18/06/2021)
         */
         filterStore(){
-            console.log(this.dataFilter);
             this.filterMyStore(this.dataFilter);
         },
         
@@ -263,6 +288,7 @@ export default ({
         *CreatedBy: ndtin(18/06/2021)
         */
         addStore(){
+            this.isEdit = false;
             this.replicationId = "";
             this.editId = "";
             this.rowData = {};
@@ -283,14 +309,16 @@ export default ({
         *lưu dữ liệu đã chọn vào store và mở cửa xổ sửa thông tin cửa hàng
         *CreatedBy: ndtin(18/06/2021)
         */
-        editStore(value){
+        editStoreDb(value){
+            this.isEdit = true;
             this.replicationId = "";
-            this.editId = this.value.storeId;
+            this.editId = value.storeId;
             this.titleModel = "Sửa cửa hàng";
             this.setRowData(value);
             this.$store.commit("showDetailStore");
         },
         editStoreBtn(){
+            this.isEdit = true;
             this.replicationId = "";
             this.editId = this.rowDataActive.storeId;
             this.titleModel = "Sửa cửa hàng";
@@ -302,6 +330,7 @@ export default ({
         *CreatedBy: ndtin(18/06/2021)
         */
         replicationStore(){
+            this.isEdit = false;
             this.editId = "";
             this.replicationId = this.rowDataActive.storeId;
             this.setRowData(this.rowDataActive);
@@ -331,7 +360,7 @@ export default ({
            let stringStatus="";
            let stringStoreCode = (value.storeCode != "")?`storeCode=${value.storeCode}`:"";
            if(value.storeCode != ""){
-               stringStoreName = (value.storeName != "")?`$storeName=${value.storeName}`:"";
+               stringStoreName = (value.storeName != "")?`&storeName=${value.storeName}`:"";
            }
            else{
                stringStoreName = (value.storeName != "")?`storeName=${value.storeName}`:"";
@@ -358,7 +387,7 @@ export default ({
             var url = `${this.$Const.API_HOST}/api/v1/Stores/filter?${stringStoreCode}${stringStoreName}${stringAddress}${stringPhoneNumber}${stringStatus}`;
             console.log(url);
             this.$store.commit("showLoading");
-            axios.get(url)
+            await axios.get(url)
                        .then(response =>{
                            this.listStore = response.data.data;
                            this.$store.commit("showLoading");
@@ -369,6 +398,7 @@ export default ({
        },
         /*
         * call api lấy thông tin cửa hàng
+        *creaedBy: ndtin(19/6/2021)
         */
         async onPageChange(page){
             console.log("load Detail");
@@ -414,6 +444,7 @@ export default ({
             totalRecord:0,
             curentPage: 1,
             titleModel: "",
+            isEdit: false,
             replicationId:"",
             editId: "",
             listStatus:[
@@ -463,5 +494,4 @@ export default ({
     cursor: pointer;
     color: white;
 }
-
 </style>

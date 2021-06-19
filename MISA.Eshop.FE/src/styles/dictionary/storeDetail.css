@@ -20,7 +20,6 @@
     top: calc(50% - 275px);
     left: calc(50% - 255px);
     width: 575px;
-    height: 479px;
     background-color: white;
 }
 
@@ -37,7 +36,6 @@
 .modal-body {
     padding: 16px 16px 0px;
     width: 543px;
-    height: 364px;
     border-bottom: 1px solid #dfdfdf;
     font: 400 13px Roboto!important;
 }
@@ -139,4 +137,17 @@
 
 .isActiveCbbWidth {
     width: 25%;
+}
+
+.custom-height{
+    padding: 0px !important;
+    display: none;
+}
+
+.light-height-custom{
+    line-height: 35px;
+}
+
+.isActiveCheckbox{
+    display: block;
 }

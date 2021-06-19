@@ -4,7 +4,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="header-title">{{ titleModel }}</div>
-        <div class="icon-modal icon-close" @click="close()"></div>
+        <div class="icon-modal icon-close" @click="closeTapAndSave"></div>
       </div>
       <div class="modal-body">
         <div class="modal-item">
@@ -102,12 +102,15 @@
                   v-model="countryName"
                   placeholder="chọn quốc gia"
                   @input="onSearchCountry($event.target.value)"
-                  :class="{error: isActiveErrorCountry}"
+                  :class="{ error: isActiveErrorCountry }"
                   @blur="checkValueCountry"
                   class="input-custom-cbb"
                 />
-                <button class="btn-cbb icon-down" @click="showDropCountry" 
-                :class="{setMargin: isActiveErrorCountry}"/>
+                <button
+                  class="btn-cbb icon-down"
+                  @click="showDropCountry"
+                  :class="{ setMargin: isActiveErrorCountry }"
+                />
                 <div
                   class="icon-error .hover-pointer"
                   :class="{ isActive: isActiveErrorCountry }"
@@ -115,9 +118,18 @@
                 ></div>
               </div>
               <!-- buid item-->
-              <div class="flex-item" :class="{ isActiveCbb: isActive, isActiveCbbWidth: isActiveErrorCountry}">
+              <div
+                class="flex-item"
+                :class="{
+                  isActiveCbb: isActive,
+                  isActiveCbbWidth: isActiveErrorCountry,
+                }"
+              >
                 <div
-                  :class="{ activeItem: item.countryId == countryId, setWith: isActiveErrorCountry }"
+                  :class="{
+                    activeItem: item.countryId == countryId,
+                    setWith: isActiveErrorCountry,
+                  }"
                   v-for="item in listItemCountry"
                   :key="item.countryId"
                   class="item"
@@ -140,12 +152,15 @@
                   v-model="provinceName"
                   placeholder="chọn thành phố"
                   @input="onSearchProvince($event.target.value)"
-                  :class="{error: isActiveErrorProvince}"
+                  :class="{ error: isActiveErrorProvince }"
                   @blur="checkValueProvince"
                   class="input-custom-cbb"
                 />
-                <button class="btn-cbb icon-down" @click="showDropProvince" 
-                :class="{setMargin: isActiveErrorProvince}"/>
+                <button
+                  class="btn-cbb icon-down"
+                  @click="showDropProvince"
+                  :class="{ setMargin: isActiveErrorProvince }"
+                />
                 <div
                   class="icon-error .hover-pointer"
                   :class="{ isActive: isActiveErrorProvince }"
@@ -153,9 +168,18 @@
                 ></div>
               </div>
               <!-- buid item-->
-              <div class="flex-item" :class="{ isActiveCbb: isActiveProvince, isActiveCbbWidth: isActiveErrorProvince }">
+              <div
+                class="flex-item"
+                :class="{
+                  isActiveCbb: isActiveProvince,
+                  isActiveCbbWidth: isActiveErrorProvince,
+                }"
+              >
                 <div
-                  :class="{ activeItem: item.provinceId == provinceId, setWith: isActiveErrorProvince }"
+                  :class="{
+                    activeItem: item.provinceId == provinceId,
+                    setWith: isActiveErrorProvince,
+                  }"
                   v-for="item in listItemProvince"
                   :key="item.provinceId"
                   class="item"
@@ -178,22 +202,34 @@
                   v-model="districtName"
                   placeholder="chọn Quận/Huyện"
                   @input="onSearchDistrict($event.target.value)"
-                  :class="{error: isActiveErrorDistrict}"
+                  :class="{ error: isActiveErrorDistrict }"
                   @blur="checkValueDistrict"
                   class="input-custom-cbb"
                 />
-                <button class="btn-cbb icon-down" @click="showDropDistrict" 
-                :class="{setMargin: isActiveErrorDistrict}"/>
+                <button
+                  class="btn-cbb icon-down"
+                  @click="showDropDistrict"
+                  :class="{ setMargin: isActiveErrorDistrict }"
+                />
                 <div
                   class="icon-error .hover-pointer"
-                  :class="{ isActive: isActiveErrorDistrict}"
+                  :class="{ isActive: isActiveErrorDistrict }"
                   v-bind:title="titleErrorProvince"
                 ></div>
               </div>
               <!-- buid item-->
-              <div class="flex-item" :class="{ isActiveCbb: isActiveDistrict,isActiveCbbWidth: isActiveErrorDistrict  }">
+              <div
+                class="flex-item"
+                :class="{
+                  isActiveCbb: isActiveDistrict,
+                  isActiveCbbWidth: isActiveErrorDistrict,
+                }"
+              >
                 <div
-                  :class="{ activeItem: item.districtId == districtId, setWith: isActiveDistrict }"
+                  :class="{
+                    activeItem: item.districtId == districtId,
+                    setWith: isActiveDistrict,
+                  }"
                   v-for="item in listItemDistrict"
                   :key="item.districtId"
                   class="item"
@@ -218,22 +254,34 @@
                   v-model="wardName"
                   placeholder="chọn Xã/Phường"
                   @input="onSearchWard($event.target.value)"
-                  :class="{error: isActiveErrorWard}"
+                  :class="{ error: isActiveErrorWard }"
                   @blur="checkValueWard"
                   class="input-custom-cbb"
                 />
-                <button class="btn-cbb icon-down" @click="showDropWard" 
-                :class="{setMargin: isActiveErrorWard}" />
+                <button
+                  class="btn-cbb icon-down"
+                  @click="showDropWard"
+                  :class="{ setMargin: isActiveErrorWard }"
+                />
                 <div
                   class="icon-error .hover-pointer"
-                  :class="{ isActive: isActiveErrorWard}"
+                  :class="{ isActive: isActiveErrorWard }"
                   v-bind:title="titleErrorProvince"
                 ></div>
               </div>
               <!-- buid item-->
-              <div class="flex-item" :class="{ isActiveCbb: isActiveWard, isActiveCbbWidth: isActiveErrorWard }">
+              <div
+                class="flex-item"
+                :class="{
+                  isActiveCbb: isActiveWard,
+                  isActiveCbbWidth: isActiveErrorWard,
+                }"
+              >
                 <div
-                  :class="{ activeItem: item.wardId == wardId, setWith: isActiveWard }"
+                  :class="{
+                    activeItem: item.wardId == wardId,
+                    setWith: isActiveWard,
+                  }"
                   v-for="item in listItemWard"
                   :key="item.wardId"
                   class="item"
@@ -255,6 +303,18 @@
             </div>
           </div>
         </div>
+        <div
+          class="modal-item custom-height"
+          :class="{ isActiveCheckbox: isEdit }"
+        >
+          <div class="double-item">
+            <div class="modal-item-name"></div>
+            <div class="checkbox light-height-custom">
+              <input type="checkbox" v-model="store.status" />
+              Ngừng hoạt động
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <div class="footer-left">
@@ -266,14 +326,14 @@
         <div class="footer-right">
           <button
             class="btn-footer-save mgr-8 hover-pointer"
-            @click="addNewStore"
+            @click="saveStore"
           >
             <div class="icon-footer-save"></div>
             <div class="item-footer-save">Lưu</div>
           </button>
           <button
             class="btn-footer-add-save mgr-8 hover-pointer"
-            @click="addNewStore"
+            @click="saveAndAddStore"
           >
             <div class="icon-footer-add"></div>
             <div class="item-footer-name-add">Lưu và thêm mới</div>
@@ -289,17 +349,24 @@
       v-if="isShowDialogWaning"
       @closeTabWaning="closeTabWaning"
     />
+    <DialogSaveData 
+    v-if="isShowDialogSavedata"
+    @closeTabSaveData="closeTabSaveData"
+    @closeTabNoSave="closeTabNoSave"
+    @closeTabSave="closeTabSave"/>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import DialogStoreCodeExits from "../../components/dialog/DialogStoreCodeExits.vue";
+import DialogSaveData from "../../components/dialog/DialogSaveData.vue";
 export default {
   name: "StoreDetail",
-  props: ["titleModel", "rowData", "replicationId", "editId"],
+  props: ["titleModel", "rowData", "replicationId", "editId", "isEdit"],
   components: {
     DialogStoreCodeExits,
+    DialogSaveData
   },
   computed: {
     store() {
@@ -311,6 +378,10 @@ export default {
     isShowDialogWaning() {
       return this.$store.getters.getIsShowDialogWaning;
     },
+    //lấy giá trị hiển thị dialog save data
+    isShowDialogSavedata(){
+      return this.$store.getters.getIsShowDialogSaveData;
+    }
   },
   created() {
     //lấy thông tin quốc gia
@@ -323,15 +394,33 @@ export default {
   },
   methods: {
     /*
+     *button lưu và thêm mới
+     *CreatedBy: ndtin(18/06/2021)
+     */
+    saveAndAddStore() {
+      this.isSaveAndAdd = false;
+      this.addNewStore();
+    },
+    /*
+     *button thêm mới
+     *CreatedBy: ndtin(18/06/2021)
+     */
+    saveStore() {
+      this.isSaveAndAdd = true;
+      this.addNewStore();
+    },
+    /*
      *Lưu dữ liệu vào DB
      *CreatedBy: ndtin(18/06/2021)
      */
     addNewStore() {
-      console.log(this.store.storeId != null);
       if (
-        this.store.storeId != null &&
+        this.store.storeCode != null &&
+        this.store.storeCode != "" &&
         this.store.storeName != null &&
-        this.store.address != null
+        this.store.storeName != "" &&
+        this.store.address != null &&
+        this.store.address != ""
       ) {
         //truyền id quốc gia khi chọn
         this.store.countryId = this.countryId;
@@ -342,8 +431,14 @@ export default {
         //truyền id xã phường khi chọn
         this.store.wardId = this.wardId;
         //nếu thêm mới thì set hoạt động cho cửa hàng
+        console.log(this.store.status);
         if (this.store.status == null) {
           this.store.status = false;
+        }
+        if (this.store.status) {
+          this.store.status == true;
+        } else {
+          this.store.status == false;
         }
         //nếu nhân bản bỏ StoreId
         if (this.replicationId != "") {
@@ -352,16 +447,21 @@ export default {
         //lưu lại
         this.fsave();
         if (this.editId == "") {
-          console.log(this.editId);
           this.reload();
         }
       } else {
-        this.isActiveErrorStoreName = true;
-        this.isActiveError = true;
-        this.isActiveErrorAddress = true;
-        this.titleErrorCode = "Trường này không được để trống";
-        this.titleErrorName = "Trường này không được để trống";
-        this.titleErrorAddress = "Trường này không được để trống";
+        if (this.store.storeCode == null || this.store.storeCode == "") {
+          this.isActiveError = true;
+          this.titleErrorCode = "Trường này không được để trống";
+        }
+        if (this.store.storeName == null || this.store.storeName == "") {
+          this.isActiveErrorStoreName = true;
+          this.titleErrorName = "Trường này không được để trống";
+        }
+        if (this.store.address == null || this.store.address == "") {
+          this.isActiveErrorAddress = true;
+          this.titleErrorAddress = "Trường này không được để trống";
+        }
       }
     },
     //load lại trang
@@ -379,37 +479,50 @@ export default {
     async fsave() {
       var url = "";
       await this.checkStoreCodeExist(this.store.storeCode);
-      if (this.isCodeExits) {
-        if (this.store.storeId != null) {
-          //sửa thông tin
-          console.log("Sửa");
-          try {
+      if (this.store.storeId != null && this.store.storeId != "") {
+        //sửa thông tin
+        try {
+          console.log(this.storeCodeFirst);
+          console.log(this.store.storeCode);
+          if (this.store.storeCode == this.storeCodeFirst) {
             url = `${this.$Const.API_HOST}/api/v1/Stores/${this.store.storeId}`;
             let response = await axios.put(url, this.store);
             //Sửa thành công đóng cửa xổ model
-            if (response.data.data == 1) {
+            if (response.data.data == 1 && this.isSaveAndAdd) {
               this.close();
             }
-          } catch (error) {
-            console.log(error);
+          } else {
+            console.log(this.isCodeExits);
+            if (this.isCodeExits) {
+              url = `${this.$Const.API_HOST}/api/v1/Stores/${this.store.storeId}`;
+              let response = await axios.put(url, this.store);
+              //Sửa thành công đóng cửa xổ model
+              if (response.data.data == 1 && this.isSaveAndAdd) {
+                this.close();
+              }
+            } else {
+              this.openWaning();
+            }
           }
-        } else {
-          //thêm mới
-          try {
-            console.log(this.store);
-            console.log("Thêm mới");
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        //thêm mới
+        try {
+          if (this.isCodeExits) {
             url = `${this.$Const.API_HOST}/api/v1/Stores`;
             let response = await axios.post(url, this.store);
             console.log(response);
-            if (response.data.data == 1) {
+            if (response.data.data == 1 && this.isSaveAndAdd) {
               this.close();
             }
-          } catch (error) {
-            console.log(error);
+          } else {
+            this.openWaning();
           }
+        } catch (error) {
+          console.log(error);
         }
-      } else {
-        this.openWaning();
       }
     },
     /*
@@ -471,7 +584,8 @@ export default {
      */
     getAddress() {
       var store = this.store;
-      if (store != null) {
+      if (store.storeCode != null&& store.storeCode != "") {
+        this.storeCodeFirst = store.storeCode;
         this.getCountryName(store.countryId);
         this.getProvinceName(store.provinceId);
         this.getDistrictName(store.districtId);
@@ -555,6 +669,19 @@ export default {
     close() {
       this.$emit("closeTab");
     },
+    //đóng cửa sổ và hiển thị save nếu có dữ liệu
+    closeTapAndSave(){
+      if(this.store.storeName != "" && this.store.storeName != null
+      || this.store.storeCode != "" && this.store.storeCode != null
+      || this.store.address != ""  && this.store.address != null
+      || this.countryId != "" && this.countryId != null
+      || this.store.street != ""  && this.store.street != null
+      || this.store.storeTaxCode != "" && this.store.storeTaxCode != null){
+        this.openTapSaveData();
+      }else{
+        this.$emit("closeTab");
+      }
+    },
     //==================Thao tác Combobox Quốc gia==================
     /*
      *Thực hiện hiển thị danh sách quốc gia
@@ -585,11 +712,13 @@ export default {
           lists.countryName.toLowerCase().includes(value.toLowerCase())
         );
         //xử lý
-        if (this.listItemCountry[0].countryId != "" && this.listItemCountry[0].countryId != null) {
+        if (
+          this.listItemCountry[0].countryId != "" &&
+          this.listItemCountry[0].countryId != null
+        ) {
           this.isActive = true;
-        }
-        else{
-            this.isActive = false;
+        } else {
+          this.isActive = false;
         }
       }
     },
@@ -647,11 +776,13 @@ export default {
         this.listItemProvince = this.listProvince.filter((lists) =>
           lists.provinceName.toLowerCase().includes(value.toLowerCase())
         );
-        if (this.listItemProvince[0].provinceId != "" && this.listItemProvince[0].provinceId != null ) {
+        if (
+          this.listItemProvince[0].provinceId != "" &&
+          this.listItemProvince[0].provinceId != null
+        ) {
           this.isActiveProvince = true;
-        }
-        else{
-            this.isActiveProvince = false;
+        } else {
+          this.isActiveProvince = false;
         }
       }
     },
@@ -714,11 +845,13 @@ export default {
         this.listItemDistrict = this.listDistrict.filter((lists) =>
           lists.districtName.toLowerCase().includes(value.toLowerCase())
         );
-        if (this.listItemDistrict[0].districtId != "" && this.listItemDistrict[0].districtId != null) {
+        if (
+          this.listItemDistrict[0].districtId != "" &&
+          this.listItemDistrict[0].districtId != null
+        ) {
           this.isActiveDistrict = true;
-        }
-        else{
-            this.isActiveDistrict = false;
+        } else {
+          this.isActiveDistrict = false;
         }
       }
     },
@@ -778,11 +911,13 @@ export default {
         this.listItemWard = this.listWard.filter((lists) =>
           lists.wardName.toLowerCase().includes(value.toLowerCase())
         );
-        if (this.listItemWard[0].wardId != "" && this.listItemWard[0].wardId != null) {
+        if (
+          this.listItemWard[0].wardId != "" &&
+          this.listItemWard[0].wardId != null
+        ) {
           this.isActiveWard = true;
-        }
-        else{
-            this.isActiveWard = false;
+        } else {
+          this.isActiveWard = false;
         }
       }
     },
@@ -823,11 +958,40 @@ export default {
         });
     },
     /*
+     *đóng tap save và lưu dữ liệu
+     *CreatedBy: ndtin(18/06/2021)
+     */
+    closeTabSave(){
+      this.saveStore();
+    },
+    /*
      *đóng tap waning
      *CreatedBy: ndtin(18/06/2021)
      */
     closeTabWaning() {
       this.$store.commit("showDialogWaning");
+    },
+    /*
+     *đóng tap save data
+     *CreatedBy: ndtin(18/06/2021)
+     */
+    closeTabSaveData(){
+      this.$store.commit("showDialogSaveData");
+    },
+    /*
+     *đóng 2 tap (tap saveData và Model StoreDetail)
+     *CreatedBy: ndtin(18/06/2021)
+     */
+    closeTabNoSave(){
+      this.closeTabSaveData();
+      this.close();
+    },
+    /*
+     *mở tap save data
+     *CreatedBy: ndtin(18/06/2021)
+     */
+    openTapSaveData(){
+      this.$store.commit("showDialogSaveData");
     },
     /*
      *mở tap waning
@@ -856,93 +1020,81 @@ export default {
      *Kiểm tra dữ liệu country đúng chưua
      *CreatedBy: ndtin(18/06/2021)
      */
-    checkValueCountry(){
-        if(this.countryId == null){
-            if(this.countryName == null || this.countryName == "")
-            {
-                this.isActiveErrorCountry = false;
-            }
-            else{
-                this.isActiveErrorCountry = true;
-                this.titleErrorCountry = "Giá trị bạn chọn không tồn tại trong danh sách.";
-            }
+    checkValueCountry() {
+      if (this.countryId == null) {
+        if (this.countryName == null || this.countryName == "") {
+          this.isActiveErrorCountry = false;
+        } else {
+          this.isActiveErrorCountry = true;
+          this.titleErrorCountry =
+            "Giá trị bạn chọn không tồn tại trong danh sách.";
         }
-        else{
-            this.isActiveErrorCountry = false;
-        }    
-        if(this.countryId == null)
-        {
-            this.countryName = null;
-        }
+      } else {
+        this.isActiveErrorCountry = false;
+      }
+      if (this.countryId == null) {
+        this.countryName = null;
+      }
     },
     /*
      *Kiểm tra dữ liệu Province đúng chưua
      *CreatedBy: ndtin(18/06/2021)
      */
-    checkValueProvince(){
-        if(this.provinceId == null){
-            if(this.provinceName == null || this.provinceName == "")
-            {
-                this.isActiveErrorProvince = false;
-            }
-            else{
-                this.isActiveErrorProvince = true;
-                this.titleErrorProvince = "Giá trị bạn chọn không tồn tại trong danh sách.";
-            }
+    checkValueProvince() {
+      if (this.provinceId == null) {
+        if (this.provinceName == null || this.provinceName == "") {
+          this.isActiveErrorProvince = false;
+        } else {
+          this.isActiveErrorProvince = true;
+          this.titleErrorProvince =
+            "Giá trị bạn chọn không tồn tại trong danh sách.";
         }
-        else{
-            this.isActiveErrorProvince = false;
-        }
-        if(this.provinceId == null)
-        {
-            this.provinceName = null;
-        }
+      } else {
+        this.isActiveErrorProvince = false;
+      }
+      if (this.provinceId == null) {
+        this.provinceName = null;
+      }
     },
     /*
      *Kiểm tra dữ liệu District đúng chưua
      *CreatedBy: ndtin(18/06/2021)
      */
-    checkValueDistrict(){
-        if(this.districtId == null){
-            if(this.districtName == null || this.districtName == "")
-            {
-                this.isActiveErrorDistrict = false;
-            }
-            else{
-                this.isActiveErrorDistrict = true;
-                this.titleErrorDistrict = "Giá trị bạn chọn không tồn tại trong danh sách.";
-            }
+    checkValueDistrict() {
+      if (this.districtId == null) {
+        if (this.districtName == null || this.districtName == "") {
+          this.isActiveErrorDistrict = false;
+        } else {
+          this.isActiveErrorDistrict = true;
+          this.titleErrorDistrict =
+            "Giá trị bạn chọn không tồn tại trong danh sách.";
         }
-        else{
-            this.isActiveErrorDistrict = false;
-        }
-        if(this.districtId == null)
-        {
-            this.districtName = null;
-        }
+      } else {
+        this.isActiveErrorDistrict = false;
+      }
+      if (this.districtId == null) {
+        this.districtName = null;
+      }
     },
     /*
      *Kiểm tra dữ liệu Ward đúng chưua
      *CreatedBy: ndtin(18/06/2021)
      */
-    checkValueWard(){
-        if(this.wardId == null){
-            if(this.wardName == null || this.wardName == "")
-            {
-                this.isActiveErrorWard = false;
-            }
-            else{
-                this.isActiveErrorWard = true;
-                this.titleErrorWard = "Giá trị bạn chọn không tồn tại trong danh sách.";
-            }
+    checkValueWard() {
+      if (this.wardId == null) {
+        if (this.wardName == null || this.wardName == "") {
+          this.isActiveErrorWard = false;
+        } else {
+          this.isActiveErrorWard = true;
+          this.titleErrorWard =
+            "Giá trị bạn chọn không tồn tại trong danh sách.";
         }
-        else{
-            this.isActiveErrorWard = false;
-        }
-        if(this.wardId == null)
-        {
-            this.wardName = null;
-        }
+      } else {
+        this.isActiveErrorWard = false;
+      }
+      if (this.wardId == null) {
+        this.wardName = null;
+      }
     },
   },
   data() {
@@ -995,6 +1147,10 @@ export default {
       //Ward
       isActiveErrorWard: false,
       titleErrorWard: "",
+      //kiểm tra ng dùng ấn button lưu hay lưu thêm mới
+      isSaveAndAdd: false,
+      //lấy code cửa hàng lúc đầu
+      storeCodeFirst: "",
     };
   },
 };

@@ -177,6 +177,12 @@
     height: 16px;
 }
 
+.item-footer-noSave{
+    background: url('../../assets/icon/not-save.png') no-repeat;
+    width: 16px;
+    height: 16px;
+}
+
 .icon-footer-cancel{
     background: url('../../assets/icon/common-icon.png') no-repeat -252px -127px;
     width: 16px;
