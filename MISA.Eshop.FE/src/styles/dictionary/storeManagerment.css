@@ -1,8 +1,8 @@
 .view-store {
     position: absolute;
-    left: 151px;
     padding: 10px;
-    width: 90.73% !important;
+    width: calc(100%  - 20px)!important;
+    height: calc(100% - 20px);
 }
 
 /*content*/
@@ -27,6 +27,8 @@
 
 .content-grid {
     background-color: white;
+    width: 100%;
+    height: calc(100% - 80px);
 }
 
 .filter {
@@ -36,7 +38,7 @@
 
 .name-col {
     padding: 7px 10px 6px;
-    width: 100%;
+    width: calc(100% - 20px);
 }
 
 .text-button {

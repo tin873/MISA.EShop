@@ -8,21 +8,21 @@
     outline: none;
     border: 1px solid #3366ff;
 }
-
+/*43*/
 .input-code {
-    width: 70%;
+    width: calc(100% - 51px)
 }
 
 .input-name {
-    width: 80%;
+    width: calc(100% - 51px);
 }
 
 .input-address {
-    width: 94%;
+    width: calc(100% - 51px);
 }
 
 .input-phone {
-    width: 68%;
+    width: calc(100% - 51px);
 }
 
 /*toolbar*/

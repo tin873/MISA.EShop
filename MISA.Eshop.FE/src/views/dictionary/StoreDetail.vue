@@ -392,22 +392,24 @@ export default {
     this.getCountry();
     //lấy thông tin quốc gia, thành phố, quận huyện, xã phường khi sửa hoặc nhân bản
     this.getAddress();
+    this.cencelLoading();
   },
   mounted() {
     this.$refs.forcusFirst.focus();
-    this.cencelLoading();
   },
   methods: {
     //tắt loading form
     cencelLoading() {
-      this.isLoadingForm = false;
+      setTimeout(() => {
+        this.isLoadingForm = false;
+      }, 1500);
     },
     /*
      *button lưu và thêm mới
      *CreatedBy: ndtin(18/06/2021)
      */
     saveAndAddStore() {
-      this.isSaveAndAdd = false;
+      this.isSave = false;
       this.addNewStore();
     },
     /*
@@ -415,7 +417,7 @@ export default {
      *CreatedBy: ndtin(18/06/2021)
      */
     saveStore() {
-      this.isSaveAndAdd = true;
+      this.isSave = true;
       this.addNewStore();
     },
     /*
@@ -447,7 +449,6 @@ export default {
           //truyền id xã phường khi chọn
           this.store.wardId = this.wardId;
           //nếu thêm mới thì set hoạt động cho cửa hàng
-          console.log(this.store.status);
           if (this.store.status == null) {
             this.store.status = false;
           }
@@ -483,10 +484,6 @@ export default {
     },
     //load lại trang
     reload() {
-      if (this.replicationId != "") {
-        this.store.push({ storeId: this.replicationId });
-      }
-      console.log(this.store);
       this.$emit("AddStoreNew", this.store);
     },
     /*
@@ -500,26 +497,35 @@ export default {
       if (this.store.storeId != null && this.store.storeId != "") {
         //sửa thông tin
         try {
-          console.log(this.storeCodeFirst);
-          console.log(this.store.storeCode);
           if (this.store.storeCode == this.storeCodeFirst) {
             url = `${this.$Const.API_HOST}/api/v1/Stores/${this.store.storeId}`;
             let response = await axios.put(url, this.store);
             //Sửa thành công đóng cửa xổ model
-            if (response.data.data == 1 && this.isSaveAndAdd) {
+            if (response.data.data == 1 && this.isSave) {
               this.isLoadingForm = false;
               this.close();
+            } else {
+              if (response.data.data == 1 && !this.isSave) {
+                this.isLoadingForm = false;
+                this.refreshCombobox();
+                this.$emit("addNewStore", true);
+              }
             }
             this.isLoadingForm = false;
           } else {
-            console.log(this.isCodeExits);
             if (this.isCodeExits) {
               url = `${this.$Const.API_HOST}/api/v1/Stores/${this.store.storeId}`;
               let response = await axios.put(url, this.store);
               //Sửa thành công đóng cửa xổ model
-              if (response.data.data == 1 && this.isSaveAndAdd) {
+              if (response.data.data == 1 && this.isSave) {
                 this.isLoadingForm = false;
                 this.close();
+              } else {
+                if (response.data.data == 1 && !this.isSave) {
+                  this.isLoadingForm = false;
+                  this.refreshCombobox();
+                  this.$emit("addNewStore", true);
+                }
               }
               this.isLoadingForm = false;
             } else {
@@ -537,9 +543,15 @@ export default {
           if (this.isCodeExits) {
             url = `${this.$Const.API_HOST}/api/v1/Stores`;
             let response = await axios.post(url, this.store);
-            if (response.data.data == 1 && this.isSaveAndAdd) {
+            if (response.data.data == 1 && this.isSave) {
               this.close();
               this.isLoadingForm = false;
+            } else {
+              if (response.data.data == 1 && !this.isSave) {
+                this.isLoadingForm = false;
+                this.refreshCombobox();
+                this.$emit("addNewStore", true);
+              }
             }
             this.isLoadingForm = false;
           } else {
@@ -551,6 +563,20 @@ export default {
           setTimeout((this.isLoadingForm = false), 4000);
         }
       }
+    },
+    /**
+     *xóa dữ liệu chọn combobox
+     *CreatedBy: ndtin(20/06/2021)
+     */
+    refreshCombobox() {
+      this.countryName = null;
+      this.countryId = null;
+      this.provinceName = null;
+      this.provinceId = null;
+      this.districtName = null;
+      this.districtId = null;
+      this.wardName = null;
+      this.wardId = null;
     },
     /*
      *Kiểm tra bắt buộc nhập trường storeCode
@@ -1184,7 +1210,7 @@ export default {
       isActiveErrorWard: false,
       titleErrorWard: "",
       //kiểm tra ng dùng ấn button lưu hay lưu thêm mới
-      isSaveAndAdd: false,
+      isSave: false,
       //lấy code cửa hàng lúc đầu
       storeCodeFirst: "",
       isLoadingForm: true,

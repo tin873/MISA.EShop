@@ -42,7 +42,6 @@ export default {
     deleteStore() {
       this.delete(this.store.storeId);
       this.$emit("DeleteStore", this.store.storeId);
-      console.log("xóa first");
     },
     /*
      *load lại

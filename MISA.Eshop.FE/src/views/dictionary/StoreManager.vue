@@ -1,7 +1,7 @@
 <template>
   <div class="view-store">
     <div class="header-features">
-      <div class="btn add-btn hover-pointer" @click="addStore">
+      <div class="btn add-btn hover-pointer" @click="addStore(false)">
         <div class="icon-header icon-add"></div>
         <div class="item-name-content">Thêm mới</div>
       </div>
@@ -25,11 +25,11 @@
     <div class="content-grid">
       <table class="table-asset" id="idtableAsset">
         <colgroup>
-          <col width="175" />
-          <col width="254" />
-          <col width="931" />
-          <col width="154" />
-          <col width="154" />
+          <col width="149" />
+          <col width="249" />
+          <col width="1000" />
+          <col width="129" />
+          <col width="149" />
         </colgroup>
         <thead>
           <tr>
@@ -132,11 +132,11 @@
             @click="rowClick(stores)"
             @dblclick="editStoreDb(stores)"
           >
-            <td style="width: 10.5%">{{ stores.storeCode }}</td>
-            <td style="width: 15.28%">{{ stores.storeName }}</td>
-            <td style="width: 55.85%">{{ stores.address }}</td>
-            <td style="width: 9.33%">{{ stores.phoneNumber }}</td>
-            <td style="width: 155px">{{ getTextValue(stores.status) }}</td>
+            <td>{{ stores.storeCode }}</td>
+            <td>{{ stores.storeName }}</td>
+            <td>{{ stores.address }}</td>
+            <td>{{ stores.phoneNumber }}</td>
+            <td>{{ getTextValue(stores.status) }}</td>
           </tr>
           <Loading v-if="isShowLoading" />
         </tbody>
@@ -163,6 +163,7 @@
       :editId="editId"
       @AddStoreNew="AddStoreNew"
       :isEdit="isEdit"
+      @addNewStore="addStore"
     />
   </div>
 </template>
@@ -216,7 +217,6 @@ export default {
      * createdBy: ndtin(19/6/2021)
      */
     DeleteStore(valueId) {
-      console.log("xóa");
       this.listStore = this.listStore.filter(
         (item) => item.storeId !== valueId
       );
@@ -316,15 +316,21 @@ export default {
      *Mở cửa xổ thêm mới cửa hàng
      *CreatedBy: ndtin(18/06/2021)
      */
-    addStore() {
+    addStore(value) {
       this.isEdit = false;
       this.replicationId = "";
       this.editId = "";
-      this.rowData = {};
-      this.setRowData(this.rowData);
+      this.rowDataEmty = {};
+      this.setRowData(this.rowDataEmty);
       this.titleModel = "Thêm mới cửa hàng";
       this.$store.commit("showDetailStore");
+      if (value) {
+        this.$store.commit("showDetailStore");
+      }
     },
+    /**
+     * check rowDataEmty còn rỗng không
+     */
     /*
      *mở aler thông báo xóa
      *CreatedBy: ndtin(18/06/2021)
@@ -421,9 +427,7 @@ export default {
       } else {
         stringStatus = this.statusId >= 0 ? `status=${this.statusId}` : "";
       }
-      console.log(this.statusId);
       var url = `${this.$Const.API_HOST}/api/v1/Stores/filter?${stringStoreCode}${stringStoreName}${stringAddress}${stringPhoneNumber}${stringStatus}`;
-      console.log(url);
       this.$store.commit("showLoading");
       await axios
         .get(url)
@@ -437,17 +441,15 @@ export default {
       this.rowDataActive = this.listStore[0];
     },
     /*
-     * call api lấy thông tin cửa hàng
+     * call api lấy thông tin cửa hàng phân trang
      *creaedBy: ndtin(19/6/2021)
      */
     async onPageChange(page) {
-      console.log("load Detail");
       var pageIndex = page;
       this.curentPage = page;
       //hieenr thi loading
       this.$store.commit("showLoading");
       var url = `${this.$Const.API_HOST}/api/v1/Stores/Paging?pageSize=${this.pageSize}&pageIndex=${pageIndex}`;
-      console.log(url);
       await axios
         .get(url)
         .then((response) => {
@@ -467,13 +469,12 @@ export default {
     onLoadStore() {
       this.onPageChange(1);
     },
-    //lấy giá trị dòng đầu
   },
   data() {
     return {
       listStore: [],
       rowDataActive: {},
-      rowData: {},
+      rowDataEmty: {},
       dataFilter: {
         storeCode: "",
         storeName: "",

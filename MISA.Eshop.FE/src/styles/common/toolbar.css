@@ -1,5 +1,5 @@
 .toolbar {
-    width: 98%;
+    width: calc(100% - 20px);
     height: 24px;
     background-color: white;
     padding: 10px;
