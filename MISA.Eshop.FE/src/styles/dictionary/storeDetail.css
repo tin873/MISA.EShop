@@ -23,6 +23,8 @@
     left: calc(50% - 255px);
     width: 575px;
     background-color: white;
+    border: 3px solid #dfdfdf;
+    border-radius: 3px;
 }
 
 

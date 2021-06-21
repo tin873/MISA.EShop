@@ -35,8 +35,8 @@ export default {
   padding: 10px;
   background: #d0d0d0;
   right: auto;
-  left: 805px;
-  top: 340.4px;
+  left: 47%;
+  top: 45%;
 }
 .x-mask-loading {
   padding: 0;
