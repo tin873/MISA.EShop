@@ -171,3 +171,59 @@
 .cellcal-flex {
     width: 162px;
 }
+
+
+/*mesage error*/
+
+.show-error:hover .x-list-error {
+    display: block;
+}
+
+.show-error-valid:hover .x-list-error-valid {
+    display: block;
+}
+
+
+/*require field*/
+
+.x-list-error {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 100%;
+    display: none;
+}
+
+ul {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    line-height: 35px;
+}
+
+ul li {
+    height: 35px;
+    background-color: red;
+    color: white;
+    opacity: 0.8;
+    border-radius: 3px;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+
+
+/*valid*/
+
+.x-list-error-valid {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 52%;
+    display: none;
+}

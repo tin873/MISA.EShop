@@ -34,3 +34,5 @@ C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.
 C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.dll
 C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\ref\MISA.Eshop.Core.dll
 C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.pdb
+C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.Resource.CustomResource.resources
+C:\Users\ndtin\Desktop\MISA.EShop\MISA.Eshop.API\MISA.Eshop.Core\obj\Debug\net5.0\MISA.Eshop.Core.csproj.GenerateResource.cache

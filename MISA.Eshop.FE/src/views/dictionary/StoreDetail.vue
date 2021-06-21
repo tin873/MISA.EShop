@@ -21,10 +21,13 @@
               tabindex="1"
             />
             <div
-              class="icon-error .hover-pointer"
+              class="icon-error .hover-pointer show-error"
               :class="{ isActive: isActiveError }"
-              v-bind:title="titleErrorCode"
-            ></div>
+            >
+              <ul class="x-list-error">
+                <li>Trường này không được để trống!</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="modal-item">
@@ -40,10 +43,14 @@
               tabindex="2"
             />
             <div
-              class="icon-error .hover-pointer"
+              class="icon-error .hover-pointer show-error"
               :class="{ isActive: isActiveErrorStoreName }"
               v-bind:title="titleErrorName"
-            ></div>
+            >
+              <ul class="x-list-error">
+                <li>Trường này không được để trống!</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="modal-item-special">
@@ -59,10 +66,14 @@
               tabindex="3"
             />
             <div
-              class="icon-error .hover-pointer"
+              class="icon-error .hover-pointer show-error"
               :class="{ isActive: isActiveErrorAddress }"
               v-bind:title="titleErrorAddress"
-            ></div>
+            >
+              <ul class="x-list-error">
+                <li>Trường này không được để trống!</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="modal-item">
@@ -78,10 +89,13 @@
                 tabindex="4"
               />
               <div
-                class="icon-error .hover-pointer"
+                class="icon-error .hover-pointer show-error-valid"
                 :class="{ isActive: isActiveErrorPhone }"
-                v-bind:title="titleErrorPhone"
-              ></div>
+              >
+                <ul class="x-list-error-valid">
+                  <li>Giá trị không hợp lệ!</li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="double-item">
@@ -118,10 +132,14 @@
                   :class="{ setMargin: isActiveErrorCountry }"
                 />
                 <div
-                  class="icon-error .hover-pointer"
+                  class="icon-error .hover-pointer show-error-valid"
                   :class="{ isActive: isActiveErrorCountry }"
                   v-bind:title="titleErrorCountry"
-                ></div>
+                >
+                <ul class="x-list-error-valid">
+                  <li>Giá trị không hợp lệ!</li>
+                </ul>
+                </div>
               </div>
               <!-- buid item-->
               <div
@@ -169,10 +187,14 @@
                   :class="{ setMargin: isActiveErrorProvince }"
                 />
                 <div
-                  class="icon-error .hover-pointer"
+                  class="icon-error .hover-pointer show-error-valid"
                   :class="{ isActive: isActiveErrorProvince }"
                   v-bind:title="titleErrorProvince"
-                ></div>
+                >
+                <ul class="x-list-error-valid">
+                  <li>Giá trị không hợp lệ!</li>
+                </ul>
+                </div>
               </div>
               <!-- buid item-->
               <div
@@ -220,10 +242,14 @@
                   :class="{ setMargin: isActiveErrorDistrict }"
                 />
                 <div
-                  class="icon-error .hover-pointer"
+                  class="icon-error .hover-pointer show-error"
                   :class="{ isActive: isActiveErrorDistrict }"
                   v-bind:title="titleErrorProvince"
-                ></div>
+                >
+                <ul class="x-list-error">
+                  <li>Giá trị không hợp lệ!</li>
+                </ul>
+                </div>
               </div>
               <!-- buid item-->
               <div
@@ -273,10 +299,14 @@
                   :class="{ setMargin: isActiveErrorWard }"
                 />
                 <div
-                  class="icon-error .hover-pointer"
+                  class="icon-error .hover-pointer show-error-valid"
                   :class="{ isActive: isActiveErrorWard }"
                   v-bind:title="titleErrorProvince"
-                ></div>
+                >
+                <ul class="x-list-error-valid">
+                  <li>Giá trị không hợp lệ!</li>
+                </ul>
+                </div>
               </div>
               <!-- buid item-->
               <div
@@ -440,7 +470,7 @@ export default {
      *CreatedBy: ndtin(18/06/2021)
      */
     addNewStore() {
-      //kiểm tra bắt buộc nhập các trường storeCode, StoreName, address 
+      //kiểm tra bắt buộc nhập các trường storeCode, StoreName, address
       if (
         this.store.storeCode != null &&
         this.store.storeCode != "" &&
@@ -1211,15 +1241,15 @@ export default {
       //actieve error storeCode
       isActiveError: false,
       titleErrorCode: "",
-       //actieve error storeName
+      //actieve error storeName
       isActiveErrorStoreName: false,
       titleErrorName: "",
-       //actieve error address
+      //actieve error address
       isActiveErrorAddress: false,
       titleErrorAddress: "",
       //check code store
       isCodeExits: false,
-       //check validate number input
+      //check validate number input
       isActiveErrorPhone: false,
       titleErrorPhone: "",
       //country error select
