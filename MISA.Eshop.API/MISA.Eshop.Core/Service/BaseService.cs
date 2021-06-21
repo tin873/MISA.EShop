@@ -1,6 +1,7 @@
 ﻿using MISA.Eshop.Core.Entities;
 using MISA.Eshop.Core.Interfaces.IRepository;
 using MISA.Eshop.Core.Interfaces.IService;
+using MISA.Eshop.Core.Resource;
 using MISA.Eshop.Core.Result;
 using System;
 
@@ -29,7 +30,7 @@ namespace MISA.Eshop.Core.Service
                 {
                     _serviceResult.IsSuccess = true;
                     _serviceResult.Data = result;
-                    _serviceResult.UserMsg.Add("Xóa thành công!");
+                    _serviceResult.UserMsg.Add(CustomResource.DeleteIsValid);
                     _serviceResult.MISACode = Enums.MISACode.Success;
                     return _serviceResult;
                 }
@@ -37,7 +38,7 @@ namespace MISA.Eshop.Core.Service
                 {
                     _serviceResult.IsSuccess = false;
                     _serviceResult.Data = result;
-                    _serviceResult.UserMsg.Add("Id không tồn tại.");
+                    _serviceResult.UserMsg.Add(CustomResource.StoreNocontent);
                     _serviceResult.MISACode = Enums.MISACode.NoContent;
                     return _serviceResult;
                 }
@@ -45,7 +46,7 @@ namespace MISA.Eshop.Core.Service
             catch (Exception)
             {
                 _serviceResult.IsSuccess = false;
-                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.UserMsg.Add(CustomResource.ErrorMISA);
                 _serviceResult.MISACode = Enums.MISACode.Exeption;
                 return _serviceResult;
             }  
@@ -60,7 +61,7 @@ namespace MISA.Eshop.Core.Service
                 {
                     _serviceResult.IsSuccess = false;
                     _serviceResult.Data = entity;
-                    _serviceResult.UserMsg.Add("Id không tồn tại.");
+                    _serviceResult.UserMsg.Add(CustomResource.StoreNocontent);
                     _serviceResult.MISACode = Enums.MISACode.NoContent;
                     return _serviceResult;
                 }
@@ -68,7 +69,7 @@ namespace MISA.Eshop.Core.Service
                 {
                     _serviceResult.IsSuccess = true;
                     _serviceResult.Data = entity;
-                    _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+                    _serviceResult.UserMsg.Add(CustomResource.IsValid);
                     _serviceResult.MISACode = Enums.MISACode.Success;
                     return _serviceResult;
                 }
@@ -76,7 +77,7 @@ namespace MISA.Eshop.Core.Service
             catch (Exception)
             {
                 _serviceResult.IsSuccess = false;
-                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.UserMsg.Add(CustomResource.ErrorMISA);
                 _serviceResult.MISACode = Enums.MISACode.Exeption;
                 return _serviceResult;
             }   
@@ -89,7 +90,7 @@ namespace MISA.Eshop.Core.Service
             {
                 _serviceResult.IsSuccess = true;
                 _serviceResult.Data = entities;
-                _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+                _serviceResult.UserMsg.Add(CustomResource.IsValid);
                 _serviceResult.MISACode = Enums.MISACode.Success;
                 return _serviceResult;
             }
@@ -97,7 +98,7 @@ namespace MISA.Eshop.Core.Service
             {
                 _serviceResult.IsSuccess = false;
                 _serviceResult.Data = entities;
-                _serviceResult.UserMsg.Add("Không có dữ liệu");
+                _serviceResult.UserMsg.Add(CustomResource.Nocontent);
                 _serviceResult.MISACode = Enums.MISACode.NoContent;
                 return _serviceResult;
             }
@@ -112,7 +113,7 @@ namespace MISA.Eshop.Core.Service
                 {
                     var result = _baseRepository.Insert(entity);
                     _serviceResult.IsSuccess = true;
-                    _serviceResult.UserMsg.Add("Thêm mới thành công.");
+                    _serviceResult.UserMsg.Add(CustomResource.AddIsValid);
                     _serviceResult.MISACode = Enums.MISACode.Success;
                     _serviceResult.Data = result;
                     return _serviceResult;
@@ -128,7 +129,7 @@ namespace MISA.Eshop.Core.Service
             catch (Exception)
             {
                 _serviceResult.IsSuccess = false;
-                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.UserMsg.Add(CustomResource.ErrorMISA);
                 _serviceResult.MISACode = Enums.MISACode.Exeption;
                 return _serviceResult;
             }   
@@ -143,7 +144,7 @@ namespace MISA.Eshop.Core.Service
                 {
                     var result = _baseRepository.Update(entity, entityId);
                     _serviceResult.IsSuccess = true;
-                    _serviceResult.UserMsg.Add("Sửa thông tin thành công.");
+                    _serviceResult.UserMsg.Add(CustomResource.EditIsValid);
                     _serviceResult.Data = result;
                     _serviceResult.MISACode = Enums.MISACode.Success;
                     return _serviceResult;
@@ -159,7 +160,7 @@ namespace MISA.Eshop.Core.Service
             catch (Exception)
             {
                 _serviceResult.IsSuccess = false;
-                _serviceResult.UserMsg.Add("Lỗi hệ thống xin liên hệ với MISA để được trợ giúp.");
+                _serviceResult.UserMsg.Add(CustomResource.ErrorMISA);
                 _serviceResult.MISACode = Enums.MISACode.Exeption;
                 return _serviceResult;
             }
@@ -187,7 +188,7 @@ namespace MISA.Eshop.Core.Service
                 {
                     if(propertyValue == null)
                     {
-                        _serviceResult.UserMsg.Add($"Không tìm thấy giá trị của trường {propertyName}");
+                        _serviceResult.UserMsg.Add($"{CustomResource.NotValue} {propertyName}");
                     }
                     //lấy ra custom message:
                     var userMsg = (propertyRequireds[0] as Required).CustomMsg;
@@ -198,7 +199,7 @@ namespace MISA.Eshop.Core.Service
                         userMsg = $"{propertyName}";
                         if(string.IsNullOrEmpty(propertyValue.ToString()))
                         {
-                            _serviceResult.UserMsg.Add($"Thông tin {userMsg} không được phép để trống");
+                            _serviceResult.UserMsg.Add($"{CustomResource.NotEmpty} {userMsg}");
                         }    
                     }
                     else
@@ -222,7 +223,7 @@ namespace MISA.Eshop.Core.Service
                     {
                         if(propertyValue != null && propertyValue.ToString().Length > maxLength)
                         {
-                            _serviceResult.UserMsg.Add($"Thông tin {propertyName} không được để quá {maxLength} ký tự.");
+                            _serviceResult.UserMsg.Add(CustomResource.MaxLengthError);
                         }    
                     }  
                     else

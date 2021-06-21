@@ -1,6 +1,7 @@
 ﻿using MISA.Eshop.Core.Entities;
 using MISA.Eshop.Core.Interfaces.IRepository;
 using MISA.Eshop.Core.Interfaces.IService;
+using MISA.Eshop.Core.Resource;
 using MISA.Eshop.Core.Result;
 using System;
 
@@ -26,7 +27,7 @@ namespace MISA.Eshop.Core.Service
             if(result != null)
             {
                 _serviceResult.IsSuccess = true;
-                _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+                _serviceResult.UserMsg.Add(CustomResource.IsValid);
                 _serviceResult.MISACode = Enums.MISACode.Success;
                 _serviceResult.Data = result;
                 return _serviceResult;
@@ -34,7 +35,7 @@ namespace MISA.Eshop.Core.Service
             else
             {
                 _serviceResult.IsSuccess = false;
-                _serviceResult.UserMsg.Add("Không có dữ liệu");
+                _serviceResult.UserMsg.Add(CustomResource.Nocontent);
                 _serviceResult.MISACode = Enums.MISACode.NoContent;
                 _serviceResult.Data = result;
                 return _serviceResult;

@@ -33,7 +33,9 @@ namespace MISA.Eshop.Core.Result
         /// tổng số bản ghi
         /// </summary>
         public int TotalRecord { get; set; }
-
+        /// <summary>
+        /// constructor khởi tạo danh sách thông báo cho người dùng
+        /// </summary>
         public ServiceResult()
         {
             this.UserMsg = new List<string>();

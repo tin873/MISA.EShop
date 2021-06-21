@@ -1,6 +1,7 @@
 ﻿using MISA.Eshop.Core.Entities;
 using MISA.Eshop.Core.Interfaces.IRepository;
 using MISA.Eshop.Core.Interfaces.IService;
+using MISA.Eshop.Core.Resource;
 using MISA.Eshop.Core.Result;
 
 namespace MISA.Eshop.Core.Service
@@ -24,7 +25,7 @@ namespace MISA.Eshop.Core.Service
             int totalPage = 0, totalRecord = 0;
             var stores = _storeRepository.GetPaging( pageSize,  pageIndex, out totalPage, out totalRecord);
             _serviceResult.IsSuccess = true;
-            _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+            _serviceResult.UserMsg.Add(CustomResource.IsValid);
             _serviceResult.MISACode = Enums.MISACode.Success;
             _serviceResult.Data = stores;
             _serviceResult.TotalPage = totalPage;
@@ -36,7 +37,7 @@ namespace MISA.Eshop.Core.Service
         {
             var stores = _storeRepository.GetStoreFilter(storeCode, storeName, address, phoneNumber, status);
             _serviceResult.IsSuccess = true;
-            _serviceResult.UserMsg.Add("Lấy dữ liệu thành công.");
+            _serviceResult.UserMsg.Add(CustomResource.IsValid);
             _serviceResult.MISACode = Enums.MISACode.Success;
             _serviceResult.Data = stores;
             return _serviceResult;
@@ -48,7 +49,7 @@ namespace MISA.Eshop.Core.Service
             if(result)
             {
                 _serviceResult.IsSuccess = true;
-                _serviceResult.UserMsg.Add("Mã người dùng chưa tồn tại.");
+                _serviceResult.UserMsg.Add(CustomResource.CodeNocontent);
                 _serviceResult.MISACode = Enums.MISACode.Success;
                 _serviceResult.Data = result;
                 return _serviceResult;
@@ -56,7 +57,7 @@ namespace MISA.Eshop.Core.Service
             else
             {
                 _serviceResult.IsSuccess = true;
-                _serviceResult.UserMsg.Add("Mã người dùng đã tồn tại.");
+                _serviceResult.UserMsg.Add(CustomResource.ExitsCode);
                 _serviceResult.MISACode = Enums.MISACode.Success;
                 _serviceResult.Data = result;
                 return _serviceResult;
