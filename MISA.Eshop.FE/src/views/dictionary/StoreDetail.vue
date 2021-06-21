@@ -18,6 +18,7 @@
               v-model="store.storeCode"
               @input="requireStoreCode"
               @blur="requireStoreCode"
+              tabindex="1"
             />
             <div
               class="icon-error .hover-pointer"
@@ -36,6 +37,7 @@
               @blur="RequireStoreName"
               class="validate-input mgr-5"
               type="text"
+              tabindex="2"
             />
             <div
               class="icon-error .hover-pointer"
@@ -54,6 +56,7 @@
               @blur="RequireAddress"
               class="validate-textarea mgr-5"
               type="text"
+              tabindex="3"
             />
             <div
               class="icon-error .hover-pointer"
@@ -72,6 +75,7 @@
                 class="validate-input-sort"
                 type="text"
                 @input="validatePhoneNumber($event.target.value)"
+                tabindex="4"
               />
               <div
                 class="icon-error .hover-pointer"
@@ -87,6 +91,7 @@
                 v-model="store.storeTaxCode"
                 class="validate-input-sort"
                 type="text"
+                tabindex="5"
               />
             </div>
           </div>
@@ -105,6 +110,7 @@
                   :class="{ error: isActiveErrorCountry }"
                   @blur="checkValueCountry"
                   class="input-custom-cbb"
+                  tabindex="6"
                 />
                 <button
                   class="btn-cbb icon-down"
@@ -155,6 +161,7 @@
                   :class="{ error: isActiveErrorProvince }"
                   @blur="checkValueProvince"
                   class="input-custom-cbb"
+                  tabindex="7"
                 />
                 <button
                   class="btn-cbb icon-down"
@@ -205,6 +212,7 @@
                   :class="{ error: isActiveErrorDistrict }"
                   @blur="checkValueDistrict"
                   class="input-custom-cbb"
+                  tabindex="8"
                 />
                 <button
                   class="btn-cbb icon-down"
@@ -257,6 +265,7 @@
                   :class="{ error: isActiveErrorWard }"
                   @blur="checkValueWard"
                   class="input-custom-cbb"
+                  tabindex="9"
                 />
                 <button
                   class="btn-cbb icon-down"
@@ -299,6 +308,7 @@
                 v-model="store.street"
                 class="validate-input-sort"
                 type="text"
+                tabindex="10"
               />
             </div>
           </div>
@@ -310,7 +320,12 @@
           <div class="double-item">
             <div class="modal-item-name"></div>
             <div class="checkbox light-height-custom">
-              <input type="checkbox" v-model="store.status" />
+              <input
+                type="checkbox"
+                class="checkbox-custom"
+                v-model="store.status"
+                tabindex="11"
+              />
               Ngừng hoạt động
             </div>
           </div>
@@ -425,6 +440,7 @@ export default {
      *CreatedBy: ndtin(18/06/2021)
      */
     addNewStore() {
+      //kiểm tra bắt buộc nhập các trường storeCode, StoreName, address 
       if (
         this.store.storeCode != null &&
         this.store.storeCode != "" &&
@@ -433,6 +449,7 @@ export default {
         this.store.address != null &&
         this.store.address != ""
       ) {
+        //kiểm tra các trường phoneNumber, country, province, district, ward nhập đúng thông tin chưa
         if (
           !this.isActiveErrorPhone &&
           !this.isActiveErrorCountry &&
@@ -463,7 +480,9 @@ export default {
           }
           //lưu lại
           this.fsave();
+          //kiểm tra xem người dùng sửa hay thêm dữ liệu mới
           if (this.editId == "") {
+            //thêm dữ liệu mới không cần load trang
             this.reload();
           }
         }
@@ -505,6 +524,7 @@ export default {
               this.isLoadingForm = false;
               this.close();
             } else {
+              //kiểm tra người dùng click button Lưu hay Lưu và thêm mới
               if (response.data.data == 1 && !this.isSave) {
                 this.isLoadingForm = false;
                 this.refreshCombobox();
@@ -722,7 +742,10 @@ export default {
     close() {
       this.$emit("closeTab");
     },
-    //đóng cửa sổ và hiển thị save nếu có dữ liệu
+    /*
+     * đóng model nếu kiểm tra có dữ liệu thì hiển thị thông báo.
+     *CreatedBy: ndtin(21/06/2021)
+     */
     closeTapAndSave() {
       if (
         (this.store.storeName != "" && this.store.storeName != null) ||
@@ -1188,25 +1211,27 @@ export default {
       //actieve error storeCode
       isActiveError: false,
       titleErrorCode: "",
+       //actieve error storeName
       isActiveErrorStoreName: false,
       titleErrorName: "",
+       //actieve error address
       isActiveErrorAddress: false,
       titleErrorAddress: "",
       //check code store
       isCodeExits: false,
+       //check validate number input
       isActiveErrorPhone: false,
       titleErrorPhone: "",
-      //check combobox value
-      //country
+      //country error select
       isActiveErrorCountry: false,
       titleErrorCountry: "",
-      //provice
+      //provice errror select
       isActiveErrorProvince: false,
       titleErrorProvince: "",
-      //district
+      //district error select
       isActiveErrorDistrict: false,
       titleErrorDistrict: "",
-      //Ward
+      //Ward error select
       isActiveErrorWard: false,
       titleErrorWard: "",
       //kiểm tra ng dùng ấn button lưu hay lưu thêm mới

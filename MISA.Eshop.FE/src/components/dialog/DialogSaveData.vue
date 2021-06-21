@@ -46,6 +46,7 @@ export default {
     },
     save() {
       this.$emit("closeTabSave");
+      this.close();
     },
   },
 };

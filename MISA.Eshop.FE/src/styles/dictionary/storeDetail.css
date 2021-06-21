@@ -1,3 +1,5 @@
+/*body*/
+
 .modal {
     position: fixed;
     top: 0;
@@ -22,7 +24,10 @@
     width: 575px;
     background-color: white;
 }
+
+
 /*header*/
+
 .modal-header {
     display: flex;
     font-size: 16px !important;
@@ -32,8 +37,10 @@
     justify-content: space-between;
     align-items: center;
 }
-/*header*/
-/*body*/
+
+
+/*content*/
+
 .modal-body {
     padding: 16px 16px 0px;
     width: 543px;
@@ -75,8 +82,10 @@
 .double-item {
     display: flex;
 }
-/*body*/
+
+
 /*footer*/
+
 .modal-footer {
     height: 35px;
     width: 544px;
@@ -117,8 +126,11 @@
     padding-top: 5px;
 }
 
+
+/*common*/
+
 .activeItem {
-    background-color: #663399;
+    background-color: #666699;
     color: white;
 }
 
@@ -157,4 +169,3 @@
 .cellcal-flex {
     width: 162px;
 }
-/*footer*/

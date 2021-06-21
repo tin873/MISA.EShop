@@ -1,10 +1,14 @@
 /*Header*/
+
 .header {
     display: flex;
     align-items: center;
     height: 51px;
     border-bottom: 1px solid #bbbbbb;
 }
+
+
+/*left*/
 
 .header-left {
     height: 51px;
@@ -21,6 +25,7 @@
     font-size: 18px !important;
 }
 
+
 /*right*/
 
 .header-right {
@@ -36,6 +41,7 @@
     line-height: 60px;
     margin: 0 10px;
 }
+
 
 /*user*/
 
@@ -61,6 +67,7 @@
     height: 30px;
     position: relative;
 }
+
 
 /*btn support*/
 

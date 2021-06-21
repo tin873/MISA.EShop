@@ -49,7 +49,7 @@
     border: none;
     cursor: pointer;
     background-color: white;
-    z-index: 1000;
+    z-index: 1;
     left: -31px;
     top: 0;
 }
@@ -59,7 +59,7 @@
 }
 
 .flex-item .item:hover {
-    background-color: #663399;
+    background-color: #666699;
     cursor: pointer;
     color: white;
 }
@@ -71,4 +71,12 @@
     border: 1px solid #bbbbbb;
     display: none;
     width: 27.9%;
+}
+
+
+/*checkbox */
+
+.checkbox-custom:focus {
+    outline: none;
+    border: 1px solid #3366ff !important;
 }

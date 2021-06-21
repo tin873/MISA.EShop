@@ -101,7 +101,7 @@
                     @input="searchStatus($event.target.value)"
                   />
                   <button
-                    class="btn-cbb-status icon-down "
+                    class="btn-cbb-status icon-down"
                     @click="showDropStatus"
                   />
                 </div>
@@ -222,7 +222,7 @@ export default {
       );
     },
     /*
-     *them du lieu khi them moi
+     *Hiển thị dữ liệu vừa lưu mà không load lại trang
      *CreatedBy: ndtin(18/06/2021)
      */
     AddStoreNew(valueStore) {
@@ -388,6 +388,7 @@ export default {
      *CreatedBy: ndtin(18/06/2021)
      */
     async filterMyStore(value) {
+      //khởi tạo giá trị chuỗi filter
       let stringStoreName = "";
       let stringAddress = "";
       let stringPhoneNumber = "";
@@ -472,21 +473,31 @@ export default {
   },
   data() {
     return {
+      //danh sách cửa hàng
       listStore: [],
+      //cửa hàng đang trỏ vào
       rowDataActive: {},
+      //set empty khi thêm mới cửa hàng
       rowDataEmty: {},
+      //khởi tạo thông tin lọc cửa hàng
       dataFilter: {
         storeCode: "",
         storeName: "",
         address: "",
         phoneNumber: "",
       },
+      //tổng trang
       totalPage: 0,
+      //tổng bản ghi
       totalRecord: 0,
+      //trang đang xem
       curentPage: 1,
       titleModel: "",
+      //kiểm tra người dùng click vào form sửa thông tin hay không
       isEdit: false,
+      //lấy id khi nhân bản
       replicationId: "",
+      //lấy id khi sửa
       editId: "",
       listStatus: [
         {

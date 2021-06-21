@@ -1,3 +1,5 @@
+/*body*/
+
 .dialog-waning {
     position: fixed;
     top: 0;
@@ -7,6 +9,9 @@
     z-index: 5;
 }
 
+
+/*background*/
+
 .background-dialog-waning {
     position: absolute;
     width: 100%;
@@ -14,6 +19,9 @@
     background-color: black;
     opacity: 0.3;
 }
+
+
+/*content*/
 
 .confirm-dialog-waning {
     position: absolute;
@@ -28,6 +36,9 @@
     padding: 0px;
     border-radius: 3px;
 }
+
+
+/*header*/
 
 .confirm-dialog-name-waning {
     display: flex;
@@ -54,6 +65,9 @@
     cursor: pointer;
 }
 
+
+/*content*/
+
 .confirm-dialog-content-waning {
     display: flex;
     padding: 10px;
@@ -78,6 +92,9 @@
     font-weight: 700;
     text-transform: uppercase;
 }
+
+
+/*footer*/
 
 .confirm-dialog-buttons-waning {
     display: flex;

@@ -14,6 +14,7 @@
     background-color: #6d6f9b;
 }
 
+
 /*btn table*/
 
 .btn-gird {
@@ -24,6 +25,7 @@
     text-align: center;
 }
 
+
 /*Model*/
 
 .btn-footer-help {
@@ -32,6 +34,7 @@
     align-items: center;
     border: 1px solid white;
     border-radius: 3px;
+    background-color: white;
 }
 
 .btn-footer-help:hover {
@@ -67,6 +70,7 @@
     border: 1px solid #2b3173;
     border-radius: 3px;
     color: #2b3173;
+    background-color: white;
 }
 
 .btn-footer-add-save:hover {
