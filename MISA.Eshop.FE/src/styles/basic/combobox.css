@@ -10,6 +10,7 @@
     height: 32px;
 }
 
+
 /*Detail Store*/
 
 .combobox-model {
@@ -39,6 +40,18 @@
     border: none;
     cursor: pointer;
     background-color: white;
+}
+
+.btn-cbb-status {
+    position: relative;
+    height: 33px;
+    width: 30px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    z-index: 1000;
+    left: -31px;
+    top: 0;
 }
 
 .flex-item .item {

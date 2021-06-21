@@ -25,11 +25,11 @@
     <div class="content-grid">
       <table class="table-asset" id="idtableAsset">
         <colgroup>
-          <col width="149" />
-          <col width="249" />
+          <col width="189" />
+          <col width="250" />
           <col width="1000" />
-          <col width="129" />
-          <col width="149" />
+          <col width="155" />
+          <col width="155" />
         </colgroup>
         <thead>
           <tr>
@@ -101,7 +101,7 @@
                     @input="searchStatus($event.target.value)"
                   />
                   <button
-                    class="btn-cbb icon-down mgl-custom"
+                    class="btn-cbb-status icon-down "
                     @click="showDropStatus"
                   />
                 </div>
