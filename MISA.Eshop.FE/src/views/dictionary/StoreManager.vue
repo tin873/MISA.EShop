@@ -1,22 +1,33 @@
 <template>
   <div class="view-store">
     <div class="header-features">
-      <div class="btn add-btn hover-pointer" @click="addStore(false)">
+      <button class="btn add-btn hover-pointer" @click="addStore(false)">
         <div class="icon-header icon-add"></div>
         <div class="item-name-content">Thêm mới</div>
-      </div>
-      <div class="btn btn-borderleft hover-pointer" @click="replicationStore">
+      </button>
+      <button
+        class="btn btn-borderleft hover-pointer"
+        @click="replicationStore"
+      >
         <div class="icon-header icon-replic"></div>
         <div class="item-name-content">Nhân bản</div>
-      </div>
-      <div class="btn btn-borderleft hover-pointer" @click="editStoreBtn">
+      </button>
+      <button
+        class="btn btn-borderleft hover-pointer"
+        @click="editStoreBtn"
+        :disabled="rowDataActive.storeId == null"
+      >
         <div class="icon-header icon-edit"></div>
         <div class="item-name-content">Sửa</div>
-      </div>
-      <div class="btn btn-borderleft hover-pointer" @click="deleteStore">
+      </button>
+      <button
+        class="btn btn-borderleft hover-pointer"
+        @click="deleteStore"
+        :disabled="rowDataActive.storeId == null"
+      >
         <div class="icon-header icon-delete"></div>
         <div class="item-name-content">Xóa</div>
-      </div>
+      </button>
       <div class="btn btn-borderleft hover-pointer" @click="refresh">
         <div class="icon-header icon-load"></div>
         <div class="item-name-content">Nạp</div>
@@ -128,7 +139,11 @@
           <tr
             v-for="stores in listStore"
             :key="stores.storeId"
-            :class="{ isSelectrow: rowDataActive.storeId == stores.storeId }"
+            :class="{
+              isSelectrow:
+                rowDataActive.storeId == stores.storeId &&
+                rowDataActive.storeId != null,
+            }"
             @click="rowClick(stores)"
             @dblclick="editStoreDb(stores)"
           >
@@ -145,20 +160,20 @@
         :totalPage="totalPage"
         :totalRecord="totalRecord"
         :curentPage="curentPage"
-        @pageChanged="onPageChange"
+        @pageChanged="GetPagingFilter"
       />
     </div>
     <ComfirmDelete
       @closeDialog="closeDialog"
       v-if="isShowDialog"
-      @pageChanged="onPageChange"
+      @pageChanged="GetPagingFilter"
       @DeleteStore="DeleteStore"
     />
     <Detail
       @closeTab="closeTab"
       v-if="isShowDetail"
       :titleModel="titleModel"
-      @pageChanged="onPageChange"
+      @pageChanged="GetPagingFilter"
       :replicationId="replicationId"
       :editId="editId"
       @AddStoreNew="AddStoreNew"
@@ -258,7 +273,7 @@ export default {
       //đóng combobox
       this.isActive = !this.isActive;
       //thực hiện lọc khi chọn
-      this.filterStore(this.dataFilter);
+      this.GetPagingFilter(1);
       document.getElementById("status").focus();
     },
     /*
@@ -283,7 +298,7 @@ export default {
      *CreatedBy: ndtin(18/06/2021)
      */
     filterStore() {
-      this.filterMyStore(this.dataFilter);
+      this.GetPagingFilter(1);
     },
 
     /*
@@ -306,7 +321,7 @@ export default {
     },
     //load lại trang
     refresh() {
-      this.onPageChange(1);
+      this.GetPagingFilter(1);
     },
     //chọn dòng
     rowClick(value) {
@@ -387,7 +402,8 @@ export default {
      *call api lọc thông tin cửa hàng
      *CreatedBy: ndtin(18/06/2021)
      */
-    async filterMyStore(value) {
+    async filterMyStore() {
+      let value = this.dataFilter;
       //khởi tạo giá trị chuỗi filter
       let stringStoreName = "";
       let stringAddress = "";
@@ -441,6 +457,85 @@ export default {
         });
       this.rowDataActive = this.listStore[0];
     },
+    /**
+     * lọc và phân trang
+     * CreatedBy: ndtin(22/06/2021)
+     */
+    async GetPagingFilter(page) {
+      let value = this.dataFilter;
+      var pageIndex = page;
+      this.curentPage = page;
+      this.$store.commit("showLoading");
+      value = this.dataFilter;
+      //khởi tạo giá trị chuỗi filter
+      let stringStoreName = "";
+      let stringAddress = "";
+      let stringPhoneNumber = "";
+      let stringStatus = "";
+      let stringPageIndex = "";
+      let stringPageSize = "";
+      let stringStoreCode =
+        value.storeCode != "" ? `storeCode=${value.storeCode}` : "";
+      if (value.storeCode != "") {
+        stringStoreName =
+          value.storeName != "" ? `&storeName=${value.storeName}` : "";
+      } else {
+        stringStoreName =
+          value.storeName != "" ? `storeName=${value.storeName}` : "";
+      }
+      if (value.storeCode != "" || value.storeName != "") {
+        stringAddress = value.address != "" ? `&address=${value.address}` : "";
+      } else {
+        stringAddress = value.address != "" ? `address=${value.address}` : "";
+      }
+      if (
+        value.storeCode != "" ||
+        value.storeName != "" ||
+        value.address != ""
+      ) {
+        stringPhoneNumber =
+          value.phoneNumber != "" ? `&phoneNumber=${value.phoneNumber}` : "";
+      } else {
+        stringPhoneNumber =
+          value.phoneNumber != "" ? `phoneNumber=${value.phoneNumber}` : "";
+      }
+      if (
+        value.storeCode != "" ||
+        value.storeName != "" ||
+        value.address != "" ||
+        value.phoneNumber != ""
+      ) {
+        stringStatus = this.statusId >= 0 ? `&status=${this.statusId}` : "";
+      } else {
+        stringStatus = this.statusId >= 0 ? `status=${this.statusId}` : "";
+      }
+      if (
+        value.storeCode != "" ||
+        value.storeName != "" ||
+        value.address != "" ||
+        value.phoneNumber != "" ||
+        this.statusId != -1
+      ) {
+        stringPageSize = `&pageSize=${this.pageSize}`;
+      } else {
+        stringPageSize = `pageSize=${this.pageSize}`;
+      }
+      stringPageIndex = `&pageIndex=${pageIndex}`;
+      var url = `${this.$Const.API_HOST}/api/v1/Stores/filterPaging?${stringStoreCode}${stringStoreName}${stringAddress}${stringPhoneNumber}${stringStatus}${stringPageSize}${stringPageIndex}`;
+      console.log(url);
+      await axios
+        .get(url)
+        .then((response) => {
+          this.listStore = response.data.data;
+          this.totalPage = response.data.totalPage;
+          this.totalRecord = response.data.totalRecord;
+          this.$store.commit("showLoading");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.rowDataActive = this.listStore[0];
+    },
     /*
      * call api lấy thông tin cửa hàng phân trang
      *creaedBy: ndtin(19/6/2021)
@@ -468,7 +563,7 @@ export default {
      * load thông tin cửa hàng khi vào trang
      */
     onLoadStore() {
-      this.onPageChange(1);
+      this.GetPagingFilter(1);
     },
   },
   data() {

@@ -25,3 +25,7 @@
 .isSelectrow {
     background-color: #e5e6eb !important;
 }
+
+.isShowError{
+    display: block !important;
+}

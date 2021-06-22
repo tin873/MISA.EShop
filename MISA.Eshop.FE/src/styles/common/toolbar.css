@@ -22,3 +22,7 @@
     padding: 0px 4px;
     line-height: 24px;
 }
+
+.feature-page button:disabled{
+    opacity: 0.5;
+}

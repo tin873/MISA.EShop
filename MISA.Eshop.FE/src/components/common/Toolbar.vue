@@ -38,7 +38,7 @@
         <option value="10" selected>10</option>
       </select>
     </div>
-    <div class="toolbar-text">Hiển thị 1-11 trên 11 kết quả</div>
+    <div class="toolbar-text">Hiển thị {{this.curentPage}}-{{this.pageSizeNow}} trên {{this.totalPage}} kết quả</div>
   </div>
 </template>
 <script>
@@ -105,6 +105,7 @@ export default {
     onClickPageSize(page, size) {
       if (size) {
         this.$store.commit("setPageSize", size);
+        this.pageSizeNow = size;
       }
       this.$emit("pageChanged", page);
     },
@@ -115,6 +116,11 @@ export default {
     refresh() {
       this.$emit("pageChanged", 1);
     },
+  },
+  data(){
+    return{
+      pageSizeNow: 10,
+    }
   },
 };
 </script>

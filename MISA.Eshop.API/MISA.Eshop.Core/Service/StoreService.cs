@@ -22,7 +22,7 @@ namespace MISA.Eshop.Core.Service
         #region Methods
         public ServiceResult GetPaging(int pageSize, int pageIndex)
         {
-            int totalPage = 0, totalRecord = 0;
+            int totalPage, totalRecord;
             var stores = _storeRepository.GetPaging( pageSize,  pageIndex, out totalPage, out totalRecord);
             _serviceResult.IsSuccess = true;
             _serviceResult.UserMsg.Add(CustomResource.IsValid);
@@ -33,7 +33,8 @@ namespace MISA.Eshop.Core.Service
             return _serviceResult;
         }
 
-        public ServiceResult GetStoreFilter(string storeCode, string storeName, string address, string phoneNumber, int status)
+        public ServiceResult GetStoreFilter(string storeCode,
+            string storeName, string address, string phoneNumber, int? status)
         {
             var stores = _storeRepository.GetStoreFilter(storeCode, storeName, address, phoneNumber, status);
             _serviceResult.IsSuccess = true;
@@ -62,6 +63,21 @@ namespace MISA.Eshop.Core.Service
                 _serviceResult.Data = result;
                 return _serviceResult;
             }    
+        }
+
+        public ServiceResult GetStoreFilterPaging(string storeCode, 
+            string storeName, string address, string phoneNumber,
+            int? status, int pageSize, int pageIndex)
+        {
+            int totalPage, totalRecord ;
+            var stores = _storeRepository.GetStoreFilterPaging(storeCode, storeName, address, phoneNumber, status, pageSize, pageIndex, out totalPage, out totalRecord);
+            _serviceResult.IsSuccess = true;
+            _serviceResult.UserMsg.Add(CustomResource.IsValid);
+            _serviceResult.MISACode = Enums.MISACode.Success;
+            _serviceResult.Data = stores;
+            _serviceResult.TotalPage = totalPage;
+            _serviceResult.TotalRecord = totalRecord;
+            return _serviceResult;
         }
         #endregion
     }

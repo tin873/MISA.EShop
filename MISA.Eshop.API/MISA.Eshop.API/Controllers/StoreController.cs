@@ -42,9 +42,27 @@ namespace MISA.Eshop.API.Controllers
         /// <returns>ServiceResult</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpGet("filter")]
-        public IActionResult GetStoreFilter(string storeCode, string storeName, string address, string phoneNumber, int status)
+        public IActionResult GetStoreFilter(string storeCode, string storeName, string address, string phoneNumber, int? status)
         {
             var result = _storeService.GetStoreFilter(storeCode, storeName, address, phoneNumber, status);
+            return Ok(result);
+        }
+        /// <summary>
+        /// lọc dữ liệu theo các trường
+        /// </summary>
+        /// <param name="storeCode">mã cửa hàng</param>
+        /// <param name="storeName">tên cửa hàng</param>
+        /// <param name="address">địa chỉ</param>
+        /// <param name="phoneNumber">số điện thoại</param>
+        /// <param name="status">trạng thái</param>
+        /// <param name="pageIndex">chỉ mục trang</param>
+        /// <param name="pageSize">kích cỡ bản ghi 1 trang</param>
+        /// <returns>ServiceResult</returns>
+        /// createdBy: ndtin(15/6/2021)
+        [HttpGet("filterPaging")]
+        public IActionResult GetStoreFilterPaging(string storeCode, string storeName, string address, string phoneNumber, int? status, int pageSize, int pageIndex)
+        {
+            var result = _storeService.GetStoreFilterPaging(storeCode, storeName, address, phoneNumber, status, pageSize, pageIndex);
             return Ok(result);
         }
         /// <summary>

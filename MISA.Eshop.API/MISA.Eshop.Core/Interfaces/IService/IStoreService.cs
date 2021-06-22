@@ -22,7 +22,8 @@ namespace MISA.Eshop.Core.Interfaces.IService
         /// <param name="status">trạng thái</param>
         /// <returns>ServiceResult</returns>
         /// createdBy: ndtin(14/06/2021)
-        ServiceResult GetStoreFilter(string storeCode, string storeName, string address, string phoneNumber, int status);
+        ServiceResult GetStoreFilter(string storeCode, 
+            string storeName, string address, string phoneNumber, int? status);
         /// <summary>
         /// kiểm tra mã code đã tồn tại chưa
         /// </summary>
@@ -30,5 +31,21 @@ namespace MISA.Eshop.Core.Interfaces.IService
         /// <returns>serviceResult</returns>
         /// createdBy: ndtin(14/06/2021)
         ServiceResult CheckStoreCodeExits(string storeCode);
+
+        /// <summary>
+        /// lọc danh sách cửa hàng theo mã, tên, địa chỉ, số điện thoại, trạng thái
+        /// </summary>
+        /// <param name="storeCode">mã cửa hàng</param>
+        /// <param name="storeName">tên cửa hàng</param>
+        /// <param name="address"> dịa chỉ</param>
+        /// <param name="phoneNumber">số điện thoại</param>
+        /// <param name="status">trạng thái</param>
+        /// <param name="pageIndex">trang</param>
+        /// <param name="pageSize">số bản ghi/1 trang</param>
+        /// <returns>danh sách cửa hàng đã lọc và phân trang</returns>
+        /// createdBy: ndtin(14/06/2021)
+        ServiceResult GetStoreFilterPaging(string storeCode, string storeName,
+            string address, string phoneNumber, int? status,
+            int pageSize, int pageIndex);
     }
 }

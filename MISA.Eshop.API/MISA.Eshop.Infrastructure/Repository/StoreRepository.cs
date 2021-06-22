@@ -49,7 +49,8 @@ namespace MISA.Eshop.Infrastructure.Repository
             return stores;
         }
 
-        public IEnumerable<Store> GetStoreFilter(string storeCode, string storeName, string address, string phoneNumber, int status)
+        public IEnumerable<Store> GetStoreFilter(string storeCode, 
+            string storeName, string address, string phoneNumber, int? status)
         {
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("@StoreCode", storeCode);
@@ -61,6 +62,34 @@ namespace MISA.Eshop.Infrastructure.Repository
             var stores = _dbConnection.Query<Store>("Proc_GetStoreFilter",
                 param: dynamicParameters,
                 commandType: CommandType.StoredProcedure);
+
+            return stores;
+        }
+
+        public IEnumerable<Store> GetStoreFilterPaging(string storeCode, 
+            string storeName, string address, string phoneNumber, int? status, 
+            int pageSize, int pageIndex, out int totalPage, out int totalRecord)
+        {
+            DynamicParameters dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("@StoreCode", storeCode);
+            dynamicParameters.Add("@StoreName", storeName);
+            dynamicParameters.Add("@Address", address);
+            dynamicParameters.Add("@PhoneNumber", phoneNumber);
+            dynamicParameters.Add("@Status", status);
+            dynamicParameters.Add("@PageIndex", pageIndex);
+            dynamicParameters.Add("@PageSize", pageSize);
+
+            //mapping 2 biến out trong procedure
+            dynamicParameters.Add("@TotalPage", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            dynamicParameters.Add("@TotalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            var stores = _dbConnection.Query<Store>("Proc_GetStoreFilterPaging",
+                param: dynamicParameters,
+                commandType: CommandType.StoredProcedure);
+
+            //lấy giá trị của biến out trong storeprocedure
+            totalPage = dynamicParameters.Get<int>("@TotalPage");
+            totalRecord = dynamicParameters.Get<int>("@TotalRecord");
 
             return stores;
         }

@@ -24,9 +24,17 @@
 }
 
 .btn-borderleft {
-    border-left: 1px solid #190472;
+    border-left: 1px solid #190472 !important;
 }
 
+.header-features button{
+    background-color: #2b3173;
+    border: none;
+}
+.header-features button:disabled{
+    background-color: #6b6f9d;
+    border: none;
+}
 
 /*table*/
 

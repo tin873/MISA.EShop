@@ -24,7 +24,7 @@
               class="icon-error .hover-pointer show-error"
               :class="{ isActive: isActiveError }"
             >
-              <ul class="x-list-error">
+              <ul class="x-list-error" :class="{isShowError: isShowErrorStoreCode}">
                 <li>Trường này không được để trống!</li>
               </ul>
             </div>
@@ -47,7 +47,7 @@
               :class="{ isActive: isActiveErrorStoreName }"
               v-bind:title="titleErrorName"
             >
-              <ul class="x-list-error">
+              <ul class="x-list-error" :class="{isShowError: isShowErrorStoreName}">
                 <li>Trường này không được để trống!</li>
               </ul>
             </div>
@@ -70,7 +70,7 @@
               :class="{ isActive: isActiveErrorAddress }"
               v-bind:title="titleErrorAddress"
             >
-              <ul class="x-list-error">
+              <ul class="x-list-error" :class="{isShowError: isShowErrorAddress}">
                 <li>Trường này không được để trống!</li>
               </ul>
             </div>
@@ -92,7 +92,7 @@
                 class="icon-error .hover-pointer show-error-valid"
                 :class="{ isActive: isActiveErrorPhone }"
               >
-                <ul class="x-list-error-valid">
+                <ul class="x-list-error-valid" :class="{isShowError: isShowErrorPhone}">
                   <li>Giá trị không hợp lệ!</li>
                 </ul>
               </div>
@@ -136,7 +136,7 @@
                   :class="{ isActive: isActiveErrorCountry }"
                   v-bind:title="titleErrorCountry"
                 >
-                <ul class="x-list-error-valid">
+                <ul class="x-list-error-valid" :class="{isShowError: isShowErrorCountry}">
                   <li>Giá trị không hợp lệ!</li>
                 </ul>
                 </div>
@@ -191,7 +191,7 @@
                   :class="{ isActive: isActiveErrorProvince }"
                   v-bind:title="titleErrorProvince"
                 >
-                <ul class="x-list-error-valid">
+                <ul class="x-list-error-valid" :class="{isShowError: isShowErrorProvince}">
                   <li>Giá trị không hợp lệ!</li>
                 </ul>
                 </div>
@@ -246,7 +246,7 @@
                   :class="{ isActive: isActiveErrorDistrict }"
                   v-bind:title="titleErrorProvince"
                 >
-                <ul class="x-list-error">
+                <ul class="x-list-error" :class="{isShowError: isShowErrorDistrict}">
                   <li>Giá trị không hợp lệ!</li>
                 </ul>
                 </div>
@@ -303,7 +303,7 @@
                   :class="{ isActive: isActiveErrorWard }"
                   v-bind:title="titleErrorProvince"
                 >
-                <ul class="x-list-error-valid">
+                <ul class="x-list-error-valid" :class="{isShowError: isShowErrorWard}">
                   <li>Giá trị không hợp lệ!</li>
                 </ul>
                 </div>
@@ -515,19 +515,43 @@ export default {
             //thêm dữ liệu mới không cần load trang
             this.reload();
           }
+        }else{
+          if(this.isActiveErrorPhone){
+            this.isShowErrorPhone = true;
+          setTimeout(() =>this.isShowErrorPhone = false, 1500);
+          }
+          if(this.isActiveErrorCountry){
+            this.isShowErrorCountry = true;
+          setTimeout(() => this.isShowErrorCountry = false, 1500);
+          }
+          if(this.isActiveErrorProvince){
+            this.isShowErrorProvince = true;
+          setTimeout(() => this.isShowErrorProvince = false, 1500);
+          }
+          if(this.isActiveErrorDistrict){
+            this.isShowErrorDistrict = true;
+          setTimeout(() => this.isShowErrorDistrict = false, 1500);
+          }
+          if(this.isActiveErrorWard){
+            this.isShowErrorWard = true;
+          setTimeout(() => this.isShowErrorWard = false, 1500);
+          }
         }
       } else {
         if (this.store.storeCode == null || this.store.storeCode == "") {
           this.isActiveError = true;
-          this.titleErrorCode = "Trường này không được để trống";
+          this.isShowErrorStoreCode = true;
+          setTimeout(() => this.isShowErrorStoreCode = false, 1500);
         }
         if (this.store.storeName == null || this.store.storeName == "") {
           this.isActiveErrorStoreName = true;
-          this.titleErrorName = "Trường này không được để trống";
+          this.isShowErrorStoreName = true;
+          setTimeout(() => this.isShowErrorStoreName = false, 1500);
         }
         if (this.store.address == null || this.store.address == "") {
           this.isActiveErrorAddress = true;
-          this.titleErrorAddress = "Trường này không được để trống";
+          this.isShowErrorAddress = true;
+          setTimeout(() => this.isShowErrorAddress = false, 1500);
         }
       }
     },
@@ -635,7 +659,8 @@ export default {
     requireStoreCode() {
       let code = this.store.storeCode;
       if (code == "" || code == null) {
-        this.titleErrorCode = "Trường này không được để trống.";
+        this.isShowErrorStoreCode = true;
+        setTimeout(() => this.isShowErrorStoreCode = false, 1500);
         this.isActiveError = true;
       } else {
         this.isActiveError = false;
@@ -648,7 +673,8 @@ export default {
     RequireStoreName() {
       let name = this.store.storeName;
       if (name == "" || name == null) {
-        this.titleErrorName = "Trường này không được để trống.";
+        this.isShowErrorStoreName = true;
+          setTimeout(() => this.isShowErrorStoreName = false, 1500);
         this.isActiveErrorStoreName = true;
       } else {
         this.isActiveErrorStoreName = false;
@@ -661,7 +687,8 @@ export default {
     RequireAddress() {
       let address = this.store.address;
       if (address == "" || address == null) {
-        this.titleErrorAddress = "Trường này không được để trống.";
+        this.isShowErrorAddress = true;
+          setTimeout(() => this.isShowErrorAddress = false, 1500);
         this.isActiveErrorAddress = true;
       } else {
         this.isActiveErrorAddress = false;
@@ -1123,7 +1150,8 @@ export default {
       var letter = /^[0-9]+$/;
       if (!evt.match(letter)) {
         this.isActiveErrorPhone = true;
-        this.titleErrorPhone = "Dữ liệu không đúng mời nhập lại.";
+        this.isShowErrorPhone = true;
+          setTimeout(() => this.isShowErrorPhone = false, 1500);
       } else {
         this.isActiveErrorPhone = false;
       }
@@ -1141,8 +1169,8 @@ export default {
           this.isActiveErrorCountry = false;
         } else {
           this.isActiveErrorCountry = true;
-          this.titleErrorCountry =
-            "Giá trị bạn chọn không tồn tại trong danh sách.";
+          this.isShowErrorCountry = true;
+          setTimeout(() => this.isShowErrorCountry = false, 1500);
         }
       } else {
         this.isActiveErrorCountry = false;
@@ -1161,8 +1189,8 @@ export default {
           this.isActiveErrorProvince = false;
         } else {
           this.isActiveErrorProvince = true;
-          this.titleErrorProvince =
-            "Giá trị bạn chọn không tồn tại trong danh sách.";
+          this.isShowErrorProvince = true;
+          setTimeout(() => this.isShowErrorProvince = false, 1500);
         }
       } else {
         this.isActiveErrorProvince = false;
@@ -1181,8 +1209,8 @@ export default {
           this.isActiveErrorDistrict = false;
         } else {
           this.isActiveErrorDistrict = true;
-          this.titleErrorDistrict =
-            "Giá trị bạn chọn không tồn tại trong danh sách.";
+          this.isShowErrorDistrict = true;
+          setTimeout(() => this.isShowErrorDistrict = false, 1500);
         }
       } else {
         this.isActiveErrorDistrict = false;
@@ -1201,8 +1229,8 @@ export default {
           this.isActiveErrorWard = false;
         } else {
           this.isActiveErrorWard = true;
-          this.titleErrorWard =
-            "Giá trị bạn chọn không tồn tại trong danh sách.";
+          this.isShowErrorWard = true;
+          setTimeout(() => this.isShowErrorWard = false, 1500);
         }
       } else {
         this.isActiveErrorWard = false;
@@ -1240,30 +1268,30 @@ export default {
       listWard: [],
       //actieve error storeCode
       isActiveError: false,
-      titleErrorCode: "",
+      isShowErrorStoreCode: false,
       //actieve error storeName
       isActiveErrorStoreName: false,
-      titleErrorName: "",
+      isShowErrorStoreName: false,
       //actieve error address
       isActiveErrorAddress: false,
-      titleErrorAddress: "",
+      isShowErrorAddress: false,
       //check code store
       isCodeExits: false,
       //check validate number input
       isActiveErrorPhone: false,
-      titleErrorPhone: "",
+      isShowErrorPhone: false,
       //country error select
       isActiveErrorCountry: false,
-      titleErrorCountry: "",
+      isShowErrorCountry: false,
       //provice errror select
       isActiveErrorProvince: false,
-      titleErrorProvince: "",
+      isShowErrorProvince: false,
       //district error select
       isActiveErrorDistrict: false,
-      titleErrorDistrict: "",
+      isShowErrorDistrict: false,
       //Ward error select
       isActiveErrorWard: false,
-      titleErrorWard: "",
+      isShowErrorWard: false,
       //kiểm tra ng dùng ấn button lưu hay lưu thêm mới
       isSave: false,
       //lấy code cửa hàng lúc đầu
