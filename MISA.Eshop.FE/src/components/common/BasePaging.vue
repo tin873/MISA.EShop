@@ -43,7 +43,7 @@
 </template>
 <script>
 export default {
-  name: "Toolbar",
+  name: "BasePaging",
   props: {
     totalPage: {
       type: Number,
@@ -114,7 +114,7 @@ export default {
      *CreatedBy: ndtin(18/06/2021)
      */
     refresh() {
-      this.$emit("pageChanged", 1);
+      this.$emit("pageChanged", this.curentPage);
     },
   },
   data(){
@@ -125,5 +125,5 @@ export default {
 };
 </script>
 <style scoped>
-@import "../../styles/common/toolbar.css";
+@import "../../styles/common/basePaging.css";
 </style>

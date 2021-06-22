@@ -23,7 +23,7 @@ namespace MISA.Eshop.API.Controllers
         /// </summary>
         /// <param name="pageIndex">chỉ mục trang</param>
         /// <param name="pageSize">kích cỡ bản ghi 1 trang</param>
-        /// <returns>ServiceResult</returns>
+        /// <returns>ServiceResult bao gồm (data, các câu thông báo, tổng bản ghi, tổng số trang)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpGet("Paging")]
         public IActionResult GetPaging(int pageSize, int pageIndex)
@@ -39,7 +39,7 @@ namespace MISA.Eshop.API.Controllers
         /// <param name="address">địa chỉ</param>
         /// <param name="phoneNumber">số điện thoại</param>
         /// <param name="status">trạng thái</param>
-        /// <returns>ServiceResult</returns>
+        /// <returns>ServiceResult bao gồm (data, các câu thông báo,)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpGet("filter")]
         public IActionResult GetStoreFilter(string storeCode, string storeName, string address, string phoneNumber, int? status)
@@ -57,7 +57,7 @@ namespace MISA.Eshop.API.Controllers
         /// <param name="status">trạng thái</param>
         /// <param name="pageIndex">chỉ mục trang</param>
         /// <param name="pageSize">kích cỡ bản ghi 1 trang</param>
-        /// <returns>ServiceResult</returns>
+        /// <returns>ServiceResult bao gồm (data, các câu thông báo, tổng bản ghi, tổng số trang)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpGet("filterPaging")]
         public IActionResult GetStoreFilterPaging(string storeCode, string storeName, string address, string phoneNumber, int? status, int pageSize, int pageIndex)
@@ -69,7 +69,7 @@ namespace MISA.Eshop.API.Controllers
         /// kiểm tra mã cửa hàng tồn tại chưa
         /// </summary>
         /// <param name="storeCode"> mã cửa hàng</param>
-        /// <returns>serviceRessult</returns>
+        /// <returns>serviceRessult bao gồm (data, các câu thông báo)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpGet("check/{storeCode}")]
         public IActionResult CheckStoreCodeExits(string storeCode)

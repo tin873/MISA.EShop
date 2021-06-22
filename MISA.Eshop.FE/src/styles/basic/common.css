@@ -11,7 +11,7 @@
 }
 
 .isActive {
-    display: block;
+    display: block !important;
 }
 
 .mgr-8 {
@@ -19,7 +19,7 @@
 }
 
 .isActiveCbb {
-    display: block;
+    display: block !important;
 }
 
 .isSelectrow {
@@ -28,4 +28,28 @@
 
 .isShowError{
     display: block !important;
+}
+
+.pdl-10{
+    padding-left: 30px !important;
+    width: 75px !important;
+}
+
+.flex-item .item {
+    padding: 5px 5px 5px 8px;
+}
+
+.flex-item .item:hover {
+    background-color: #666699;
+    cursor: pointer;
+    color: white;
+}
+
+.flex-item {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border: 1px solid #bbbbbb;
+    display: none;
+    width: 27.9%;
 }

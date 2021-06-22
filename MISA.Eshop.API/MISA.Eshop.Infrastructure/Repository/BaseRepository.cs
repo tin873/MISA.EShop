@@ -96,7 +96,7 @@ namespace MISA.Eshop.Infrastructure.Repository
 
 
         /// <summary>
-        /// Chuyển các biến trong thực thể về Dynamic
+        /// Chuyển các biến trong thực thể về đúng kiểu dữ liệu và tạo dynamicPrameters
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>DynamicParameters</returns>

@@ -91,3 +91,26 @@
 .btn-footer-cancel:hover {
     border: 1px solid #2b3173;
 }
+
+/*combobox*/
+.btn-cbb {
+    position: absolute;
+    height: 33px;
+    width: 30px;
+    margin-left: 131px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+.btn-cbb-status {
+    position: relative;
+    height: 33px;
+    width: 0px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    z-index: 1;
+    left: -24px;
+    top: 0;
+}

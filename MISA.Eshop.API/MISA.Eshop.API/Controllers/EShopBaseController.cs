@@ -22,20 +22,19 @@ namespace MISA.Eshop.API.Controllers
         /// <summary>
         /// lấy tất cả thông tin trong bảng
         /// </summary>
-        /// <returns>Serviceresult</returns>
+        /// <returns>Serviceresult bao gồm (data và thông báo)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpGet]
         public virtual IActionResult Get()
         {
-
             var result = _baseService.GetEntities();
             return Ok(result);
         }
         /// <summary>
         /// lấy bản ghi theo mã
         /// </summary>
-        /// <param name="entityId"></param>
-        /// <returns>Serviceresult</returns>
+        /// <param name="id">id thực thể</param>
+        /// <returns>Serviceresult bao gồm (data và thông báo)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpGet("{id}")]
         public virtual IActionResult Get(Guid id)
@@ -46,8 +45,8 @@ namespace MISA.Eshop.API.Controllers
         /// <summary>
         /// Thêm mới 1 bản ghi vào bảng
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns>ServiceReuslt</returns>
+        /// <param name="entity"> thực thể</param>
+        /// <returns>ServiceReuslt bao gồm (data và thông báo)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpPost]
         public virtual IActionResult Post([FromBody] T entity)
@@ -61,9 +60,9 @@ namespace MISA.Eshop.API.Controllers
         /// <summary>
         /// Sửa đổi 1 bản ghi trong bảng
         /// </summary>
-        /// <param name="entityId"></param>
-        /// <param name="entity"></param>
-        /// <returns>ServiceResult</returns>
+        /// <param name="id">id thực thể</param>
+        /// <param name="entity"> thực thể</param>
+        /// <returns>ServiceResult bao gồm (data và thông báo)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpPut("{id}")]
         public virtual IActionResult Put([FromBody] T entity ,Guid id)
@@ -77,8 +76,8 @@ namespace MISA.Eshop.API.Controllers
         /// <summary>
         /// Xóa 1 bản ghi trong bảng
         /// </summary>
-        /// <param name="entityId"></param>
-        /// <returns>serviceResult</returns>
+        /// <param name="id"></param>
+        /// <returns>serviceResult bao gồm (data và thông báo)</returns>
         /// createdBy: ndtin(15/6/2021)
         [HttpDelete("{id}")]
         public virtual IActionResult Delete(Guid id)

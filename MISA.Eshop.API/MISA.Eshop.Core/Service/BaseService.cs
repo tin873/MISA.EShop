@@ -165,10 +165,14 @@ namespace MISA.Eshop.Core.Service
                 return _serviceResult;
             }
         }
-
+        /// <summary>
+        /// validate thông tin người dùng nhập vào
+        /// </summary>
+        /// <param name="entity">thực thể</param>
+        /// <returns>trả về true false</returns>
+        /// createdBy: ndtin(22/6/2021)
         private bool ValidateObject(T entity)
         {
-            int a = _serviceResult.UserMsg.Count;
             //lấy ra danh sách properties của thực thể
             var properties = typeof(T).GetProperties();
             //duyệt từng property

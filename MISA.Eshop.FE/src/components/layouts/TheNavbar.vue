@@ -31,7 +31,7 @@
 </template>
 <script>
 export default {
-  name: "Navbar",
+  name: "TheNavbar",
   data() {
     return {
       menuItem: [

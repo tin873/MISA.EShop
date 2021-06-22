@@ -8,10 +8,17 @@
 @import './basic/table.css'; 
 @import './basic/common.css';
 @import './basic/select.css';
+
 body {
-    font-family: roboto,Tahoma,sans-serif!important;
+    font-family: Roboto,Tahoma,sans-serif!important;
     font-size: 13px;
     margin: 0px;
     padding: 0px;
     height: 100vh;
 }
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../assets/font/FontRoboto/Roboto-Regular.ttf') format('opentype');
+}
+

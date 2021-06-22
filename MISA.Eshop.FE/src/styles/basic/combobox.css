@@ -32,47 +32,6 @@
     border: 1px solid #3366ff;
 }
 
-.btn-cbb {
-    position: absolute;
-    height: 33px;
-    width: 30px;
-    margin-left: 131px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-}
-
-.btn-cbb-status {
-    position: relative;
-    height: 33px;
-    width: 30px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    z-index: 1;
-    left: -31px;
-    top: 0;
-}
-
-.flex-item .item {
-    padding: 5px 5px 5px 8px;
-}
-
-.flex-item .item:hover {
-    background-color: #666699;
-    cursor: pointer;
-    color: white;
-}
-
-.flex-item {
-    position: absolute;
-    z-index: 1000;
-    background-color: white;
-    border: 1px solid #bbbbbb;
-    display: none;
-    width: 27.9%;
-}
-
 
 /*checkbox */
 

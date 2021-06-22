@@ -8,7 +8,7 @@
 </template>
 <script>
 export default {
-  name: "loadingForm",
+  name: "BaseLoadingForm",
 };
 </script>
 <style scoped>

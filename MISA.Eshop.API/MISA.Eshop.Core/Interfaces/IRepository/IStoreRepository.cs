@@ -10,7 +10,7 @@ namespace MISA.Eshop.Core.Interfaces.IRepository
         /// </summary>
         /// <param name="pageIndex">trang</param>
         /// <param name="pageSize">số bản ghi/1 trang</param>
-        /// <returns>entities theo trang</returns>
+        /// <returns>danh sách bản ghi theo trang</returns>
         /// createdBy: ndtin(14/06/2021)
         IEnumerable<Store> GetPaging(int pageSize, int pageIndex, 
             out int totalPage, out int totalRecord);
@@ -43,7 +43,7 @@ namespace MISA.Eshop.Core.Interfaces.IRepository
         /// <param name="status">trạng thái</param>
         /// <param name="pageIndex">trang</param>
         /// <param name="pageSize">số bản ghi/1 trang</param>
-        /// <returns>danh sách cửa hàng đã lọc và phân trang</returns>
+        /// <returns>danh sách cửa hàng đã lọc và theo phân trang</returns>
         /// createdBy: ndtin(14/06/2021)
         IEnumerable<Store> GetStoreFilterPaging(string storeCode, string storeName,
             string address, string phoneNumber, int? status,

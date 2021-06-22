@@ -13,21 +13,21 @@ namespace MISA.Eshop.Core.Interfaces.IRepository
         /// <summary>
         /// lấy toàn bộ dữ liệu trong bảng
         /// </summary>
-        /// <returns>IEnumerable<T></returns>
+        /// <returns>Danh sách bản ghi</returns>
         /// CreatedBy:ndtin(14/6/2021)
         IEnumerable<T> GetEntities();
         /// <summary>
         /// lấy thông tin của entity theo Id
         /// </summary>
-        /// <param name="entityId"></param>
-        /// <returns>T</returns>
+        /// <param name="entityId">mã thực thể</param>
+        /// <returns>một bản ghi nếu tìm thấy không trả về null</returns>
         /// CreatedBy:ndtin(14/6/2021)
         T GetById(Guid entityId);
         /// <summary>
         /// thêm mới entity vào bảng
         /// </summary>
-        /// <param name="entity"></param>
-        /// <returns>int or null</returns>
+        /// <param name="entity">mã thực thể</param>
+        /// <returns>1 nếu thêm thành công và null nếu thất bại</returns>
         /// CreatedBy:ndtin(14/6/2021)
         int? Insert(T entity);
         /// <summary>
@@ -35,14 +35,14 @@ namespace MISA.Eshop.Core.Interfaces.IRepository
         /// </summary>
         /// <param name="entity">thực thể</param>
         /// <param name="entityId">id thực thể</param>
-        /// <returns>int or null</returns>
+        /// <returns>1 nếu sửa thành công và null nếu thất bại</returns>
         /// CreatedBy:ndtin(14/6/2021)
         int? Update(T entity, Guid entityId);
         /// <summary>
         /// Xóa thực thể khỏi bảng
         /// </summary>
-        /// <param name="entityId"></param>
-        /// <returns>int or null</returns>
+        /// <param name="entityId">mã thực thể</param>
+        /// <returns>1 nếu xóa thành công và null nếu thất bại</returns>
         /// CreatedBy:ndtin(14/6/2021)
         int? Delete(Guid entityId);
     }

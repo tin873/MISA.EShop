@@ -24,24 +24,48 @@ namespace MISA.Eshop.Core.Service
         {
             int totalPage, totalRecord;
             var stores = _storeRepository.GetPaging( pageSize,  pageIndex, out totalPage, out totalRecord);
-            _serviceResult.IsSuccess = true;
-            _serviceResult.UserMsg.Add(CustomResource.IsValid);
-            _serviceResult.MISACode = Enums.MISACode.Success;
-            _serviceResult.Data = stores;
-            _serviceResult.TotalPage = totalPage;
-            _serviceResult.TotalRecord = totalRecord;
-            return _serviceResult;
+            if(stores != null)
+            {
+                _serviceResult.IsSuccess = true;
+                _serviceResult.UserMsg.Add(CustomResource.IsValid);
+                _serviceResult.MISACode = Enums.MISACode.Success;
+                _serviceResult.Data = stores;
+                _serviceResult.TotalPage = totalPage;
+                _serviceResult.TotalRecord = totalRecord;
+                return _serviceResult;
+            }
+            else
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add(CustomResource.Nocontent);
+                _serviceResult.MISACode = Enums.MISACode.NoContent;
+                _serviceResult.Data = stores;
+                _serviceResult.TotalPage = totalPage;
+                _serviceResult.TotalRecord = totalRecord;
+                return _serviceResult;
+            }
         }
 
         public ServiceResult GetStoreFilter(string storeCode,
             string storeName, string address, string phoneNumber, int? status)
         {
             var stores = _storeRepository.GetStoreFilter(storeCode, storeName, address, phoneNumber, status);
-            _serviceResult.IsSuccess = true;
-            _serviceResult.UserMsg.Add(CustomResource.IsValid);
-            _serviceResult.MISACode = Enums.MISACode.Success;
-            _serviceResult.Data = stores;
-            return _serviceResult;
+            if(stores != null)
+            {
+                _serviceResult.IsSuccess = true;
+                _serviceResult.UserMsg.Add(CustomResource.IsValid);
+                _serviceResult.MISACode = Enums.MISACode.Success;
+                _serviceResult.Data = stores;
+                return _serviceResult;
+            }
+            else
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add(CustomResource.Nocontent);
+                _serviceResult.MISACode = Enums.MISACode.NoContent;
+                _serviceResult.Data = stores;
+                return _serviceResult;
+            }
         }
 
         public ServiceResult CheckStoreCodeExits(string storeCode)
@@ -70,14 +94,28 @@ namespace MISA.Eshop.Core.Service
             int? status, int pageSize, int pageIndex)
         {
             int totalPage, totalRecord ;
-            var stores = _storeRepository.GetStoreFilterPaging(storeCode, storeName, address, phoneNumber, status, pageSize, pageIndex, out totalPage, out totalRecord);
-            _serviceResult.IsSuccess = true;
-            _serviceResult.UserMsg.Add(CustomResource.IsValid);
-            _serviceResult.MISACode = Enums.MISACode.Success;
-            _serviceResult.Data = stores;
-            _serviceResult.TotalPage = totalPage;
-            _serviceResult.TotalRecord = totalRecord;
-            return _serviceResult;
+            var stores = _storeRepository.GetStoreFilterPaging(storeCode, storeName, address, 
+                phoneNumber, status, pageSize, pageIndex, out totalPage, out totalRecord);
+            if(stores != null)
+            {
+                _serviceResult.IsSuccess = true;
+                _serviceResult.UserMsg.Add(CustomResource.IsValid);
+                _serviceResult.MISACode = Enums.MISACode.Success;
+                _serviceResult.Data = stores;
+                _serviceResult.TotalPage = totalPage;
+                _serviceResult.TotalRecord = totalRecord;
+                return _serviceResult;
+            }    
+            else
+            {
+                _serviceResult.IsSuccess = false;
+                _serviceResult.UserMsg.Add(CustomResource.Nocontent);
+                _serviceResult.MISACode = Enums.MISACode.NoContent;
+                _serviceResult.Data = stores;
+                _serviceResult.TotalPage = totalPage;
+                _serviceResult.TotalRecord = totalRecord;
+                return _serviceResult;
+            }    
         }
         #endregion
     }

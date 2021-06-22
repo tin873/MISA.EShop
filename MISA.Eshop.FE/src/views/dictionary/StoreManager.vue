@@ -183,10 +183,10 @@
   </div>
 </template>
 <script>
-import Toolbar from "../../components/common/Toolbar.vue";
+import Toolbar from "../../components/common/BasePaging.vue";
 import Detail from "./StoreDetail.vue";
 import ComfirmDelete from "../../components/dialog/ComfirmDelete.vue";
-import Loading from "../../components/common/loading.vue";
+import Loading from "../../components/common/BaseLoading.vue";
 import axios from "axios";
 export default {
   name: "StoreManager",

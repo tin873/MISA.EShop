@@ -69,10 +69,10 @@
 }
 
 .modal-item-name {
-    color: #212121;
-    font-weight: 300;
     padding: 8px 5px 0px 5px;
     width: 100px;
+    color: #212121;
+    font: 400 13px Roboto!important;
 }
 
 .model-item-input {
@@ -227,3 +227,5 @@ ul li {
     left: 52%;
     display: none;
 }
+
+/*text*/

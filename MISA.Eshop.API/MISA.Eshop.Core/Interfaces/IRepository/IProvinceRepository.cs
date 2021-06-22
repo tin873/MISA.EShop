@@ -10,7 +10,7 @@ namespace MISA.Eshop.Core.Interfaces.IRepository
         /// lấy danh sách thành phố theo quốc gia
         /// </summary>
         /// <param name="ProvinceId">khóa bảng quốc gia</param>
-        /// <returns>danh sách thành phố</returns>
+        /// <returns>danh sách thành phố theo Id Quốc gia đã chọn</returns>
         /// createdBy: ndtin(14/6/2021)
         IEnumerable<Province> GetProvincetWithCountry(Guid CountryId);
     }

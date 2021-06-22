@@ -10,7 +10,7 @@ namespace MISA.Eshop.Core.Interfaces.IRepository
         /// lấy danh sách phường/ xã theo quận/huyện
         /// </summary>
         /// <param name="ProvinceId">khóa bảng quận/huyện</param>
-        /// <returns>danh sách phường/xã</returns>
+        /// <returns>danh sách phường/xã theo id Quận/ Huyện</returns>
         /// createdBy: ndtin(14/6/2021)
         IEnumerable<Ward> GetWardWithDistrict(Guid DistrictId);
     }

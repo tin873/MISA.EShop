@@ -45,7 +45,6 @@
             <div
               class="icon-error .hover-pointer show-error"
               :class="{ isActive: isActiveErrorStoreName }"
-              v-bind:title="titleErrorName"
             >
               <ul class="x-list-error" :class="{isShowError: isShowErrorStoreName}">
                 <li>Trường này không được để trống!</li>
@@ -68,7 +67,6 @@
             <div
               class="icon-error .hover-pointer show-error"
               :class="{ isActive: isActiveErrorAddress }"
-              v-bind:title="titleErrorAddress"
             >
               <ul class="x-list-error" :class="{isShowError: isShowErrorAddress}">
                 <li>Trường này không được để trống!</li>
@@ -99,7 +97,7 @@
             </div>
           </div>
           <div class="double-item">
-            <div class="modal-item-name">Mã số thuế</div>
+            <div class="modal-item-name pdl-10">Mã số thuế</div>
             <div class="input-error">
               <input
                 v-model="store.storeTaxCode"
@@ -134,7 +132,6 @@
                 <div
                   class="icon-error .hover-pointer show-error-valid"
                   :class="{ isActive: isActiveErrorCountry }"
-                  v-bind:title="titleErrorCountry"
                 >
                 <ul class="x-list-error-valid" :class="{isShowError: isShowErrorCountry}">
                   <li>Giá trị không hợp lệ!</li>
@@ -189,7 +186,6 @@
                 <div
                   class="icon-error .hover-pointer show-error-valid"
                   :class="{ isActive: isActiveErrorProvince }"
-                  v-bind:title="titleErrorProvince"
                 >
                 <ul class="x-list-error-valid" :class="{isShowError: isShowErrorProvince}">
                   <li>Giá trị không hợp lệ!</li>
@@ -222,7 +218,7 @@
             </div>
           </div>
           <div class="double-item">
-            <div class="modal-item-name">Quận/Huyện</div>
+            <div class="modal-item-name pdl-10">Quận/Huyện</div>
             <div class="cellcal-flex">
               <div class="combobox-model">
                 <input
@@ -244,7 +240,6 @@
                 <div
                   class="icon-error .hover-pointer show-error"
                   :class="{ isActive: isActiveErrorDistrict }"
-                  v-bind:title="titleErrorProvince"
                 >
                 <ul class="x-list-error" :class="{isShowError: isShowErrorDistrict}">
                   <li>Giá trị không hợp lệ!</li>
@@ -301,7 +296,6 @@
                 <div
                   class="icon-error .hover-pointer show-error-valid"
                   :class="{ isActive: isActiveErrorWard }"
-                  v-bind:title="titleErrorProvince"
                 >
                 <ul class="x-list-error-valid" :class="{isShowError: isShowErrorWard}">
                   <li>Giá trị không hợp lệ!</li>
@@ -332,7 +326,7 @@
             </div>
           </div>
           <div class="double-item">
-            <div class="modal-item-name">Đường Phố</div>
+            <div class="modal-item-name pdl-10">Đường Phố</div>
             <div class="input-error">
               <input
                 v-model="store.street"
@@ -408,7 +402,7 @@
 import axios from "axios";
 import DialogStoreCodeExits from "../../components/dialog/DialogStoreCodeExits.vue";
 import DialogSaveData from "../../components/dialog/DialogSaveData.vue";
-import LoadingForm from "../../components/common/loadingForm.vue";
+import LoadingForm from "../../components/common/BaseLoadingForm.vue";
 export default {
   name: "StoreDetail",
   props: ["titleModel", "rowData", "replicationId", "editId", "isEdit"],
@@ -895,6 +889,7 @@ export default {
         .get(url)
         .then((response) => {
           this.listCountry = response.data.data;
+          console.log(this.listCountry);
         })
         .catch((err) => {
           console.log(err);

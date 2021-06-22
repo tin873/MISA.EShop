@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Navbar from './components/layouts/Navbar.vue';
-import Header from './components/layouts/Header.vue';
-import Content from './components/layouts/Content.vue';
+import Navbar from './components/layouts/TheNavbar.vue';
+import Header from './components/layouts/TheHeader.vue';
+import Content from './components/layouts/TheContent.vue';
 
 export default ({
     name: "App",
