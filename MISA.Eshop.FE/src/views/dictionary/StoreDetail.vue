@@ -431,13 +431,17 @@ export default {
     this.getCountry();
     //lấy thông tin quốc gia, thành phố, quận huyện, xã phường khi sửa hoặc nhân bản
     this.getAddress();
+    //sau 1,5s tắt loading form
     this.cencelLoading();
   },
   mounted() {
     this.$refs.forcusFirst.focus();
   },
   methods: {
-    //tắt loading form
+    /*
+     *sau 1.5s tắt loading form
+     *CreatedBy: ndtin(18/06/2021)
+     */
     cencelLoading() {
       setTimeout(() => {
         this.isLoadingForm = false;
@@ -505,7 +509,7 @@ export default {
           //lưu lại
           this.fsave();
           //kiểm tra xem người dùng sửa hay thêm dữ liệu mới
-          if (this.editId == "") {
+          if (this.editId == "" && this.replicationId  == "") {
             //thêm dữ liệu mới không cần load trang
             this.reload();
           }
@@ -549,7 +553,10 @@ export default {
         }
       }
     },
-    //load lại trang
+    /*
+     *Thực hiện thêm add bản ghi mới vào danh sách hiển thị trong StoreManager
+     *CreatedBy: ndtin(18/06/2021)
+     */
     reload() {
       this.$emit("AddStoreNew", this.store);
     },
@@ -699,7 +706,7 @@ export default {
           this.isCodeExits = response.data.data;
         });
       } catch (error) {
-        console.console.warn(error);
+        console.warn(error);
       }
     },
     /*
@@ -789,7 +796,7 @@ export default {
           console.log(err);
         });
     },
-    //đóng cửa sổ
+    //đóng form
     close() {
       this.$emit("closeTab");
     },
@@ -1138,7 +1145,7 @@ export default {
       this.$store.commit("showDialogWaning");
     },
     /*
-     *chỉ cho phép nhập số vào ô input
+     *chỉ cho phép nhập số vào ô input số điện thoại
      *CreatedBy: ndtin(18/06/2021)
      */
     validatePhoneNumber(evt) {

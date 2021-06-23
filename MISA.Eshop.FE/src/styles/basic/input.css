@@ -8,7 +8,10 @@
     outline: none;
     border: 1px solid #3366ff;
 }
+
+
 /*43*/
+
 .input-code {
     width: calc(100% - 51px)
 }
@@ -25,6 +28,7 @@
     width: calc(100% - 51px);
 }
 
+
 /*toolbar*/
 
 .input-toolbar {
@@ -34,6 +38,11 @@
     height: 20px;
     width: 48px;
     border: 1px solid #bbbbbb;
+}
+
+.input-toolbar:focus {
+    outline: none;
+    border: 1px solid #3366ff;
 }
 
 .validate-input {
